@@ -411,6 +411,8 @@ async function getData() {
 function useData() {
 	//let container = document.querySelector(".container");
 	let container = document.querySelector("#menu1txt");
+	// empty container
+	container.innerHTML = "";
 	data
   .sort((a, b) => {
     if (b.score === a.score) {
