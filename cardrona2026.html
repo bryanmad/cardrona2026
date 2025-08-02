@@ -121,6 +121,7 @@ div {
         width: 100%;
         height: 100%;
         object-fit: cover;
+		
     }
 	
 	#menu1txt {
@@ -131,7 +132,9 @@ div {
         top: 5vh;
         left: 10vw;
         //display: none; 
-		font-size: 6vw;
+		font-size: 4vw;
+		color: white;
+		
 		
 		
 		text-shadow:
@@ -145,7 +148,29 @@ div {
                 0px 3px 0 gray;
 	}
 	
-	
+	#menu1day {
+		//background: none; //gray;
+		//height: 50vh;
+		//width: 80vw;
+		position: absolute;
+        top: 0;
+        left: 10vw;
+        //display: none; 
+		font-size: 5vw;
+		color: white;
+		
+		
+		
+		text-shadow:
+                -2px -2px 0 gray,
+                2px -2px 0 gray,
+                -2px 2px 0 gray,
+                2px 2px 0 gray,
+                -3px 0px 0 gray,
+                3px 0px 0 gray,
+                0px -3px 0 gray,
+                0px 3px 0 gray;
+	}
 	
 	
 	
@@ -332,10 +357,15 @@ width: var(--team-height);
 <button id="roundButton"></button>
 -->
   <div id="container" class="container">
+  
     <div id="menu1" onclick="activateMenu1()">
-	<img src="c1.png" alt="1"></img>
-	<div id="menu1txt" class="menu1txt"></div>
+
+	
+	   <img src="c1.png" alt="1">
+	   <div id="menu1day" class="menu1day"></div>
+	   <div id="menu1txt" class="menu1txt"></div>
 	</div>
+	
 	<div id="menu2">
 	Day 2
 	</div>
@@ -361,23 +391,33 @@ width: var(--team-height);
 <script>
 var data;
 
+function addDays() {
+	
+	document.getElementById("menu1day").innerText = "Monday"
+	//document.getElementById("menu2").innerText = "Tuesday"
+	//document.getElementById("menu3").innerText = "Wednesday"
+	//document.getElementById("menu4").innerText = "Thursday"
+	//document.getElementById("menu5").innerText = "Friday"
+		
+}
+addDays();
 
 
 
-
-document.getElementById("menu1txt").className = "contractmenu1txt"
-document.getElementById("menu1").className = "contractmenu1"
+//document.getElementById("menu1txt").className = "contractmenu1txt"
+//document.getElementById("menu1").className = "contractmenu1"
 function activateMenu1() {
 	var x = document.getElementsByClassName('expandmenu1txt');
     if (x.length > 0) {
         // shrink
 	    document.getElementById("menu1").className = "contractmenu1"
 	    document.getElementById("menu1txt").className = "contractmenu1txt"
-	    //document.getElementById("menu1txt").style.display = "none"
+		document.getElementById("menu1day").style.display = "block"
 	} else {
 		// expand
 		document.getElementById("menu1").className = "expandmenu1"
 		document.getElementById("menu1txt").className = "expandmenu1txt"
+		document.getElementById("menu1day").style.display = "none"
 		getData()
 	}
 }
@@ -455,14 +495,6 @@ xx.forEach((elstartx,j) => {
 	initialBodyUpdate(elstartx.name,j);
 })
 k=0;
-
-
-console.log(data)
-
-
-
-
-
 data.forEach((el) => {	
 	k++
 	setTimeout(function() {
