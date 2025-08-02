@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-	<title>swipemenutest</title>
+	<title>cardrona2026</title>
 	<meta content="Bryan M" name="author" />
 	<link href="favicon.ico" rel="icon" type="image/x-icon" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -87,7 +87,7 @@ div {
 	}
 	
 	.expandmenu1 {
-	    height: 100vh;
+	    height: 200vh;
 	    transition: all 1s ease;
 		opacity: 1;
 	}
@@ -128,7 +128,7 @@ div {
 		height: 50vh;
 		width: 80vw;
 		position: absolute;
-        top: 20vh;
+        top: 5vh;
         left: 10vw;
         //display: none; 
 		font-size: 6vw;
@@ -420,7 +420,7 @@ function useData() {
     }
     return b.score - a.score; // Sort by score in descending order
   })
-  .forEach((e, i) => (e.position = i));
+  .forEach((e, i) => (e.rank = i));
 // build screen
 data.forEach((el, i) => {
   let box = document.createElement("div");
@@ -455,6 +455,14 @@ xx.forEach((elstartx,j) => {
 	initialBodyUpdate(elstartx.name,j);
 })
 k=0;
+
+
+console.log(data)
+
+
+
+
+
 data.forEach((el) => {	
 	k++
 	setTimeout(function() {
@@ -495,13 +503,13 @@ data
       let elementScore = element.querySelector(".score");
       if (elementName.innerHTML == elName) {
         elementScore.innerHTML = scr;
-        let newPosition = data.find(
+        let newRank = data.find(
         (team) => team.name === elementName.innerHTML
-      ).position;
+      ).rank;
 	  // move player position
 	  // setProperty(propertyName, value)
 element.style.opacity = 1 //0.4;
-      element.style.setProperty("--i", newPosition);
+      element.style.setProperty("--i", newRank);
 setTimeout(function() {element.style.opacity = 1},800);
 	  let elementPos = element.querySelector(".position");
 	  elementPos.innerText = data.find((team) => team.name === elementName.innerHTML).position
