@@ -16,105 +16,127 @@
       font-family: Helvetica, Arial, sans-serif;
       padding: 0;
       margin: 0;
-      overflow: auto;
+      overflow: hidden; //auto;
     }
 
-    #roundButton {
-      background-color: #96D9FF;
-      margin-bottom: 20px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      border: 10px solid #0065A6;
-      outline: none;
-      transition: transform .3s cubic-bezier(0, .52, 0, 1);
-    }
-
-    #roundButton:hover {
-      background-color: #96D9FF;
-      cursor: pointer;
-      border-color: #003557;
-      transform: scale(1.2, 1.2);
-    }
-
-    #roundButton:active {
-      border-color: #003557;
-      background-color: #FFF;
-    }
-	
+ 
+ 
+ div {
+	 height: calc(88vh / 12);
+		text-align: center;
+		line-height: calc(88vh / 12);
+		color: white;
+		font-size: 4vw;	
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 	#menu1 {
-		background: cyan;
+		background-image: url("c1.avif");
 		border: 2px solid blue;
-		//opacity: 0.5;
+		background-repeat: no-repeat;
+		background-size: cover;
+		//background-size: 88vh;	
+		//height: calc(88vh / 6);
+		text-align: center;
+		line-height: calc(88vh / 6);
+		color: white;
+		font-size: 6vw;
 	}
 
 #menu2 {
-		background: cyan;
+		background-image: url("c1.avif");
 		border: 2px solid blue;
+		background-repeat: no-repeat;
+		background-size: cover;
+		//background-size: 88vh;	
+		//height: calc(88vh / 6);
+		text-align: center;
+		line-height: calc(88vh / 6);
+		color: white;
+		font-size: 6vw;
 	}
 
 #menu3 {
-		background: cyan;
+		background-image: url("c1.avif");
 		border: 2px solid blue;
+		background-repeat: no-repeat;
+		background-size: cover;
+		//background-size: 88vh;	
+		//height: calc(88vh / 6);
+		text-align: center;
+		line-height: calc(88vh / 6);
+		color: white;
+		font-size: 6vw;
 	}
 
 #menu4 {
-		background: cyan;
+		background-image: url("c1.avif");
 		border: 2px solid blue;
+		background-repeat: no-repeat;
+		background-size: cover;
+		//background-size: 88vh;	
+		//height: calc(88vh / 6);
+		text-align: center;
+		line-height: calc(88vh / 6);
+		color: white;
+		font-size: 6vw;	
 	}
 
 #menu5 {
-		background: cyan;
+		background-image: url("c1.avif");
 		border: 2px solid blue;
+		background-repeat: no-repeat;
+		background-size: cover;
+		//background-size: 88vh;	
+		//height: calc(88vh / 6);
+		text-align: center;
+		line-height: calc(88vh / 6);
+		color: white;
+		font-size: 6vw;
 	}
 
 #menu6 {
-		background: cyan;
+		background-image: url("c1.avif");
 		border: 2px solid blue;
-	}
-
-#menu7 {
-		background: cyan;
-		border: 2px solid blue;
-	}
-
-div {
-		height: calc(100vh / 12);
+		background-repeat: no-repeat;
+		background-size: cover;
+		//background-size: 88vh;	
+		//height: calc(88vh / 6);
 		text-align: center;
-		line-height: calc(100vh / 12);
-		color: blue;
-		font-size: 3vw;
+		line-height: calc(88vh / 6);
+		color: white;
+		font-size: 6vw;
 	}
+
+
 	
-	.expandmenu1 {
-	    height: 110vh;
+	.expandmenu {
+	    height: 88vh;
 	    transition: all 1s ease;
 		opacity: 1;
 	}
 	
-.contractmenu1 {
+.contractmenu {
         opacity: 0.6;
-	    height: 10vh;
+	    height: calc(88vh / 6);
 	    transition: all 1s ease;
 	}
 
-	.expandmenu1txt {
-	    transition: all 1s ease;
-		opacity: 1;
-	}
 	
-.contractmenu1txt {
-        opacity: 0;
-		
-		
-		//background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), url('image.jpg');
-		
-		
-		
-	    //height: 10vh;
-	    transition: all 1s ease;
-	}
-
+	
 
 	
 	img {
@@ -124,58 +146,7 @@ div {
 		
     }
 	
-	#menu1txt {
-		background: none; //gray;
-		height: 50vh;
-		width: 80vw;
-		position: absolute;
-        top: 5vh;
-        left: 10vw;
-        //display: none; 
-		font-size: 4vw;
-		color: white;
-		
-		
-		
-		text-shadow:
-                -2px -2px 0 gray,
-                2px -2px 0 gray,
-                -2px 2px 0 gray,
-                2px 2px 0 gray,
-                -3px 0px 0 gray,
-                3px 0px 0 gray,
-                0px -3px 0 gray,
-                0px 3px 0 gray;
-	}
-	
-	#menu1day {
-		//background: none; //gray;
-		//height: 50vh;
-		//width: 80vw;
-		position: absolute;
-        top: 0;
-        left: 10vw;
-        //display: none; 
-		font-size: 5vw;
-		color: white;
-		
-		
-		
-		text-shadow:
-                -2px -2px 0 gray,
-                2px -2px 0 gray,
-                -2px 2px 0 gray,
-                2px 2px 0 gray,
-                -3px 0px 0 gray,
-                3px 0px 0 gray,
-                0px -3px 0 gray,
-                0px 3px 0 gray;
-	}
-	
-	
-	
-	
-	
+
 	
 	
 	
@@ -227,7 +198,7 @@ body {
 
 :root {
     --team-height: 6vh;
-    --team-spacing: 0.75vh;
+    --team-spacing: 1vh;
 }
 
 .team {
@@ -250,9 +221,9 @@ body {
 	
 	
 	
-	border-radius: 10px;
+	
 		border: 4px solid rgba(255, 255, 255, 0.3);
-		//box-shadow: 10px 10px 25px -2px black;
+		
 		background-clip: padding-box;
 	
 	
@@ -358,67 +329,89 @@ width: var(--team-height);
 -->
   <div id="container" class="container">
   
-    <div id="menu1" onclick="activateMenu1()">
-
+    <div id="menu1" onclick="activateMenu(this.id)"></div>
 	
-	   <img src="c1.png" alt="1">
-	   <div id="menu1day" class="menu1day"></div>
-	   <div id="menu1txt" class="menu1txt"></div>
-	</div>
+	<div id="menu2" onclick="activateMenu(this.id)"></div>
 	
-	<div id="menu2">
-	Day 2
-	</div>
-	<div id="menu3">
-	Day 3
-	</div>
-	<div id="menu4">
-	Day 4
-	</div>
-	<div id="menu5">
-	Day 5
-	</div>
-	<div id="menu6">
-	Day 6
-	</div>
-	<div id="menu7">
-	Day 7
-	</div>
+	<div id="menu3" onclick="activateMenu(this.id)"></div>
 	
+	<div id="menu4" onclick="activateMenu(this.id)"></div>
 	
+	<div id="menu5" onclick="activateMenu(this.id)"></div>
+	
+	<div id="menu6" onclick="activateMenu(this.id)"></div>
 	
   </div>
 <script>
 var data;
+var dayCount = 6;
 
 function addDays() {
 	
-	document.getElementById("menu1day").innerText = "Monday"
-	//document.getElementById("menu2").innerText = "Tuesday"
-	//document.getElementById("menu3").innerText = "Wednesday"
-	//document.getElementById("menu4").innerText = "Thursday"
-	//document.getElementById("menu5").innerText = "Friday"
-		
+	document.getElementById("menu1").innerText = "Monday"
+	document.getElementById("menu2").innerText = "Tuesday"
+	document.getElementById("menu3").innerText = "Wednesday"
+	document.getElementById("menu4").innerText = "Thursday"
+	document.getElementById("menu5").innerText = "Friday"
+	document.getElementById("menu6").innerText = "Final"
+	
 }
 addDays();
+
+function addContractSize() {
+	
+	document.getElementById("menu1").className = "contractmenu"
+	document.getElementById("menu2").className = "contractmenu"
+	document.getElementById("menu3").className = "contractmenu"
+	document.getElementById("menu4").className = "contractmenu"
+	document.getElementById("menu5").className = "contractmenu"
+	document.getElementById("menu6").className = "contractmenu"
+	
+}
+addContractSize();
+
 
 
 
 //document.getElementById("menu1txt").className = "contractmenu1txt"
 //document.getElementById("menu1").className = "contractmenu1"
-function activateMenu1() {
-	var x = document.getElementsByClassName('expandmenu1txt');
+function activateMenu(thisid) {
+	console.log("thisid = " + thisid)
+	var thisMenuNum = parseInt(thisid.replace("menu",""))
+	var menuNum = thisid.replace("menu","") - 1
+	console.log("menuNum is one before = " + menuNum)
+	var thisidmod = 0;
+	if (menuNum > 0) {
+		thisidmod = menuNum;
+	}
+	var x = document.getElementsByClassName('expandmenu');
     if (x.length > 0) {
         // shrink
-	    document.getElementById("menu1").className = "contractmenu1"
-	    document.getElementById("menu1txt").className = "contractmenu1txt"
-		document.getElementById("menu1day").style.display = "block"
+	    document.getElementById(thisid).className = "contractmenu"
+	    if (thisidmod > 0) {
+			for (let i = 1; i <= dayCount; i++) {
+                 if (i !== thisMenuNum) {	
+console.log("-------i = " + i)				
+		             document.getElementById("menu" + i).style.display = "block";
+				 }
+			}	 
+		}
+		addDays();
 	} else {
 		// expand
-		document.getElementById("menu1").className = "expandmenu1"
-		document.getElementById("menu1txt").className = "expandmenu1txt"
-		document.getElementById("menu1day").style.display = "none"
-		getData()
+		console.log("one before to hide = menu" + thisidmod)
+		if (thisidmod > 0) {
+		   	for (let j = 1; j <= dayCount; j++) {
+				console.log("j = " + j)
+		         if (j !== thisMenuNum) {	
+console.log("-------j = " + j)			
+		             document.getElementById("menu" + j).style.display = "none";
+				 }
+			}
+		}
+		document.getElementById(thisid).className = "expandmenu"
+		menuNum++
+		getData(menuNum)
 	}
 }
 
@@ -430,7 +423,7 @@ function activateMenu1() {
 
 // data is available here
 
-async function getData() {
+async function getData(menuNum) {
 	    const url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday1";
         try {
         const dataStream = await fetch(url);
@@ -441,16 +434,17 @@ async function getData() {
         } catch (error) {
            console.error(error.message);
         }
- useData();
+ useData(menuNum);
 }
 
 
 
 
 
-function useData() {
+function useData(menuNum) {
+	console.log("should be current menu = useData = " + menuNum)
 	//let container = document.querySelector(".container");
-	let container = document.querySelector("#menu1txt");
+	let container = document.querySelector("#menu" + menuNum);
 	// empty container
 	container.innerHTML = "";
 	data
