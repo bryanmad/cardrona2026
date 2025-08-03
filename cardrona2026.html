@@ -36,119 +36,40 @@
  
  
 /* for each day */
-	#menu1 {
-		background-image: url("c1.jpg");
-		border: 2px solid white;
-		//box-sizing: border-box;
-		background-repeat: no-repeat;
-		background-size: cover;
-		text-align: center;
-		//height: calc(86vh /6);
-		line-height: calc(84vh / 6);
-		color: white;
-		font-size: 10vw;
-	}
-
-#menu2 {
-		background-image: url("c2.jpg");
-		border: 2px solid white;
-		//box-sizing: border-box;
-		background-repeat: no-repeat;
-		background-size: cover;
-		text-align: center;
-		//height: calc(87vh /6);
-		line-height: calc(84vh / 6);
-		color: white;
-		font-size: 10vw;
-	}
-
-#menu3 {
-		background-image: url("c3.jpg");
-		border: 2px solid white;
-		//box-sizing: border-box;
-		background-repeat: no-repeat;
-		background-size: cover;
-		text-align: center;
-		//height: calc(87vh /6);
-		line-height: calc(84vh / 6);
-		color: white;
-		font-size: 10vw;
-	}
-
-#menu4 {
-		background-image: url("c4.jpg");
-		border: 2px solid white;
-		//box-sizing: border-box;
-		background-repeat: no-repeat;
-		background-size: cover;
-		text-align: center;
-		//height: calc(87vh /6);
-		line-height: calc(84vh / 6);
-		color: white;
-		font-size: 10vw;	
-	}
-
-#menu5 {
-		background-image: url("c5.jpg");
-		border: 2px solid white;
-		//box-sizing: border-box;
-		background-repeat: no-repeat;
-		background-size: cover;
-		text-align: center;
-		//height: calc(87vh /6);
-		line-height: calc(84vh / 6);
-		color: white;
-		font-size: 10vw;
-	}
-
+#menu1,
+#menu2,
+#menu3,
+#menu4,
+#menu5,
 #menu6 {
-		background-image: url("c6.jpg");
 		border: 2px solid white;
-		//box-sizing: border-box;
 		background-repeat: no-repeat;
 		background-size: cover;
 		text-align: center;
-		//height: calc(87vh /6);
 		line-height: calc(84vh / 6);
 		color: white;
 		font-size: 10vw;
-	}
+}
 
+#menu1 {background-image: url("c1.jpg");}
+#menu2 {background-image: url("c2.jpg");}
+#menu3 {background-image: url("c3.jpg");}
+#menu4 {background-image: url("c4.jpg");}
+#menu5 {background-image: url("c5.jpg");}
+#menu6 {background-image: url("c6.jpg");}
 
-
-	/* for full size results per day */
-	.expandmenu {
+/* for full size results per day */
+.expandmenu {
 	    height: 87vh;
 	    transition: all 1s ease;
 		opacity: 1;
-	}
+}
 
 /* for return to menu days */	
 .contractmenu {
         opacity: 0.6;
-	    //height: calc(87vh / 6);
 	    transition: all 1s ease;
-	}
-
-
-
-
-
-
-
-	
-//body {
-//    display: flex;
-//    justify-content: center;
-//    align-items: center;
-//    flex-direction: column;
-    //gap: 2vh;
-//    background-color: black;
-//    height: 87vh;
-//    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-//}
-
-
+}
 
 .team {
     position: absolute;
@@ -165,8 +86,8 @@
     transition-duration: 1500ms;
     border-radius: 10px;
     transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-		border: 4px solid rgba(255, 255, 255, 0.3);
-		background-clip: padding-box;
+	border: 4px solid rgba(255, 255, 255, 0.3);
+	background-clip: padding-box;
 }
 
 .name {
@@ -186,7 +107,7 @@
     margin: 1vh 1vw;
     font-size: 1.4rem;
     color: white;
-    font-weight: 400; //600;
+    font-weight: 400;
 	text-align: center;
 }
 
@@ -195,7 +116,7 @@
     margin: 1vh 1vw;
     font-size: 1.4rem;
     color: white;
-    font-weight: 400; //600;	
+    font-weight: 400;	
 	text-align: center;
 }
 
@@ -210,34 +131,11 @@
 	border-radius: 10px;
 	border: 4px solid rgba(255, 255, 255, 0.3);
 	background-clip: padding-box;
-	
-	
-	
 }
 
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 </style>
 </head>
 <body>
-<!--
-<button id="roundButton"></button>
--->
-
 
   <div id="container" class="container">
  
@@ -271,27 +169,18 @@ function addDays() {
 addDays();
 
 function addContractSize() {
-	
 	document.getElementById("menu1").className = "contractmenu"
 	document.getElementById("menu2").className = "contractmenu"
 	document.getElementById("menu3").className = "contractmenu"
 	document.getElementById("menu4").className = "contractmenu"
 	document.getElementById("menu5").className = "contractmenu"
 	document.getElementById("menu6").className = "contractmenu"
-	
 }
 addContractSize();
 
-
-
-
-//document.getElementById("menu1txt").className = "contractmenu1txt"
-//document.getElementById("menu1").className = "contractmenu1"
 function activateMenu(thisid) {
-	console.log("thisid = " + thisid)
 	var thisMenuNum = parseInt(thisid.replace("menu",""))
 	var menuNum = thisid.replace("menu","") - 1
-	console.log("menuNum is one before = " + menuNum)
 	var thisidmod = 0;
 	if (menuNum > 0) {
 		thisidmod = menuNum;
@@ -300,38 +189,24 @@ function activateMenu(thisid) {
     if (x.length > 0) {
         // shrink
 	    document.getElementById(thisid).className = "contractmenu"
-	    //if (thisidmod > 0) {
 			for (let i = 1; i <= dayCount; i++) {
                  if (i !== thisMenuNum) {	
-console.log("-------i = " + i)				
 		             document.getElementById("menu" + i).style.display = "block";
 				 }
 			}	 
-		//}
 		addDays();
 	} else {
 		// expand
-		console.log("one before to hide = menu" + thisidmod)
-		//if (thisidmod > 0) {
 		   	for (let j = 1; j <= dayCount; j++) {
-				console.log("j = " + j)
-		         if (j !== thisMenuNum) {	
-console.log("-------j = " + j)			
+		         if (j !== thisMenuNum) {			
 		             document.getElementById("menu" + j).style.display = "none";
 				 }
 			}
-		//}
 		document.getElementById(thisid).className = "expandmenu"
 		menuNum++
 		getData(menuNum)
 	}
 }
-
-
-
-
-
-
 
 // data is available here
 
@@ -346,16 +221,10 @@ async function getData(menuNum) {
         } catch (error) {
            console.error(error.message);
         }
- useData(menuNum);
+        useData(menuNum);
 }
 
-
-
-
-
 function useData(menuNum) {
-	console.log("should be current menu = useData = " + menuNum)
-	//let container = document.querySelector(".container");
 	let container = document.querySelector("#menu" + menuNum);
 	// empty container
 	container.innerHTML = "";
@@ -367,8 +236,8 @@ function useData(menuNum) {
   })
   
   data.forEach((e, i) => (e.rank = i));
-// build screen
-data.forEach((el, i) => {
+  // build screen
+  data.forEach((el, i) => {
   let box = document.createElement("div");
   box.id= "box" + i;
   box.className = "team";
@@ -396,11 +265,12 @@ j=0
 let xx = data.toSorted((a, b) =>
   a.name < b.name ? -1 : a.name > b.name ? 1 : 0
 );
+// initial view which is hidden
 xx.forEach((elstartx,j) => {
-	//elstartx.position = "0";
 	initialBodyUpdate(elstartx.name,j);
 })
 k=0;
+// do proper display
 data.forEach((el) => {	
 	k++
 	setTimeout(function() {
@@ -408,7 +278,6 @@ data.forEach((el) => {
 	bodyUpdate(el.name,el.score);
 		}
    },k*800);
-
 })
 }
 
@@ -446,9 +315,9 @@ data
       ).rank;
 	  // move player position
 	  // setProperty(propertyName, value)
-element.style.opacity = 1 //0.4;
+      element.style.opacity = 1 //0.4;
       element.style.setProperty("--i", newRank);
-setTimeout(function() {element.style.opacity = 1},800);
+      setTimeout(function() {element.style.opacity = 1},800);
 	  let elementPos = element.querySelector(".position");
 	  elementPos.innerText = data.find((team) => team.name === elementName.innerHTML).position
 	  }
@@ -459,7 +328,7 @@ function initialBodyUpdate(nom,pos) {
     document.getElementById("name" + pos).innerText = nom;
 	document.getElementById("position" + pos).innerText = "";
 }	
-
+/*
 function simulateClick(ele) {
 		  var event = new MouseEvent('click', {
 			view: window,
@@ -469,7 +338,7 @@ function simulateClick(ele) {
 		  cb = document.getElementById(ele);
 		  cb.dispatchEvent(event);
 }
-	
+*/
 
 
 
