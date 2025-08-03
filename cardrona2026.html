@@ -33,10 +33,18 @@
  
  
  
+ /* holds */
+.container {
+    width: 100vw;
+    height: 88vh;
+    position: relative;
+}
  
  
- 
- 
+#spacer {
+	height: 2vh;
+	background: red;
+} 
  
  
  
@@ -45,7 +53,7 @@
  /* for each day */
 	#menu1 {
 		background-image: url("c1.avif");
-		border: 2px solid blue;
+		//border: 2px solid blue;
 		background-repeat: no-repeat;
 		background-size: cover;
 		//background-size: 88vh;	
@@ -58,7 +66,7 @@
 
 #menu2 {
 		background-image: url("c1.avif");
-		border: 2px solid blue;
+		//border: 2px solid blue;
 		background-repeat: no-repeat;
 		background-size: cover;
 		//background-size: 88vh;	
@@ -71,7 +79,7 @@
 
 #menu3 {
 		background-image: url("c1.avif");
-		border: 2px solid blue;
+		//border: 2px solid blue;
 		background-repeat: no-repeat;
 		background-size: cover;
 		//background-size: 88vh;	
@@ -84,7 +92,7 @@
 
 #menu4 {
 		background-image: url("c1.avif");
-		border: 2px solid blue;
+		//border: 2px solid blue;
 		background-repeat: no-repeat;
 		background-size: cover;
 		//background-size: 88vh;	
@@ -97,7 +105,7 @@
 
 #menu5 {
 		background-image: url("c1.avif");
-		border: 2px solid blue;
+		//border: 2px solid blue;
 		background-repeat: no-repeat;
 		background-size: cover;
 		//background-size: 88vh;	
@@ -110,7 +118,7 @@
 
 #menu6 {
 		background-image: url("c1.avif");
-		border: 2px solid blue;
+		//border: 2px solid blue;
 		background-repeat: no-repeat;
 		background-size: cover;
 		//background-size: 88vh;	
@@ -120,6 +128,7 @@
 		color: white;
 		font-size: 6vw;
 	}
+
 
 
 	/* for full size results per day */
@@ -136,49 +145,12 @@
 	    transition: all 1s ease;
 	}
 
-	
-	
 
-	
-//	img {
-//        width: 100%;
-//        height: 100%;
-//        object-fit: cover;
-		
-//    }
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
 	
 body {
     display: flex;
@@ -191,11 +163,6 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.container {
-    width: 100vw;
-    height: 88vh;
-    position: relative;
-}
 
 :root {
     --team-height: 6vh;
@@ -210,7 +177,7 @@ body {
     box-shadow: 0 3px 5px #0000001f;
     left: 50%;
     transform: translateX(-50%);
-    top: calc(var(--i) * (var(--team-height) + var(--team-spacing)));
+    top: calc(var(--i) * (var(--team-height) + var(--team-spacing)) + 2vh); /* added top space */
     display: flex;
 
     align-items: center;
@@ -328,8 +295,10 @@ width: var(--team-height);
 <!--
 <button id="roundButton"></button>
 -->
+
+
   <div id="container" class="container">
-  
+ 
     <div id="menu1" onclick="activateMenu(this.id)"></div>
 	
 	<div id="menu2" onclick="activateMenu(this.id)"></div>
@@ -448,14 +417,14 @@ function useData(menuNum) {
 	let container = document.querySelector("#menu" + menuNum);
 	// empty container
 	container.innerHTML = "";
-	data
-  .sort((a, b) => {
+	data.sort((a, b) => {
     if (b.score === a.score) {
       return a.name.localeCompare(b.name); // Sort by name if scores are equal
     }
     return b.score - a.score; // Sort by score in descending order
   })
-  .forEach((e, i) => (e.rank = i));
+  
+  data.forEach((e, i) => (e.rank = i));
 // build screen
 data.forEach((el, i) => {
   let box = document.createElement("div");
@@ -478,7 +447,7 @@ data.forEach((el, i) => {
   box.style.setProperty("--color", el.color);
   container.appendChild(box);
   // fade the initial view
-  box.style.opacity = 0.4;
+  box.style.opacity = 0;
 })
 j=0
 // Using an arrow function to sort players by their name
