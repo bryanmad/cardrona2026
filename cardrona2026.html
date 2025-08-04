@@ -16,6 +16,7 @@
 :root {
     --team-height: 5vh;
     --team-spacing: 2vh;
+	--name-score: 10vw;
 }
 
     body {
@@ -94,33 +95,38 @@
 }
 
 .name {
-    width: 80%;
-    height: 100%;
+    width: 65%;
+    //height: 100%;
     display: flex;
     align-items: center;
-    margin: 1vh 0;
+	justify-content: left;
     font-size: 1.4rem;
     color: white;
     font-weight: 400;
     text-transform: capitalize;
+	
 }
 
 .score {
-    width: var(--team-height);
-    margin: 1vh 1vw;
+    width: 20%; //var(--team-height);
+    //margin: 1vh 1vw;
     font-size: 1.4rem;
     color: white;
     font-weight: 400;
+	display: flex;
 	text-align: center;
+	justify-content: center;
 }
 
 .position {
-    width: var(--team-height);
-    margin: 1vh 1vw;
+    width: 15%; //var(--team-height);
+    //margin: 1vh 1vw;
     font-size: 1.4rem;
     color: white;
-    font-weight: 400;	
+    font-weight: 400;
+    display: flex;	
 	text-align: center;
+	justify-content: center;
 }
 
 .team i {
