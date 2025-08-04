@@ -137,10 +137,25 @@
 	border: 4px solid rgba(255, 255, 255, 0.3);
 	background-clip: padding-box;
 }
+#warning {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: indigo;
+      width: 100vw;
+      height: 100vh;
+      z-index: 999;
+      text-align: center;
+      color: white;
+      padding-top: 40vh;
+      font-size: 6vh;
+}
 
 </style>
 </head>
 <body>
+  <div id="warning">Not available in landscape orientation</div>
 
   <div id="container" class="container">
  
@@ -158,6 +173,21 @@
 	
   </div>
 <script>
+// Detect whether device supports orientationchange event, otherwise fall back to
+// the resize event.
+    var supportsOrientationChange = "onorientationchange" in window,
+      orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+
+    window.addEventListener(orientationEvent, function() {
+      if (window.orientation == 0) {
+        document.getElementById("warning").style.display = "none";
+      } else if (window.orientation == 90 || window.orientation == -90) {
+        document.getElementById("warning").style.display = "block";
+      }
+    }, false);
+    
+//------------------------------------------------------------------------------
+	
 var data;
 var dayCount = 6;
 
