@@ -190,6 +190,7 @@
 	
 var data;
 var dayCount = 6;
+var url
 
 function addDays() {
 	
@@ -246,26 +247,25 @@ function activateMenu(thisid) {
 // data is available here
 
 async function getData(menuNum) {
-	    if (menuNum == "1") {
-	        const url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday1";
+	    if (menuNum == 1) {
+	        url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday1";
         }
-		if (menuNum == "2") {
-	        const url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday2";
+		if (menuNum == 2) {
+	        url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday2";
         }
-		if (menuNum == "3") {
-	        const url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday3";
+		if (menuNum == 3) {
+	        url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday3";
         }
-		if (menuNum == "4") {
-	        const url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday4";
+		if (menuNum == 4) {
+	        url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday4";
         }
-		if (menuNum == "5") {
-	        const url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday5";
+		if (menuNum == 5) {
+	        url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday5";
         }
-		if (menuNum == "6") {
-	       const url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsfinal";
+		if (menuNum == 6) {
+	        url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsfinal";
         }
 		try {
-		}
         const dataStream = await fetch(url);
         if (!dataStream.ok) {
             throw new Error(`Response status: ${dataStream.status}`);
