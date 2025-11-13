@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>webworker</title>
+    <meta content="Bryan M" name="author" />
+    <meta name="theme-color" content="indigo">
+    <meta name="robots" content="noindex">
+    <link href="originalgolf.svg" rel="icon" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="originalgolf.svg.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Kalam' rel='stylesheet'>
+</head>
+
+<body>
+
+
+<p>webworker test</p>
+<p id="msg"></p>
+<p id="num"></p>
+<script id="worker1" type="javascript/worker">
+  // This script won't be parsed by JS engines because its type is javascript/worker.
+  self.onmessage = function(e) {
+    self.postMessage('msg from worker' + i);
+  };
+  // Rest of your worker code goes here.
+  var i = 0;
+
+function timedCount() {
+  i = i + 1;
+  self.postMessage("from timedCount() = " + i);
+  setTimeout("timedCount()",500);
+}
+
+timedCount(); 
+  
+  
+  
+</script>
+<script>
+var m=0;
+  var blob = new Blob([
+    document.querySelector('#worker1').textContent
+  ], { type: "text/javascript" })
+
+  // Note: window.webkitURL.createObjectURL() in Chrome 10+.
+  var worker = new Worker(window.URL.createObjectURL(blob));
+  worker.onmessage = function(e) {
+    console.log("Received: " + e.data);
+	document.getElementById("msg").innerText = e.data;
+  m++
+  
+  if (m>10) {
+     worker.terminate();
+  }
+  
+  }
+  worker.postMessage("hello"); // Start the worker.
+</script>
+
+
+
+
+
+</body>
+</html>
+
