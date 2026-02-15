@@ -60,11 +60,46 @@
                             cursor: pointer;
                             background: url(3-lines.png) no-repeat center;
                             background-size: 44px;
+                            animation: 1.5s fadeInDown;
 
-                            &:active {
-                                opacity: 0.2;
-                            }
+
+
+                            //&:active {
+                            //    opacity: 0.2;
+                            //}
                         }
+
+                        @keyframes fadeInDown {
+                          0% {
+                            transform: translateY(-100%);
+                            opacity: 0;
+                          }
+                          100% {
+                            transform: translateY(0%);
+                            opacity: 1;
+                          }
+                        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                         section {
                             position: absolute;
@@ -359,11 +394,11 @@
                             //z-index: 10;
                            // top: 0;
                             //left: 2;
-                            height: 5vh;
-                            width: 4vh;
+                            height: 3vh;
+                            width: 3vh;
                             cursor: pointer;
                             background: url("bird.png") no-repeat center;
-                            background-size: 4vh;
+                            background-size: 3vh;
                         }
         </style>
     </head>
@@ -401,10 +436,13 @@
                     .classList.add("menu-open");
                 //.classList.toggle("menu-open");
                 document.getElementById("menu-btn").style.display = "none";
+
+                // clear page
+                document.getElementById("mondayresults").innerHTML = "";
             }
 
             function goToPage(page) {
-                document.getElementById("menu-btn").style.display = "block";
+                document.getElementById("menu-btn").style.display = "flex";
                 var wrapper = document.getElementsByClassName("wrapper")[0];
                 var sections = document.getElementsByTagName("section");
                 for (i = 0; i < sections.length; i++) {
@@ -415,12 +453,13 @@
                 }
                 wrapper.classList.remove("menu-open", "page-one", "page-two");
                 wrapper.classList.add("page-" + pages[page]);
+
+                // testing .....
+                menuNum = 1;
+                getData(menuNum);
             }
 
             //===================================================
-
-            menuNum = 1;
-            getData(menuNum);
 
             async function getData(menuNum) {
                 if (menuNum == 1) {
@@ -482,9 +521,25 @@
                     let name = document.createElement("span");
                     name.id = "name" + i;
                     name.className = "name";
-                    let bird = document.createElement("span");
-                    bird.id = "bird" + i;
-                    bird.className = "bird";
+
+                    let bird1 = document.createElement("span");
+                    bird1.id = "bird1" + i;
+                    bird1.className = "bird";
+                    let bird2 = document.createElement("span");
+                    bird2.id = "bird2" + i;
+                    bird2.className = "bird";
+                    let bird3 = document.createElement("span");
+                    bird3.id = "bird3" + i;
+                    bird3.className = "bird";
+                    let bird4 = document.createElement("span");
+                    bird4.id = "bird4" + i;
+                    bird4.className = "bird";
+                    let bird5 = document.createElement("span");
+                    bird5.id = "bird5" + i;
+                    bird5.className = "bird";
+                    let bird6 = document.createElement("span");
+                    bird6.id = "bird6" + i;
+                    bird6.className = "bird";
                     let score = document.createElement("span");
                     score.id = "score" + i;
                     score.className = "score";
@@ -494,7 +549,12 @@
                     position.innerHTML = el.position;
                     box.appendChild(position);
                     box.appendChild(name);
-                    box.appendChild(bird);
+                    box.appendChild(bird1);
+                    box.appendChild(bird2);
+                    box.appendChild(bird3);
+                    box.appendChild(bird4);
+                    box.appendChild(bird5);
+                    box.appendChild(bird6);
                     box.appendChild(score);
                     //box.style.setProperty("--color", el.color);
                     container.appendChild(box);
@@ -577,7 +637,12 @@
             }
 
             function showBird() {
-                document.getElementById("bird1").style.visibility = "visible";
+                document.getElementById("bird11").style.visibility = "visible";
+                document.getElementById("bird21").style.visibility = "visible";
+                document.getElementById("bird31").style.visibility = "visible";
+                document.getElementById("bird41").style.visibility = "visible";
+                document.getElementById("bird51").style.visibility = "visible";
+                document.getElementById("bird61").style.visibility = "visible";
             }
         </script>
     </body>
