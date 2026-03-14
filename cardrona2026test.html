@@ -577,13 +577,12 @@
                 );
                 // initial view order by name
                 xx.forEach((el, j) => {
-                    k = j + 1;
                     setTimeout(
                         function () {
                             document.getElementById("name" + j).innerText =
                                 el.name;
                             document.getElementById("position" + j).innerText =
-                                k;
+                                "?";
                         },
                         j * 500 + 50,
                     );
