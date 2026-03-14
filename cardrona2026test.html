@@ -515,57 +515,58 @@
                 data.forEach((el, i) => (el.rank = i));
                 // build screen
                 data.forEach((el, i) => {
-                    k = i + 1;
-                    setTimeout(function () {
-                        console.log("step " + i);
-                        let box = document.createElement("div");
-                        box.id = "box" + i;
-                        box.className = "team";
-                        //box.style.setProperty("--i", i);
-                        let name = document.createElement("span");
-                        name.id = "name" + i;
-                        name.className = "name";
+                    //k = i + 1;
+                    //setTimeout(function () {
+                    console.log("step " + i);
+                    let box = document.createElement("div");
+                    box.id = "box" + i;
+                    box.className = "team";
+                    //box.style.setProperty("--i", i);
+                    let name = document.createElement("span");
+                    name.id = "name" + i;
+                    name.className = "name";
 
-                        let bird1 = document.createElement("span");
-                        bird1.id = "bird1" + i;
-                        bird1.className = "bird";
-                        let bird2 = document.createElement("span");
-                        bird2.id = "bird2" + i;
-                        bird2.className = "bird";
-                        let bird3 = document.createElement("span");
-                        bird3.id = "bird3" + i;
-                        bird3.className = "bird";
-                        let bird4 = document.createElement("span");
-                        bird4.id = "bird4" + i;
-                        bird4.className = "bird";
-                        let bird5 = document.createElement("span");
-                        bird5.id = "bird5" + i;
-                        bird5.className = "bird";
-                        let bird6 = document.createElement("span");
-                        bird6.id = "bird6" + i;
-                        bird6.className = "bird";
-                        let score = document.createElement("span");
-                        score.id = "score" + i;
-                        score.className = "score";
-                        let position = document.createElement("span");
-                        position.id = "position" + i;
-                        position.className = "position";
-                        position.innerHTML = k; //el.position;
-                        box.appendChild(position);
-                        box.appendChild(name);
-                        box.appendChild(bird1);
-                        box.appendChild(bird2);
-                        box.appendChild(bird3);
-                        box.appendChild(bird4);
-                        box.appendChild(bird5);
-                        box.appendChild(bird6);
-                        box.appendChild(score);
-                        //box.style.setProperty("--color", el.color);
-                        container.appendChild(box);
-                        // fade the initial view
-                        //box.style.opacity = 0;
-                        //
-                    }, i * 500);
+                    let bird1 = document.createElement("span");
+                    bird1.id = "bird1" + i;
+                    bird1.className = "bird";
+                    let bird2 = document.createElement("span");
+                    bird2.id = "bird2" + i;
+                    bird2.className = "bird";
+                    let bird3 = document.createElement("span");
+                    bird3.id = "bird3" + i;
+                    bird3.className = "bird";
+                    let bird4 = document.createElement("span");
+                    bird4.id = "bird4" + i;
+                    bird4.className = "bird";
+                    let bird5 = document.createElement("span");
+                    bird5.id = "bird5" + i;
+                    bird5.className = "bird";
+                    let bird6 = document.createElement("span");
+                    bird6.id = "bird6" + i;
+                    bird6.className = "bird";
+
+                    let score = document.createElement("span");
+                    score.id = "score" + i;
+                    score.className = "score";
+                    let position = document.createElement("span");
+                    position.id = "position" + i;
+                    position.className = "position";
+                    position.innerHTML = k; //el.position;
+                    box.appendChild(position);
+                    box.appendChild(name);
+                    box.appendChild(bird1);
+                    box.appendChild(bird2);
+                    box.appendChild(bird3);
+                    box.appendChild(bird4);
+                    box.appendChild(bird5);
+                    box.appendChild(bird6);
+                    box.appendChild(score);
+                    //box.style.setProperty("--color", el.color);
+                    container.appendChild(box);
+                    // fade the initial view
+                    //box.style.opacity = 0;
+                    //
+                    // }, i * 500);
                 });
 
                 console.log("here 1");
@@ -576,12 +577,13 @@
                 );
                 // initial view order by name
                 xx.forEach((el, j) => {
+                    k = j + 1;
                     setTimeout(
                         function () {
                             document.getElementById("name" + j).innerText =
                                 el.name;
                             document.getElementById("position" + j).innerText =
-                                j;
+                                k;
                         },
                         j * 500 + 50,
                     );
