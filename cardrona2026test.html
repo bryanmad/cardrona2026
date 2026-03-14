@@ -515,6 +515,7 @@
                 data.forEach((el, i) => (el.rank = i));
                 // build screen
                 data.forEach((el, i) => {
+                    k = i + 1;
                     setTimeout(function () {
                         console.log("step " + i);
                         let box = document.createElement("div");
@@ -549,7 +550,7 @@
                         let position = document.createElement("span");
                         position.id = "position" + i;
                         position.className = "position";
-                        position.innerHTML = i + 1; //el.position;
+                        position.innerHTML = k; //el.position;
                         box.appendChild(position);
                         box.appendChild(name);
                         box.appendChild(bird1);
