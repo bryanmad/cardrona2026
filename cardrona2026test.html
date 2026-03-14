@@ -592,6 +592,12 @@
                 let yy = data.toSorted((b, a) =>
                     a.score < b.score ? -1 : a.score > b.score ? 1 : 0,
                 );
+                yy.forEach((el, j) => {
+                setTimeout(
+                    function () {
+                      document.getElementById("name" + j).innerText =
+                          el.name;
+                    },j * 1000 + 3000)
                 // view order by score
                 oldscore = 0;
                 oldpos = 0;
