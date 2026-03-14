@@ -512,105 +512,152 @@
                     return b.score - a.score; // Sort by score in descending order
                 });
 
-                data.forEach((e, i) => (e.rank = i));
+                data.forEach((el, i) => (el.rank = i));
                 // build screen
                 data.forEach((el, i) => {
-                    let box = document.createElement("div");
-                    box.id = "box" + i;
-                    box.className = "team";
-                    //box.style.setProperty("--i", i);
-                    let name = document.createElement("span");
-                    name.id = "name" + i;
-                    name.className = "name";
+                    setTimeout(function () {
+                        console.log("step " + i);
+                        let box = document.createElement("div");
+                        box.id = "box" + i;
+                        box.className = "team";
+                        //box.style.setProperty("--i", i);
+                        let name = document.createElement("span");
+                        name.id = "name" + i;
+                        name.className = "name";
 
-                    let bird1 = document.createElement("span");
-                    bird1.id = "bird1" + i;
-                    bird1.className = "bird";
-                    let bird2 = document.createElement("span");
-                    bird2.id = "bird2" + i;
-                    bird2.className = "bird";
-                    let bird3 = document.createElement("span");
-                    bird3.id = "bird3" + i;
-                    bird3.className = "bird";
-                    let bird4 = document.createElement("span");
-                    bird4.id = "bird4" + i;
-                    bird4.className = "bird";
-                    let bird5 = document.createElement("span");
-                    bird5.id = "bird5" + i;
-                    bird5.className = "bird";
-                    let bird6 = document.createElement("span");
-                    bird6.id = "bird6" + i;
-                    bird6.className = "bird";
-                    let score = document.createElement("span");
-                    score.id = "score" + i;
-                    score.className = "score";
-                    let position = document.createElement("span");
-                    position.id = "position" + i;
-                    position.className = "position";
-                    position.innerHTML = el.position;
-                    box.appendChild(position);
-                    box.appendChild(name);
-                    box.appendChild(bird1);
-                    box.appendChild(bird2);
-                    box.appendChild(bird3);
-                    box.appendChild(bird4);
-                    box.appendChild(bird5);
-                    box.appendChild(bird6);
-                    box.appendChild(score);
-                    //box.style.setProperty("--color", el.color);
-                    container.appendChild(box);
-                    // fade the initial view
-                    //box.style.opacity = 0;
+                        let bird1 = document.createElement("span");
+                        bird1.id = "bird1" + i;
+                        bird1.className = "bird";
+                        let bird2 = document.createElement("span");
+                        bird2.id = "bird2" + i;
+                        bird2.className = "bird";
+                        let bird3 = document.createElement("span");
+                        bird3.id = "bird3" + i;
+                        bird3.className = "bird";
+                        let bird4 = document.createElement("span");
+                        bird4.id = "bird4" + i;
+                        bird4.className = "bird";
+                        let bird5 = document.createElement("span");
+                        bird5.id = "bird5" + i;
+                        bird5.className = "bird";
+                        let bird6 = document.createElement("span");
+                        bird6.id = "bird6" + i;
+                        bird6.className = "bird";
+                        let score = document.createElement("span");
+                        score.id = "score" + i;
+                        score.className = "score";
+                        let position = document.createElement("span");
+                        position.id = "position" + i;
+                        position.className = "position";
+                        position.innerHTML = i + 1; //el.position;
+                        box.appendChild(position);
+                        box.appendChild(name);
+                        box.appendChild(bird1);
+                        box.appendChild(bird2);
+                        box.appendChild(bird3);
+                        box.appendChild(bird4);
+                        box.appendChild(bird5);
+                        box.appendChild(bird6);
+                        box.appendChild(score);
+                        //box.style.setProperty("--color", el.color);
+                        container.appendChild(box);
+                        // fade the initial view
+                        //box.style.opacity = 0;
+                        //
+                    }, i * 500);
                 });
+
+                console.log("here 1");
                 j = 0;
                 // Using an arrow function to sort players by their name
                 let xx = data.toSorted((a, b) =>
                     a.name < b.name ? -1 : a.name > b.name ? 1 : 0,
                 );
-                // initial view which is hidden
-                xx.forEach((elstartx, j) => {
-                    initialBodyUpdate(elstartx.name, j);
+                // initial view order by name
+                xx.forEach((el, j) => {
+                    setTimeout(
+                        function () {
+                            document.getElementById("name" + j).innerText =
+                                el.name;
+                            document.getElementById("position" + j).innerText =
+                                j;
+                        },
+                        j * 500 + 5000,
+                    );
                 });
-                k = 0;
-                // do proper display
-                data.forEach((el) => {
-                    k++;
-                    setTimeout(function () {
-                        if (el.name !== "") {
-                            bodyUpdate(el.name, el.score);
-                        }
-                    }, k * 600);
+
+                // Using an arrow function to sort players by their score
+                let yy = data.toSorted((b, a) =>
+                    a.score < b.score ? -1 : a.score > b.score ? 1 : 0,
+                );
+                // view order by score
+                oldscore = 0;
+                oldpos = 0;
+                yy.forEach((el, j) => {
+                    setTimeout(
+                        function () {
+                            document.getElementById("name" + j).innerText =
+                                el.name;
+                            document.getElementById("score" + j).innerText =
+                                el.score;
+                            if (oldscore !== el.score) {
+                                document.getElementById(
+                                    "position" + j,
+                                ).innerText = j + 1;
+                            } else {
+                                document.getElementById(
+                                    "position" + j,
+                                ).innerText = oldpos;
+                            }
+
+                            oldscore = el.score;
+                            oldpos = j + 1;
+                        },
+                        j * 500 + 10000,
+                    );
                 });
             }
 
             function bodyUpdate(nom, scr) {
-                let elName = nom;
-                data.find((team) => team.name === elName);
+                //let elName = nom;
+                //
+                let xx = data.toSorted((a, b) =>
+                    a.score < b.score ? -1 : a.score > b.score ? 1 : 0,
+                );
+                //
+                k = 0;
+                xx.forEach((el) => {
+                    k++;
+                    setTimeout(function () {
+                        if (el.name !== "") {
+                            document.getElementById("name" + k).innerText = nom;
+                            document.getElementById(
+                                "position" + pos,
+                            ).innerText = "";
+                        }
+                    }, k * 600);
+                });
+                //
+                //
+                //
+                //
+                /*
+                data.find((team) => team.name === nom);
                 data.sort((a, b) => {
                     if (b.score === a.score) {
                         return a.name.localeCompare(b.name); // Sort by name if scores are equal
                     }
                     return b.score - a.score; // Sort by score in descending order
                 });
-                // now sort out positions for same scores
-                var held = 1;
-                var heldscore = 0;
-                data.forEach((elem, ind) => {
-                    if (elem.score == heldscore) {
-                        elem.position = held;
-                    } else {
-                        elem.position = ind + 1;
-                    }
-                    held = elem.position;
-                    heldscore = elem.score;
-                });
 
+                });
+                /*
                 let AllTeams = Array.from(document.querySelectorAll(".team"));
                 var k = 0;
                 AllTeams.forEach((element) => {
                     let elementName = element.querySelector(".name");
                     let elementScore = element.querySelector(".score");
-                    if (elementName.innerHTML == elName) {
+                    if (elementName.innerHTML == nom) {
                         elementScore.innerHTML = scr;
                         let newRank = data.find(
                             (team) => team.name === elementName.innerHTML,
@@ -618,7 +665,7 @@
                         // move player position
                         // setProperty(propertyName, value)
                         element.style.opacity = 1; //0.4;
-                        element.style.setProperty("--i", newRank);
+                        //element.style.setProperty("--i", newRank);
                         setTimeout(function () {
                             element.style.opacity = 1;
                         }, 800);
@@ -627,14 +674,20 @@
                             (team) => team.name === elementName.innerHTML,
                         ).position;
                     }
-                });
-                console.log("showBird()");
-                showBird();
+                                   });
+                                   */
+                //console.log("showBird()");
+                //showBird();
             }
 
             function initialBodyUpdate(nom, pos) {
                 document.getElementById("name" + pos).innerText = nom;
                 document.getElementById("position" + pos).innerText = "";
+            }
+
+            function secondaryBodyUpdate(nom, pos) {
+                document.getElementById("name" + pos).innerText = nom;
+                document.getElementById("score" + pos).innerText = "";
             }
 
             function showBird() {
