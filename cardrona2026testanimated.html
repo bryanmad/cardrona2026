@@ -525,6 +525,8 @@
                     return b.score - a.score; // Sort by score in descending order
                 });
 
+                console.log(data);
+
                 data.forEach((el, i) => (el.rank = i));
                 // build screen
                 data.forEach((el, i) => {
@@ -647,6 +649,9 @@
 
                             oldscore = el.score;
                             oldpos = j + 1;
+                            console.log(el.birdies + " - " + j);
+                            birdnum = el.birdies;
+                            showBird(birdnum, j);
                         },
                         j * 500 + 4000,
                     );
@@ -687,16 +692,34 @@
                 document.getElementById("score" + pos).innerText = "";
             }
 
-            function showBird() {
-                document.getElementById("bird111").style.visibility = "visible";
-                document.getElementById("bird211").style.visibility = "visible";
-                document.getElementById("bird311").style.visibility = "visible";
-                document.getElementById("bird411").style.visibility = "visible";
-                document.getElementById("bird511").style.visibility = "visible";
-                document.getElementById("bird611").style.visibility = "visible";
+            function showBird(birdnum, n) {
+                console.log("birdnum = " + birdnum);
+                console.log("n = " + n);
 
-                document.getElementById("bird13").style.visibility = "visible";
-                document.getElementById("bird23").style.visibility = "visible";
+                if (birdnum > 0) {
+                    document.getElementById("bird1" + n).style.visibility =
+                        "visible";
+                }
+                if (birdnum > 1) {
+                    document.getElementById("bird2" + n).style.visibility =
+                        "visible";
+                }
+                if (birdnum > 2) {
+                    document.getElementById("bird3" + n).style.visibility =
+                        "visible";
+                }
+                if (birdnum > 3) {
+                    document.getElementById("bird4" + n).style.visibility =
+                        "visible";
+                }
+                if (birdnum > 4) {
+                    document.getElementById("bird5" + n).style.visibility =
+                        "visible";
+                }
+                if (birdnum > 5) {
+                    document.getElementById("bird6" + n).style.visibility =
+                        "visible";
+                }
             }
         </script>
     </body>
