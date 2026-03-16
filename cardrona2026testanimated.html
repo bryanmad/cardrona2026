@@ -641,14 +641,15 @@
                                 document.getElementById(
                                     "position" + j,
                                 ).innerText = j + 1;
+
+                                oldscore = el.score;
+                                oldpos = j + 1;
                             } else {
                                 document.getElementById(
                                     "position" + j,
                                 ).innerText = oldpos;
                             }
 
-                            oldscore = el.score;
-                            oldpos = j + 1;
                             console.log(el.birdies + " - " + j);
                             birdnum = el.birdies;
                             showBird(birdnum, j);
