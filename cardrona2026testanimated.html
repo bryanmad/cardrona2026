@@ -428,15 +428,19 @@
             </section>
             <section class="two" onclick="goToPage(1)">
                 <h1>Tuesday</h1>
+                <div id="tuesdayresults"></div>
             </section>
             <section class="three" onclick="goToPage(2)">
                 <h1>Wednesday</h1>
+                <div id="wednesdayresults"></div>
             </section>
             <section class="four" onclick="goToPage(3)">
                 <h1>Thursday</h1>
+                <div id="thursdayresults"></div>
             </section>
             <section class="five" onclick="goToPage(4)">
                 <h1>Final Results</h1>
+                <div id="finalresults"></div>
             </section>
         </div>
 
@@ -453,9 +457,14 @@
 
                 // clear page
                 document.getElementById("mondayresults").innerHTML = "";
+                document.getElementById("tuesdayresults").innerHTML = "";
+                document.getElementById("wednesdayresults").innerHTML = "";
+                document.getElementById("thursdayresults").innerHTML = "";
+                document.getElementById("finalresults").innerHTML = "";
             }
 
             function goToPage(page) {
+                console.log("in goToPage");
                 document.getElementById("menu-btn").style.display = "flex";
                 var wrapper = document.getElementsByClassName("wrapper")[0];
                 var sections = document.getElementsByTagName("section");
@@ -469,13 +478,21 @@
                 wrapper.classList.add("page-" + pages[page]);
 
                 // testing .....
-                menuNum = 1;
+                //
+                console.log("page = " + page);
+                //console.log("menuNum = " + menuNum);
+                //
+                menuNum = page + 1;
+                console.log("menuNum = " + menuNum);
                 getData(menuNum);
             }
 
             //===================================================
 
             async function getData(menuNum) {
+                if (menuNum == 2) {
+                    console.log("two 2");
+                }
                 if (menuNum == 1) {
                     url =
                         "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday1";
@@ -515,7 +532,23 @@
             }
 
             function useData(menuNum) {
-                let container = document.getElementById("mondayresults");
+                if (menuNum == 1) {
+                    var container = document.getElementById("mondayresults");
+                }
+                if (menuNum == 2) {
+                    console.log("tuesdayresults");
+                    var container = document.getElementById("tuesdayresults");
+                }
+                if (menuNum == 3) {
+                    var container = document.getElementById("wednesdayresults");
+                }
+                if (menuNum == 4) {
+                    var container = document.getElementById("thursdayresults");
+                }
+                if (menuNum == 5) {
+                    var container = document.getElementById("finalresults");
+                }
+
                 // empty container
                 container.innerHTML = "";
                 data.sort((a, b) => {
@@ -582,6 +615,7 @@
 
                 console.log("here 1");
                 j = 0;
+                var delay = 0;
                 // Using an arrow function to sort players by their name
                 let xx = data.toSorted((a, b) =>
                     a.name < b.name ? -1 : a.name > b.name ? 1 : 0,
@@ -598,7 +632,6 @@
                         j * 200 + 50,
                     );
                 });
-
                 // Using an arrow function to sort players by their score
                 let yy = data.toSorted((b, a) =>
                     a.score < b.score ? -1 : a.score > b.score ? 1 : 0,
@@ -611,7 +644,7 @@
                             document.getElementById("name" + j).innerText =
                                 "checking ... "; // + el.name;
                         },
-                        j * 500 + 3000,
+                        j * 500 + yy.length * 200,
                     );
                 });
                 // view order by score
@@ -654,7 +687,7 @@
                             birdnum = el.birdies;
                             showBird(birdnum, j);
                         },
-                        j * 500 + 4000,
+                        j * 500 + yy.length * 400,
                     );
                 });
             }
