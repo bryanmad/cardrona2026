@@ -509,11 +509,11 @@
                     url =
                         "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday4";
                 }
+                //if (menuNum == 5) {
+                //    url =
+                //        "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday5";
+                //}
                 if (menuNum == 5) {
-                    url =
-                        "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday5";
-                }
-                if (menuNum == 6) {
                     url =
                         "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsfinal";
                 }
@@ -528,6 +528,9 @@
                 } catch (error) {
                     console.error(error.message);
                 }
+
+                console.log(data);
+
                 useData(menuNum);
             }
 
@@ -633,9 +636,12 @@
                     );
                 });
                 // Using an arrow function to sort players by their score
-                let yy = data.toSorted((b, a) =>
-                    a.score < b.score ? -1 : a.score > b.score ? 1 : 0,
-                );
+                //let yy = data.toSorted((b, a) =>
+                //    a.score < b.score ? -1 : a.score > b.score ? 1 : 0,
+                //);
+
+                let yy = data.sort((a, b) => a - b);
+
                 yy.forEach((el, j) => {
                     setTimeout(
                         function () {
