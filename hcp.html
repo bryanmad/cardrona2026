@@ -572,6 +572,71 @@
                 document.getElementById("headerpagetwo").innerText =
                     "Handicap adjustments";
 
+                if (days[day] == "Monday") {
+                    for (i = 0; i < 12; i++) {
+                        document.getElementsByClassName("line1")[
+                            i
+                        ].style.display = "";
+                        document.getElementsByClassName("line2")[
+                            i
+                        ].style.display = "none";
+                        document.getElementsByClassName("line3")[
+                            i
+                        ].style.display = "none";
+                        document.getElementsByClassName("line4")[
+                            i
+                        ].style.display = "none";
+                    }
+                }
+                if (days[day] == "Tuesday") {
+                    for (i = 0; i < 12; i++) {
+                        document.getElementsByClassName("line1")[
+                            i
+                        ].style.display = "";
+                        document.getElementsByClassName("line2")[
+                            i
+                        ].style.display = "";
+                        document.getElementsByClassName("line3")[
+                            i
+                        ].style.display = "none";
+                        document.getElementsByClassName("line4")[
+                            i
+                        ].style.display = "none";
+                    }
+                }
+                if (days[day] == "Wednesday") {
+                    for (i = 0; i < 12; i++) {
+                        document.getElementsByClassName("line1")[
+                            i
+                        ].style.display = "";
+                        document.getElementsByClassName("line2")[
+                            i
+                        ].style.display = "";
+                        document.getElementsByClassName("line3")[
+                            i
+                        ].style.display = "";
+                        document.getElementsByClassName("line4")[
+                            i
+                        ].style.display = "none";
+                    }
+                }
+                if (days[day] == "Thursday") {
+                    for (i = 0; i < 12; i++) {
+                        document.getElementsByClassName("line1")[
+                            i
+                        ].style.display = "";
+                        document.getElementsByClassName("line2")[
+                            i
+                        ].style.display = "";
+                        document.getElementsByClassName("line3")[
+                            i
+                        ].style.display = "";
+                        document.getElementsByClassName("line4")[
+                            i
+                        ].style.display = "";
+                    }
+                }
+
                 let elName = nom;
                 hcpData.find((team) => team.players === elName);
                 // now sort out positions for same scores
