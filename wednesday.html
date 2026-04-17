@@ -1,0 +1,822 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+        <link href="originalgolf.svg" rel="icon" type="image/x-icon" />
+        <link rel="apple-touch-icon" sizes="180x180" href="originalgolf.svg" />
+        <title>cardrona2026</title>
+        <link
+            href="https://fonts.googleapis.com/css?family=Kalam"
+            rel="stylesheet"
+        />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
+        <style>
+            /* icon color #bef081 */
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html {
+                width: 100vw;
+            }
+
+            body {
+                overflow: hidden;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 3vh;
+                background: dodgerBlue;
+                height: 100%;
+                width: 100%;
+            }
+
+            #info {
+                display: none;
+                overflow: auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                color: white;
+                background-color: black;
+                padding-left: 1px;
+                padding-right: 1px;
+                padding-bottom: 1px;
+            }
+
+            #popuppanel {
+                background-color: #ddd;
+                font-size: 3vh;
+                display: inline-block;
+                border-radius: 3px;
+                border: 1px solid #aaa;
+                padding: 10px;
+                margin: 5vw;
+                text-align: center;
+                width: 80vw;
+
+                cursor: pointer;
+            }
+            /* hide forms */
+
+            #my-response-iframe,
+            #my-form {
+                display: none;
+            }
+
+            .child-two {
+                height: 7vh;
+                font-size: 3vh;
+                flex-direction: row;
+                display: flex;
+            }
+
+            #headerpageone,
+            #headerpagetwo,
+            #headerpagethree {
+                color: white;
+                background: black;
+                height: 100%;
+                //width: 80%;
+
+                width: 100%;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                //border-radius: 10px;
+                //border: 5px solid gray;
+            }
+
+            #pagetwo {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 100vw;
+                background: dodgerBlue;
+                display: none;
+            }
+
+            .submit {
+                font-size: 100%;
+                color: white;
+                //background: dodgerBlue;
+                height: 100%;
+                line-height: 10vh;
+                text-align: center;
+            }
+
+            #sending {
+                position: relative;
+                background: black;
+            }
+
+            tr {
+                text-align: center;
+            }
+            td {
+                width: calc(100vw / 6);
+            }
+            .head {
+                font-size: 2vh;
+            }
+
+            #acceptpanel {
+                display: none;
+                position: fixed;
+                bottom: 5vh;
+                border: 1px silver solid;
+                background: black;
+                color: white;
+                font-size: 2vh;
+                padding: 5vw;
+                border-radius: 5px;
+                text-align: center;
+                margin-left: 14vw;
+            }
+
+            .button1 {
+                width: 25vw;
+                height: 10vh;
+                text-align: center;
+                font-size: 2vh;
+                border-radius: 5px;
+                background: silver;
+            }
+
+            .spacer1vh {
+                display: flex;
+                padding: 1vh;
+            }
+
+            #podium,
+            #home,
+            #stat {
+                height: 5vh;
+                width: 5vh;
+            }
+
+            /* for each day */
+            #createleaderboarditems {
+                text-align: center;
+                color: white;
+                font-size: 4vh;
+                height: auto;
+                display: block;
+            }
+
+            .team {
+                width: 90%;
+                height: 5vh;
+                margin-left: 5%;
+                margin-top: 2%;
+                margin-bottom: 2%;
+                background: rgba(105, 105, 105, 0.8);
+                box-shadow: 0 3px 5px black;
+                display: flex;
+                align-items: center;
+                transition-property: top;
+                transition-duration: 1500ms;
+                border-radius: 10px;
+                transition-timing-function: cubic-bezier(
+                    0.68,
+                    -0.55,
+                    0.265,
+                    1.55
+                );
+                border: 4px solid rgba(255, 255, 255, 0.3);
+                background-clip: padding-box;
+            }
+
+            .teamhcp {
+                width: 90%;
+                height: 5vh;
+                margin-left: 5%;
+                margin-top: 2%;
+                margin-bottom: 2%;
+                padding-left: 5vw;
+                background: rgba(105, 105, 105, 0.8);
+                box-shadow: 0 3px 5px black;
+                display: flex;
+                align-items: center;
+                transition-property: top;
+                transition-duration: 1500ms;
+                border-radius: 10px;
+                transition-timing-function: cubic-bezier(
+                    0.68,
+                    -0.55,
+                    0.265,
+                    1.55
+                );
+                border: 4px solid rgba(255, 255, 255, 0.3);
+                background-clip: padding-box;
+            }
+
+            .name {
+                width: 30%;
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                font-size: 3vh;
+                color: white;
+                font-weight: 400;
+                text-transform: capitalize;
+            }
+
+            .namehcp {
+                width: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                font-size: 3vh;
+                color: white;
+                font-weight: 400;
+                text-transform: capitalize;
+            }
+
+            .scores {
+                width: 12%;
+                font-size: 3vh;
+                color: white;
+                font-weight: 400;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .position {
+                width: 12%;
+                font-size: 3vh;
+                color: white;
+                font-weight: 400;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .hcps {
+                width: 12%;
+                font-size: 3vh;
+                color: white;
+                font-weight: 400;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .hcpsadj {
+                padding-left: 6vh;
+                width: auto;
+                font-size: 2.5vh;
+                color: silver;
+                font-weight: 400;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+            }
+
+            #headerinfo {
+                padding-top: 2vh;
+                padding-bottom: 1vh;
+                color: white;
+                font-size: 5vh;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+                width: 80%;
+            }
+
+            #footerinfo,
+            #footerstats {
+                position: absolute;
+                bottom: 200px;
+                width: 100%;
+                color: white;
+                font-size: 2.5vh;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .bird {
+                width: 8%;
+                padding-right: 1vw;
+                visibility: hidden;
+            }
+
+            .birdimg {
+                src: "bird.png";
+                height: 2vh;
+                width: 7vw;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+                padding-left: 1vw;
+                padding-right: 1vw;
+            }
+
+            .flag {
+                width: 7%;
+                visibility: hidden;
+            }
+
+            .flagimg {
+                src: "flag.png";
+                height: 2vh;
+                width: 7vw;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+                padding-left: 1vw;
+                padding-right: 1vw;
+            }
+
+            #statsinfo {
+                width: 300px;
+                height: 300px;
+                border: 1px solid cyan;
+                display: flex;
+            }
+
+            #statsinfo div {
+                border: 1px sold yellow;
+                flex: 1;
+            }
+
+            .table_component {
+                overflow: auto;
+                width: 100%;
+            }
+
+            .table_component table {
+                height: 100%;
+                width: 100%;
+                border-collapse: collapse;
+                border-spacing: 1px;
+                text-align: center;
+                font-size: 2vh;
+            }
+
+            .table_component caption {
+                caption-side: top;
+                text-align: left;
+            }
+
+            .table_component th {
+                background-color: #1589ff;
+                color: cyan;
+                padding: 5px;
+            }
+
+            .table_component td {
+                background-color: dodgerBlue;
+                color: white;
+                padding: 5px;
+            }
+
+            .table_component table tbody tr:nth-of-type(even) > * {
+                background: #1589ff;
+            }
+
+            #toptr {
+                color: cyan;
+            }
+
+            .cyan {
+                background: dodgerBlue;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="pagetwo">
+            <!-- leaderboard -->
+            <div class="child-two">
+                <div id="headerpagetwo">Leaderboard</div>
+                <div id="playersList"></div>
+            </div>
+            <div id="createleaderboarditems">checking ...</div>
+        </div>
+        <div style="margin-top: 8px"></div>
+        <!-- spacer -->
+        <div class="spacer1vh"></div>
+        <script>
+            //=================================================================================
+            // this runs on startup or reload
+            //
+            //=================================================================================
+            // prevent default img menu of options
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+            });
+
+            // declare global variables
+            var arrPlayersDropdown = [];
+            var arrHcpsDropdown = [];
+            var data;
+            var hcpData;
+            var dd = new Date();
+            var day = dd.getDay();
+
+            var days = [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+            ];
+            var months = [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
+            ];
+
+            //===========================
+            // this code runs at startup
+            //===========================
+            getHcpData();
+            // need to set up a couple of arrays from the data in google sheets
+            async function getHcpData() {
+                var datastream = await fetch(
+                    "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/hcps",
+                );
+
+                if (!datastream.ok) {
+                    const message = `An error has occured: ${datastream.status}`;
+                    //throw new Error(message);
+                    alert("error: " + message);
+                }
+                hcpData = await datastream.json();
+                // don't need blank players
+                hcpData = hcpData.filter(function (el) {
+                    return el.players !== "";
+                });
+
+                //dd = new Date();
+                //day = dd.getDay();
+                //
+                //having got hcp data, now get results data
+                getData();
+                //
+                //
+            }
+
+            //=============================================================
+            //=============================================================
+            // function start()
+            // - initialise everything and do checks etc.
+            //=============================================================
+            function start() {
+                console.log("start()");
+                console.log(data);
+                // data is sorted with highest score first so test that to see if it >0
+                console.log("data[0].playerpoints = " + data.length);
+                if (data.length > 0) {
+                    // change < to >
+                    useDataResults(data);
+                } else {
+                    useDataHcp(data);
+                }
+
+                document.getElementById("pagetwo").style.display = "block";
+            } // end function start()
+
+            //=============================================================
+            // functions - run when called
+            //=============================================================
+
+            //=============================================================
+            // async function getData()
+            // - gets results data
+            //=============================================================
+            async function getData() {
+                console.log("getData()");
+                var url =
+                    "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday3";
+                try {
+                    const dataStream = await fetch(url);
+                    if (!dataStream.ok) {
+                        throw new Error(
+                            `Response status: ${dataStream.status}`,
+                        );
+                    }
+                    data = await dataStream.json();
+                    // don't need blank players
+                    data = data.filter(function (el) {
+                        return el.players !== "";
+                    });
+
+                    data.sort(
+                        (a, b) =>
+                            parseInt(b.playerpoints) - parseInt(a.playerpoints),
+                    );
+                } catch (error) {
+                    console.error(error.message);
+                }
+
+                // Decide which data to show depending on if there are results yet
+                //
+                start();
+            }
+
+            function useDataHcp() {
+                console.log("useDataHcp()");
+                let container = document.getElementById(
+                    "createleaderboarditems",
+                );
+                // empty container
+                container.innerHTML = "";
+
+                //var ii = 0;
+                // build screen
+
+                hcpData.forEach((el, i) => {
+                    //ii++;
+                    let box = document.createElement("div");
+                    box.id = "box" + i;
+                    box.className = "teamhcp";
+
+                    let name = document.createElement("span");
+                    name.id = "namehcp" + i;
+                    name.className = "namehcp";
+                    name.innerHTML = el.players;
+
+                    let hcps = document.createElement("span");
+                    hcps.id = "hcps" + i;
+                    hcps.className = "hcps";
+
+                    box.appendChild(name);
+                    box.appendChild(hcps);
+                    //box.appendChild(hcpsadj);
+
+                    container.appendChild(box);
+                    // fade the initial view
+                    box.style.opacity = 0.3;
+                });
+
+                var k = 0;
+                // do proper display
+                setTimeout(function () {
+                    hcpData.forEach((el, i) => {
+                        k++;
+                        if (el.players !== "") {
+                            bodyUpdateHcps(el.players, el.hcps, i);
+                        }
+                    }, k * 300);
+                });
+            }
+
+            function useDataResults(data) {
+                console.log("useData()");
+                let container = document.getElementById(
+                    "createleaderboarditems",
+                );
+                // empty container
+                container.innerHTML = "";
+
+                //var ii = 0;
+                // build screen
+
+                data.forEach((el, i) => {
+                    //ii++;
+                    let box = document.createElement("div");
+                    box.id = "box" + i;
+                    box.className = "team";
+
+                    box.setAttribute(
+                        "onclick",
+                        "showPageThree();return false;",
+                    );
+
+                    let name = document.createElement("span");
+                    name.id = "name" + i;
+                    name.className = "name";
+                    name.innerHTML = el.players;
+
+                    let scores = document.createElement("span");
+                    scores.id = "scores" + i;
+                    scores.className = "scores";
+                    let position = document.createElement("span");
+                    position.id = "position" + i;
+                    position.className = "position";
+                    position.innerHTML = i; //el.position;
+
+                    let bird1 = document.createElement("span");
+                    bird1.id = "bird1" + i;
+                    bird1.className = "bird";
+
+                    let bird2 = document.createElement("span");
+                    bird2.id = "bird2" + i;
+                    bird2.className = "bird";
+
+                    let bird3 = document.createElement("span");
+                    bird3.id = "bird3" + i;
+                    bird3.className = "bird";
+
+                    let bird4 = document.createElement("span");
+                    bird4.id = "bird4" + i;
+                    bird4.className = "bird";
+
+                    let bird5 = document.createElement("span");
+                    bird5.id = "bird5" + i;
+                    bird5.className = "bird";
+
+                    let birdimg1 = document.createElement("img");
+                    birdimg1.id = "birdimg1" + i;
+                    birdimg1.className = "birdimg";
+                    birdimg1.src = "bird.png";
+
+                    let birdimg2 = document.createElement("img");
+                    birdimg2.id = "birdimg2" + i;
+                    birdimg2.className = "birdimg";
+                    birdimg2.src = "bird.png";
+
+                    let birdimg3 = document.createElement("img");
+                    birdimg3.id = "birdimg3" + i;
+                    birdimg3.className = "birdimg";
+                    birdimg3.src = "bird.png";
+
+                    let birdimg4 = document.createElement("img");
+                    birdimg4.id = "birdimg4" + i;
+                    birdimg4.className = "birdimg";
+                    birdimg4.src = "bird.png";
+
+                    let birdimg5 = document.createElement("img");
+                    birdimg5.id = "birdimg5" + i;
+                    birdimg5.className = "birdimg";
+                    birdimg5.src = "bird.png";
+
+                    let flag = document.createElement("span");
+                    flag.id = "flag" + i;
+                    flag.className = "flag";
+
+                    let flagimg = document.createElement("img");
+                    flagimg.id = "flagimg" + i;
+                    flagimg.className = "flagimg";
+                    flagimg.src = "flag.png";
+
+                    bird1.appendChild(birdimg1);
+                    bird2.appendChild(birdimg2);
+                    bird3.appendChild(birdimg3);
+                    bird4.appendChild(birdimg4);
+                    bird5.appendChild(birdimg5);
+
+                    flag.appendChild(flagimg);
+
+                    box.appendChild(position);
+                    box.appendChild(name);
+                    box.appendChild(bird1);
+                    box.appendChild(bird2);
+                    box.appendChild(bird3);
+                    box.appendChild(bird4);
+                    box.appendChild(bird5);
+                    box.appendChild(flag);
+                    box.appendChild(scores);
+
+                    container.appendChild(box);
+                    // fade the initial view
+                    box.style.opacity = 0.3;
+                });
+
+                var k = 0;
+                // do proper display
+                data.forEach((el) => {
+                    k++;
+                    setTimeout(function () {
+                        if (el.players !== "") {
+                            bodyUpdate(el.players, el.playerpoints);
+                        }
+                    }, k * 300);
+                });
+            }
+
+            function bodyUpdateHcps(nom, hcps, i) {
+                document.getElementById("headerpagetwo").innerText =
+                    "Handicaps for Wednesday";
+
+                let elName = nom;
+                hcpData.find((team) => team.players === elName);
+                // now sort out positions for same scores
+
+                let AllTeams = Array.from(
+                    document.querySelectorAll(".teamhcp"),
+                );
+
+                AllTeams.forEach((element, n) => {
+                    let elementName = element.querySelector(".namehcp");
+                    let elementScore = element.querySelector(".hcps");
+                    if (elementName.innerHTML == elName) {
+                        //elementScore.innerHTML = hcps;
+
+                        //element.style.opacity = 1;
+
+                        setTimeout(function () {
+                            elementScore.innerHTML = hcps;
+                            element.style.opacity = 1;
+                        }, n * 300);
+                    }
+                });
+            }
+
+            function bodyUpdate(nom, scr) {
+                document.getElementById("headerpagetwo").innerText =
+                    "Friday results";
+
+                let elName = nom;
+                data.find((team) => team.players === elName);
+                // now sort out positions for same scores
+                var held = 1;
+                var heldscore = 0;
+                data.forEach((elem, ind) => {
+                    if (elem.playerpoints == heldscore) {
+                        elem.position = held;
+                    } else {
+                        elem.position = ind + 1;
+                    }
+                    held = elem.position;
+                    heldscore = elem.playerpoints;
+                });
+                let AllTeams = Array.from(document.querySelectorAll(".team"));
+
+                AllTeams.forEach((element, n) => {
+                    let elementName = element.querySelector(".name");
+                    let elementScore = element.querySelector(".scores");
+                    if (elementName.innerHTML == elName) {
+                        //elementScore.innerHTML = scr;
+
+                        //element.style.opacity = 1;
+
+                        setTimeout(function () {
+                            elementScore.innerHTML = scr;
+                            element.style.opacity = 1;
+                        }, n * 300);
+                        let elementPos = element.querySelector(".position");
+                        elementPos.innerText = data.find(
+                            (team) => team.players === elementName.innerHTML,
+                        ).position;
+
+                        var birdnum = data.find(
+                            (team) => team.players === elementName.innerHTML,
+                        ).bird;
+
+                        if (birdnum > 0) {
+                            document.getElementById(
+                                "bird1" + n,
+                            ).style.visibility = "visible";
+                        }
+                        if (birdnum > 1) {
+                            document.getElementById(
+                                "bird2" + n,
+                            ).style.visibility = "visible";
+                        }
+                        if (birdnum > 2) {
+                            document.getElementById(
+                                "bird3" + n,
+                            ).style.visibility = "visible";
+                        }
+                        if (birdnum > 3) {
+                            document.getElementById(
+                                "bird4" + n,
+                            ).style.visibility = "visible";
+                        }
+                        if (birdnum > 4) {
+                            document.getElementById(
+                                "bird5" + n,
+                            ).style.visibility = "visible";
+                        }
+                    }
+                });
+            }
+
+            function initialBodyUpdate(nom, pos) {
+                document.getElementById("name" + pos).innerText = nom;
+                document.getElementById("position" + pos).innerText = "";
+            }
+
+            function showPageTwo() {
+                //document.getElementById("pageone").style.display = "none";
+                document.getElementById("pagetwo").style.display = "block";
+                //document.getElementById("pagethree").style.display = "none";
+
+                getData();
+            }
+        </script>
+    </body>
+</html>
