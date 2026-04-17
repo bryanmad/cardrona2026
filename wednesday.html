@@ -487,7 +487,7 @@
                 console.log("start()");
                 console.log(data);
                 // data is sorted with highest score first so test that to see if it >0
-                console.log("data[0].playerpoints = " + data.length);
+                //console.log("data[0].playerpoints = " + data.length);
                 if (data.length > 0) {
                     // change < to >
                     useDataResults(data);
@@ -737,7 +737,7 @@
 
             function bodyUpdate(nom, scr) {
                 document.getElementById("headerpagetwo").innerText =
-                    "Friday results";
+                    "Wednesday results";
 
                 let elName = nom;
                 data.find((team) => team.players === elName);
@@ -759,10 +759,6 @@
                     let elementName = element.querySelector(".name");
                     let elementScore = element.querySelector(".scores");
                     if (elementName.innerHTML == elName) {
-                        //elementScore.innerHTML = scr;
-
-                        //element.style.opacity = 1;
-
                         setTimeout(function () {
                             elementScore.innerHTML = scr;
                             element.style.opacity = 1;
@@ -808,14 +804,6 @@
             function initialBodyUpdate(nom, pos) {
                 document.getElementById("name" + pos).innerText = nom;
                 document.getElementById("position" + pos).innerText = "";
-            }
-
-            function showPageTwo() {
-                //document.getElementById("pageone").style.display = "none";
-                document.getElementById("pagetwo").style.display = "block";
-                //document.getElementById("pagethree").style.display = "none";
-
-                getData();
             }
         </script>
     </body>
