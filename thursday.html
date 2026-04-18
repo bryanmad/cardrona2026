@@ -758,41 +758,43 @@
                         setTimeout(function () {
                             elementScore.innerHTML = scr;
                             element.style.opacity = 1;
+                            let elementPos = element.querySelector(".position");
+                            elementPos.innerText = data.find(
+                                (team) =>
+                                    team.players === elementName.innerHTML,
+                            ).position;
+
+                            var birdnum = data.find(
+                                (team) =>
+                                    team.players === elementName.innerHTML,
+                            ).bird;
+
+                            if (birdnum > 0) {
+                                document.getElementById(
+                                    "bird1" + n,
+                                ).style.visibility = "visible";
+                            }
+                            if (birdnum > 1) {
+                                document.getElementById(
+                                    "bird2" + n,
+                                ).style.visibility = "visible";
+                            }
+                            if (birdnum > 2) {
+                                document.getElementById(
+                                    "bird3" + n,
+                                ).style.visibility = "visible";
+                            }
+                            if (birdnum > 3) {
+                                document.getElementById(
+                                    "bird4" + n,
+                                ).style.visibility = "visible";
+                            }
+                            if (birdnum > 4) {
+                                document.getElementById(
+                                    "bird5" + n,
+                                ).style.visibility = "visible";
+                            }
                         }, n * 300);
-                        let elementPos = element.querySelector(".position");
-                        elementPos.innerText = data.find(
-                            (team) => team.players === elementName.innerHTML,
-                        ).position;
-
-                        var birdnum = data.find(
-                            (team) => team.players === elementName.innerHTML,
-                        ).bird;
-
-                        if (birdnum > 0) {
-                            document.getElementById(
-                                "bird1" + n,
-                            ).style.visibility = "visible";
-                        }
-                        if (birdnum > 1) {
-                            document.getElementById(
-                                "bird2" + n,
-                            ).style.visibility = "visible";
-                        }
-                        if (birdnum > 2) {
-                            document.getElementById(
-                                "bird3" + n,
-                            ).style.visibility = "visible";
-                        }
-                        if (birdnum > 3) {
-                            document.getElementById(
-                                "bird4" + n,
-                            ).style.visibility = "visible";
-                        }
-                        if (birdnum > 4) {
-                            document.getElementById(
-                                "bird5" + n,
-                            ).style.visibility = "visible";
-                        }
                     }
                 });
             }
