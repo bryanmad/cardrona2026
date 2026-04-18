@@ -695,10 +695,10 @@
                     box.style.opacity = 0.3;
                 });
 
-                var k = 0;
+                //var k = 0;
                 // do proper display
-                data.forEach((el) => {
-                    k++;
+                data.forEach((el, k) => {
+                    //k++;
                     setTimeout(function () {
                         if (el.players !== "") {
                             bodyUpdate(el.players, el.playerpoints);
