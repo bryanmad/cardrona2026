@@ -244,10 +244,11 @@
                         .line1,
                         .line2,
                         .line3,
-                        .line4 {
+                        .line4
+                        {
                             width: 96%;
                             //height: 10%;
-                            display: flex;
+                            //display: flex;
                             //align-items: left; //center;
                             //justify-content: left;
                             font-size: 2.5vh;
@@ -258,6 +259,14 @@
                             //text-transform: capitalize;
                            // position: absolute;
                         }
+
+                        .line4bold
+                        {
+                            //font-weight: bold;
+                            color: cyan;
+                            font-size: 3vh;
+                        }
+
 
                         .scores {
                             width: 12%;
@@ -657,10 +666,24 @@
                         //element.style.opacity = 1;
 
                         setTimeout(function () {
-                            elementLine1.innerHTML = line1;
+                            //elementLine1.innerHTML = line1;
+                            arrLine1 = line1.split(" starts ");
+                            elementLine1.innerHTML =
+                                '<a class="line4bold">' +
+                                arrLine1[0] +
+                                "</a> starts " +
+                                arrLine1[1];
+
                             elementLine2.innerHTML = line2;
                             elementLine3.innerHTML = line3;
-                            elementLine4.innerHTML = line4;
+                            //elementLine4.innerHTML = line4;
+
+                            arrLine4 = line4.split(" a ");
+                            elementLine4.innerHTML =
+                                arrLine4[0] +
+                                ' a <br><a class="line4bold">' +
+                                arrLine4[1] +
+                                "</b>";
 
                             element.style.opacity = 1;
                         }, n * 300);
