@@ -556,7 +556,6 @@
                 // empty container
                 container.innerHTML = "";
 
-                //var ii = 0;
                 // build screen
 
                 hcpData.forEach((el, i) => {
@@ -576,7 +575,6 @@
 
                     box.appendChild(name);
                     box.appendChild(hcps);
-                    //box.appendChild(hcpsadj);
 
                     container.appendChild(box);
                     // fade the initial view
@@ -603,19 +601,10 @@
                 // empty container
                 container.innerHTML = "";
 
-                //var ii = 0;
-                // build screen
-
                 data.forEach((el, i) => {
-                    //ii++;
                     let box = document.createElement("div");
                     box.id = "box" + i;
                     box.className = "team";
-
-                    //box.setAttribute(
-                    //    "onclick",
-                    //    "showPageThree();return false;",
-                    //);
 
                     let name = document.createElement("span");
                     name.id = "name" + i;
@@ -628,19 +617,7 @@
                     let position = document.createElement("span");
                     position.id = "position" + i;
                     position.className = "position";
-                    position.innerHTML = i; //el.position;
-
-                    let bird1 = document.createElement("span");
-                    bird1.id = "bird1" + i;
-                    bird1.className = "bird";
-
-                    let bird2 = document.createElement("span");
-                    bird2.id = "bird2" + i;
-                    bird2.className = "bird";
-
-                    let bird3 = document.createElement("span");
-                    bird3.id = "bird3" + i;
-                    bird3.className = "bird";
+                    position.innerHTML = i;
 
                     let bird4 = document.createElement("span");
                     bird4.id = "bird4" + i;
@@ -649,21 +626,6 @@
                     let bird5 = document.createElement("span");
                     bird5.id = "bird5" + i;
                     bird5.className = "bird";
-
-                    let birdimg1 = document.createElement("img");
-                    birdimg1.id = "birdimg1" + i;
-                    birdimg1.className = "birdimg";
-                    birdimg1.src = "bird.gif";
-
-                    let birdimg2 = document.createElement("img");
-                    birdimg2.id = "birdimg2" + i;
-                    birdimg2.className = "birdimg";
-                    birdimg2.src = "bird.gif";
-
-                    let birdimg3 = document.createElement("img");
-                    birdimg3.id = "birdimg3" + i;
-                    birdimg3.className = "birdimg";
-                    birdimg3.src = "bird.gif";
 
                     let birdimg4 = document.createElement("img");
                     birdimg4.id = "birdimg4" + i;
@@ -675,31 +637,20 @@
                     birdimg5.className = "birdimg";
                     birdimg5.src = "bird.gif";
 
-                    //let flag = document.createElement("span");
-                    //flag.id = "flag" + i;
-                    //flag.className = "flag";
-
                     let flagimg = document.createElement("img");
                     flagimg.id = "flagimg" + i;
                     flagimg.className = "flagimg";
                     flagimg.src = "flag.png";
 
-                    //bird1.appendChild(birdimg1);
-                    //bird2.appendChild(birdimg2);
-                    //bird3.appendChild(birdimg3);
                     bird4.appendChild(birdimg4);
                     bird5.appendChild(birdimg5);
 
-                    //flag.appendChild(flagimg);
-
                     box.appendChild(position);
                     box.appendChild(name);
-                    //box.appendChild(bird1);
-                    //box.appendChild(bird2);
-                    //box.appendChild(bird3);
+
                     box.appendChild(bird4);
                     box.appendChild(bird5);
-                    //box.appendChild(flag);
+
                     box.appendChild(scores);
 
                     container.appendChild(box);
@@ -707,10 +658,8 @@
                     box.style.opacity = 0.3;
                 });
 
-                //var k = 0;
                 // do proper display
                 data.forEach((el, k) => {
-                    //k++;
                     setTimeout(function () {
                         if (el.players !== "") {
                             bodyUpdate(el.players, el.playerpoints);
