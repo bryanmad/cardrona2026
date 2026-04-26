@@ -11,8 +11,8 @@
             href="https://fonts.googleapis.com/css?family=Kalam"
             rel="stylesheet"
         />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
         <style>
             /* icon color #bef081 */
 
@@ -472,8 +472,8 @@
             // - initialise everything and do checks etc.
             //=============================================================
             function start() {
-                console.log("start()");
-                console.log(data);
+                $("#pagetwo").fadeIn(500);
+
                 // data is sorted with highest score first so test that to see if it >0
                 //console.log("data[0].playerpoints = " + data.length);
                 if (data.length > 0) {
@@ -482,8 +482,6 @@
                 } else {
                     useDataHcp(data);
                 }
-
-                document.getElementById("pagetwo").style.display = "block";
             } // end function start()
 
             //=============================================================
@@ -495,7 +493,6 @@
             // - gets results data
             //=============================================================
             async function getData() {
-                console.log("getData()");
                 var url =
                     "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday1";
                 try {
@@ -525,7 +522,6 @@
             }
 
             function useDataHcp() {
-                console.log("useDataHcp()");
                 let container = document.getElementById(
                     "createleaderboarditems",
                 );
@@ -570,7 +566,6 @@
             }
 
             function useDataResults(data) {
-                console.log("useData()");
                 let container = document.getElementById(
                     "createleaderboarditems",
                 );
@@ -699,8 +694,6 @@
                                 (team) =>
                                     team.players === elementName.innerHTML,
                             ).bird;
-
-                            console.log("birdnum = " + birdnum);
 
                             if (birdnum > 0) {
                                 /*             document.getElementById(
