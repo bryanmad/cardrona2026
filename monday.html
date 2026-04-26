@@ -220,7 +220,7 @@
             }
 
             .name {
-                width: 30%;
+                width: 40%;
                 display: flex;
                 align-items: center;
                 justify-content: left;
@@ -242,17 +242,18 @@
             }
 
             .scores {
-                width: 12%;
+                width: 40%;
                 font-size: 3vh;
                 color: white;
                 font-weight: 400;
                 display: flex;
                 text-align: center;
                 justify-content: center;
+                padding-left: 5vh;
             }
 
             .position {
-                width: 12%;
+                width: 20%;
                 font-size: 3vh;
                 color: white;
                 font-weight: 400;
@@ -306,15 +307,15 @@
             }
 
             .bird {
-                width: 8%;
-                padding-right: 1vw;
+                width: 10%;
+                //padding-right: 1vw;
                 visibility: hidden;
             }
 
             .numbird {
-                width: 8%;
-                padding-right: 1vw;
-                padding-left: 2vh;
+                width: 10%;
+                //padding-right: 1vw;
+                //padding-left: 2vh;
                 visibility: hidden;
                 text-align: center;
                 color: cyan;
@@ -323,7 +324,7 @@
             }
 
             .birdimg {
-                src: "bird.gif";
+                //src: "bird.gif";
                 height: 3.3vh;
                 //width: 7vw;
                 display: flex;
@@ -674,31 +675,31 @@
                     birdimg5.className = "birdimg";
                     birdimg5.src = "bird.gif";
 
-                    let flag = document.createElement("span");
-                    flag.id = "flag" + i;
-                    flag.className = "flag";
+                    //let flag = document.createElement("span");
+                    //flag.id = "flag" + i;
+                    //flag.className = "flag";
 
                     let flagimg = document.createElement("img");
                     flagimg.id = "flagimg" + i;
                     flagimg.className = "flagimg";
                     flagimg.src = "flag.png";
 
-                    bird1.appendChild(birdimg1);
-                    bird2.appendChild(birdimg2);
-                    bird3.appendChild(birdimg3);
+                    //bird1.appendChild(birdimg1);
+                    //bird2.appendChild(birdimg2);
+                    //bird3.appendChild(birdimg3);
                     bird4.appendChild(birdimg4);
                     bird5.appendChild(birdimg5);
 
-                    flag.appendChild(flagimg);
+                    //flag.appendChild(flagimg);
 
                     box.appendChild(position);
                     box.appendChild(name);
-                    box.appendChild(bird1);
-                    box.appendChild(bird2);
-                    box.appendChild(bird3);
+                    //box.appendChild(bird1);
+                    //box.appendChild(bird2);
+                    //box.appendChild(bird3);
                     box.appendChild(bird4);
                     box.appendChild(bird5);
-                    box.appendChild(flag);
+                    //box.appendChild(flag);
                     box.appendChild(scores);
 
                     container.appendChild(box);
@@ -782,32 +783,32 @@
                             console.log("birdnum = " + birdnum);
 
                             if (birdnum > 0) {
-                                document.getElementById(
-                                    "bird1" + n,
-                                ).style.visibility = "visible";
-                            }
-                            if (birdnum > 1) {
-                                document.getElementById(
-                                    "bird2" + n,
-                                ).style.visibility = "visible";
-                            }
-                            if (birdnum > 2) {
-                                document.getElementById(
-                                    "bird3" + n,
-                                ).style.visibility = "visible";
-                            }
-                            if (birdnum > 3) {
+                                /*             document.getElementById(
+                                              "bird1" + n,
+                                          ).style.visibility = "visible";
+                                      }
+                                      if (birdnum > 1) {
+                                          document.getElementById(
+                                              "bird2" + n,
+                                          ).style.visibility = "visible";
+                                      }
+                                      if (birdnum > 2) {
+                                          document.getElementById(
+                                              "bird3" + n,
+                                          ).style.visibility = "visible";
+                                      }
+                                      if (birdnum > 3) {
+                                          document.getElementById(
+                                              "bird4" + n,
+                                          ).style.visibility = "visible";
+                                      }
+            */
                                 document.getElementById(
                                     "bird4" + n,
                                 ).style.visibility = "visible";
-                            }
-                            if (birdnum > 4) {
-                                document.getElementById(
-                                    "bird5" + n,
-                                ).style.visibility = "visible";
-                            }
-                            // cope with too many birdies for space available
-                            if (birdnum > 5) {
+
+                                // cope with too many birdies for space available
+                                //if (birdnum > 5) {
                                 document.getElementById("bird5" + n).className =
                                     "numbird";
                                 document.getElementById("bird5" + n).innerText =
