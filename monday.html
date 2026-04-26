@@ -311,6 +311,17 @@
                 visibility: hidden;
             }
 
+            .numbird {
+                width: 8%;
+                padding-right: 1vw;
+                padding-left: 2vh;
+                visibility: hidden;
+                text-align: center;
+                color: cyan;
+                font-size: 2vh;
+                font-style: italic;
+            }
+
             .birdimg {
                 src: "bird.gif";
                 height: 3.3vh;
@@ -791,6 +802,16 @@
                                 ).style.visibility = "visible";
                             }
                             if (birdnum > 4) {
+                                document.getElementById(
+                                    "bird5" + n,
+                                ).style.visibility = "visible";
+                            }
+                            // cope with too many birdies for space available
+                            if (birdnum > 5) {
+                                document.getElementById("bird5" + n).className =
+                                    "numbird";
+                                document.getElementById("bird5" + n).innerText =
+                                    birdnum;
                                 document.getElementById(
                                     "bird5" + n,
                                 ).style.visibility = "visible";
