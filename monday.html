@@ -14,368 +14,438 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
         <style>
-            /* icon color #bef081 */
+             /* icon color #bef081 */
 
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
+             * {
+                 margin: 0;
+                 padding: 0;
+                 box-sizing: border-box;
+             }
 
-            html {
-                width: 100vw;
-            }
+             html {
+                 width: 100vw;
+             }
 
-            body {
-                overflow: hidden;
-                font-family: Arial, Helvetica, sans-serif;
-                font-size: 3vh;
-                background: dodgerBlue;
-                height: 100%;
-                width: 100%;
-            }
+             body {
+                 overflow: hidden;
+                 font-family: Arial, Helvetica, sans-serif;
+                 font-size: 3vh;
+                 background: dodgerBlue;
+                 height: 100%;
+                 width: 100%;
+             }
 
-            #info {
-                display: none;
-                overflow: auto;
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 100%;
-                width: 100%;
-                color: white;
-                background-color: black;
-                padding-left: 1px;
-                padding-right: 1px;
-                padding-bottom: 1px;
-            }
+             #info {
+                 display: none;
+                 overflow: auto;
+                 position: absolute;
+                 top: 0;
+                 left: 0;
+                 height: 100%;
+                 width: 100%;
+                 color: white;
+                 background-color: black;
+                 padding-left: 1px;
+                 padding-right: 1px;
+                 padding-bottom: 1px;
+             }
 
-            #popuppanel {
-                background-color: #ddd;
-                font-size: 3vh;
-                display: inline-block;
-                border-radius: 3px;
-                border: 1px solid #aaa;
-                padding: 10px;
-                margin: 5vw;
-                text-align: center;
-                width: 80vw;
+             #popuppanel {
+                 background-color: #ddd;
+                 font-size: 3vh;
+                 display: inline-block;
+                 border-radius: 3px;
+                 border: 1px solid #aaa;
+                 padding: 10px;
+                 margin: 5vw;
+                 text-align: center;
+                 width: 80vw;
 
-                cursor: pointer;
-            }
-            /* hide forms */
+                 cursor: pointer;
+             }
+             /* hide forms */
 
-            #my-response-iframe,
-            #my-form {
-                display: none;
-            }
+             #my-response-iframe,
+             #my-form {
+                 display: none;
+             }
 
-            .child-two {
-                height: 7vh;
-                font-size: 3vh;
-                flex-direction: row;
-                display: flex;
-            }
+             .child-two {
+                 height: 7vh;
+                 font-size: 3vh;
+                 flex-direction: row;
+                 display: flex;
+             }
 
-            #headerpageone,
-            #headerpagetwo,
-            #headerpagethree {
-                color: white;
-                background: black;
-                height: 100%;
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+             #headerpageone,
+             #headerpagetwo,
+             #headerpagethree {
+                 color: white;
+                 background: black;
+                 height: 100%;
+                 width: 100%;
+                 display: flex;
+                 justify-content: center;
+                 align-items: center;
+             }
 
-            #pagetwo {
-                position: fixed;
-                top: 0;
-                left: 0;
-                height: 100vh;
-                width: 100vw;
-                background: dodgerBlue;
-                display: none;
-            }
+             #pagetwo {
+                 position: fixed;
+                 top: 0;
+                 left: 0;
+                 height: 100vh;
+                 width: 100vw;
+                 background: dodgerBlue;
+                 display: none;
+             }
 
-            .submit {
-                font-size: 100%;
-                color: white;
-                height: 100%;
-                line-height: 10vh;
-                text-align: center;
-            }
+             .submit {
+                 font-size: 100%;
+                 color: white;
+                 height: 100%;
+                 line-height: 10vh;
+                 text-align: center;
+             }
 
-            #sending {
-                position: relative;
-                background: black;
-            }
+             #sending {
+                 position: relative;
+                 background: black;
+             }
 
+             tr {
+                 text-align: center;
+             }
+             td {
+                 width: calc(100vw / 6);
+             }
+             .head {
+                 font-size: 2vh;
+             }
+
+             #acceptpanel {
+                 display: none;
+                 position: fixed;
+                 bottom: 5vh;
+                 border: 1px silver solid;
+                 background: black;
+                 color: white;
+                 font-size: 2vh;
+                 padding: 5vw;
+                 border-radius: 5px;
+                 text-align: center;
+                 margin-left: 14vw;
+             }
+
+             .button1 {
+                 width: 25vw;
+                 height: 10vh;
+                 text-align: center;
+                 font-size: 2vh;
+                 border-radius: 5px;
+                 background: silver;
+             }
+
+             .spacer1vh {
+                 display: flex;
+                 padding: 1vh;
+             }
+
+             #podium,
+             #home,
+             #stat {
+                 height: 5vh;
+                 width: 5vh;
+             }
+
+             /* for each day */
+             #createleaderboarditems {
+                 text-align: center;
+                 color: white;
+                 font-size: 4vh;
+                 height: auto;
+                 display: block;
+             }
+
+             .team {
+                 width: 90%;
+                 height: 5vh;
+                 margin-left: 5%;
+                 margin-top: 2%;
+                 margin-bottom: 2%;
+                 background: rgba(105, 105, 105, 0.8);
+                 box-shadow: 0 3px 5px black;
+                 display: flex;
+                 align-items: center;
+                 transition-property: top;
+                 transition-duration: 1500ms;
+                 border-radius: 10px;
+                 transition-timing-function: cubic-bezier(
+                     0.68,
+                     -0.55,
+                     0.265,
+                     1.55
+                 );
+                 border: 4px solid rgba(255, 255, 255, 0.3);
+                 background-clip: padding-box;
+             }
+
+             .teamhcp {
+                 width: 90%;
+                 height: 5vh;
+                 margin-left: 5%;
+                 margin-top: 2%;
+                 margin-bottom: 2%;
+                 padding-left: 5vw;
+                 background: rgba(105, 105, 105, 0.8);
+                 box-shadow: 0 3px 5px black;
+                 display: flex;
+                 align-items: center;
+                 transition-property: top;
+                 transition-duration: 1500ms;
+                 border-radius: 10px;
+                 transition-timing-function: cubic-bezier(
+                     0.68,
+                     -0.55,
+                     0.265,
+                     1.55
+                 );
+                 border: 4px solid rgba(255, 255, 255, 0.3);
+                 background-clip: padding-box;
+             }
+
+             .name {
+                 width: 40%;
+                 display: flex;
+                 align-items: center;
+                 justify-content: left;
+                 font-size: 3vh;
+                 color: white;
+                 font-weight: 400;
+                 text-transform: capitalize;
+             }
+
+             .namehcp {
+                 width: 50%;
+                 display: flex;
+                 align-items: center;
+                 justify-content: left;
+                 font-size: 3vh;
+                 color: white;
+                 font-weight: 400;
+                 text-transform: capitalize;
+             }
+
+             .scores {
+                 width: 40%;
+                 font-size: 3vh;
+                 color: white;
+                 font-weight: 400;
+                 display: flex;
+                 text-align: center;
+                 justify-content: center;
+                 padding-left: 5vh;
+             }
+
+             .position {
+                 width: 20%;
+                 font-size: 3vh;
+                 color: white;
+                 font-weight: 400;
+                 display: flex;
+                 text-align: center;
+                 justify-content: center;
+             }
+
+             .hcps {
+                 width: 12%;
+                 font-size: 3vh;
+                 color: white;
+                 font-weight: 400;
+                 display: flex;
+                 text-align: center;
+                 justify-content: center;
+             }
+
+             .hcpsadj {
+                 padding-left: 6vh;
+                 width: auto;
+                 font-size: 2.5vh;
+                 color: silver;
+                 font-weight: 400;
+                 display: flex;
+                 text-align: center;
+                 justify-content: center;
+             }
+
+             #headerinfo {
+                 padding-top: 2vh;
+                 padding-bottom: 1vh;
+                 color: white;
+                 font-size: 5vh;
+                 display: flex;
+                 text-align: center;
+                 justify-content: center;
+                 width: 80%;
+             }
+
+             #footerinfo,
+             #footerstats {
+                 position: absolute;
+                 bottom: 200px;
+                 width: 100%;
+                 color: white;
+                 font-size: 2.5vh;
+                 display: flex;
+                 text-align: center;
+                 justify-content: center;
+             }
+
+             .bird {
+                 width: 10%;
+                 visibility: hidden;
+             }
+
+             .numbird {
+                 width: 10%;
+                 visibility: hidden;
+                 text-align: center;
+                 color: cyan;
+                 font-size: 2vh;
+                 font-style: italic;
+             }
+
+             .birdimg {
+                 height: 3.3vh;
+                 display: flex;
+                 text-align: center;
+                 justify-content: center;
+                 padding-left: 1vw;
+                 padding-right: 1vw;
+             }
+
+             #statsinfo {
+                 width: 300px;
+                 height: 300px;
+                 border: 1px solid cyan;
+                 display: flex;
+             }
+
+             #statsinfo div {
+                 border: 1px sold yellow;
+                 flex: 1;
+             }
+
+             .table_component {
+                 overflow: auto;
+                 width: 100%;
+             }
+
+             .table_component table {
+                 height: 100%;
+                 width: 100%;
+                 border-collapse: collapse;
+                 border-spacing: 1px;
+                 text-align: center;
+                 font-size: 2vh;
+             }
+
+             .table_component caption {
+                 caption-side: top;
+                 text-align: left;
+             }
+
+             .table_component th {
+                 background-color: #1589ff;
+                 color: cyan;
+                 padding: 5px;
+             }
+
+             .table_component td {
+                 background-color: dodgerBlue;
+                 color: white;
+                 padding: 5px;
+             }
+
+             .table_component table tbody tr:nth-of-type(even) > * {
+                 background: #1589ff;
+             }
+
+             #toptr {
+                 color: cyan;
+             }
+
+             .cyan {
+                 background: dodgerBlue;
+             }
+
+             #statspanel {
+                 display: none;
+                 position: fixed;
+                 //top: 20vh;
+
+                 bottom: 25vh;
+                 //left: 2vw;
+                 //right: 20vw;
+
+                 //border: 1px silver solid;
+                 //background: black;
+                 color: white;
+                 font-size: 4vw;
+                 //padding: 5vw;
+                 //border-radius: 5px;
+                 //text-align: center;
+
+                 //margin-left: 14vw;
+                 //margin-right: 5vw;
+                 //margin: auto;
+                 //width: 80vw;
+                 //height: 40vh;
+
+                 //opacity: 1;
+
+                 width: 90%;
+                // height: 40vh;
+                 margin-left: 5%;
+                 margin-top: 2%;
+                 margin-bottom: 2%;
+                 background: rgba(105, 105, 105, 1);
+                 box-shadow: 0 3px 5px black;
+                // display: flex;
+                 align-items: center;
+                 //transition-property: top;
+                 //transition-duration: 1500ms;
+                // border-radius: 5px;
+                // transition-timing-function: cubic-bezier(
+                 //    0.68,
+                 //    -0.55,
+                //     0.265,
+                //     1.55
+               //  );
+                 //border: 1px solid blue;
+                 //background-clip: padding-box;
+
+
+                 //transition: all 1.4s ease-in-out;
+
+             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+             /* DivTable.com */
             tr {
-                text-align: center;
-            }
-            td {
-                width: calc(100vw / 6);
-            }
-            .head {
-                font-size: 2vh;
-            }
-
-            #acceptpanel {
-                display: none;
-                position: fixed;
-                bottom: 5vh;
-                border: 1px silver solid;
-                background: black;
-                color: white;
-                font-size: 2vh;
-                padding: 5vw;
-                border-radius: 5px;
-                text-align: center;
-                margin-left: 14vw;
-            }
-
-            .button1 {
-                width: 25vw;
-                height: 10vh;
-                text-align: center;
-                font-size: 2vh;
-                border-radius: 5px;
-                background: silver;
-            }
-
-            .spacer1vh {
-                display: flex;
-                padding: 1vh;
-            }
-
-            #podium,
-            #home,
-            #stat {
-                height: 5vh;
-                width: 5vh;
-            }
-
-            /* for each day */
-            #createleaderboarditems {
-                text-align: center;
-                color: white;
-                font-size: 4vh;
-                height: auto;
-                display: block;
-            }
-
-            .team {
-                width: 90%;
-                height: 5vh;
-                margin-left: 5%;
-                margin-top: 2%;
-                margin-bottom: 2%;
-                background: rgba(105, 105, 105, 0.8);
-                box-shadow: 0 3px 5px black;
-                display: flex;
-                align-items: center;
-                transition-property: top;
-                transition-duration: 1500ms;
-                border-radius: 10px;
-                transition-timing-function: cubic-bezier(
-                    0.68,
-                    -0.55,
-                    0.265,
-                    1.55
-                );
-                border: 4px solid rgba(255, 255, 255, 0.3);
-                background-clip: padding-box;
-            }
-
-            .teamhcp {
-                width: 90%;
-                height: 5vh;
-                margin-left: 5%;
-                margin-top: 2%;
-                margin-bottom: 2%;
-                padding-left: 5vw;
-                background: rgba(105, 105, 105, 0.8);
-                box-shadow: 0 3px 5px black;
-                display: flex;
-                align-items: center;
-                transition-property: top;
-                transition-duration: 1500ms;
-                border-radius: 10px;
-                transition-timing-function: cubic-bezier(
-                    0.68,
-                    -0.55,
-                    0.265,
-                    1.55
-                );
-                border: 4px solid rgba(255, 255, 255, 0.3);
-                background-clip: padding-box;
-            }
-
-            .name {
-                width: 40%;
-                display: flex;
-                align-items: center;
-                justify-content: left;
-                font-size: 3vh;
-                color: white;
-                font-weight: 400;
-                text-transform: capitalize;
-            }
-
-            .namehcp {
-                width: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: left;
-                font-size: 3vh;
-                color: white;
-                font-weight: 400;
-                text-transform: capitalize;
-            }
-
-            .scores {
-                width: 40%;
-                font-size: 3vh;
-                color: white;
-                font-weight: 400;
-                display: flex;
-                text-align: center;
-                justify-content: center;
-                padding-left: 5vh;
-            }
-
-            .position {
-                width: 20%;
-                font-size: 3vh;
-                color: white;
-                font-weight: 400;
-                display: flex;
-                text-align: center;
-                justify-content: center;
-            }
-
-            .hcps {
-                width: 12%;
-                font-size: 3vh;
-                color: white;
-                font-weight: 400;
-                display: flex;
-                text-align: center;
-                justify-content: center;
-            }
-
-            .hcpsadj {
-                padding-left: 6vh;
-                width: auto;
-                font-size: 2.5vh;
                 color: silver;
-                font-weight: 400;
-                display: flex;
-                text-align: center;
-                justify-content: center;
-            }
-
-            #headerinfo {
-                padding-top: 2vh;
-                padding-bottom: 1vh;
-                color: white;
-                font-size: 5vh;
-                display: flex;
-                text-align: center;
-                justify-content: center;
-                width: 80%;
-            }
-
-            #footerinfo,
-            #footerstats {
-                position: absolute;
-                bottom: 200px;
-                width: 100%;
-                color: white;
-                font-size: 2.5vh;
-                display: flex;
-                text-align: center;
-                justify-content: center;
-            }
-
-            .bird {
-                width: 10%;
-                visibility: hidden;
-            }
-
-            .numbird {
-                width: 10%;
-                visibility: hidden;
-                text-align: center;
-                color: cyan;
+                background:black;
                 font-size: 2vh;
-                font-style: italic;
-            }
-
-            .birdimg {
-                height: 3.3vh;
-                display: flex;
-                text-align: center;
-                justify-content: center;
-                padding-left: 1vw;
-                padding-right: 1vw;
-            }
-
-            #statsinfo {
-                width: 300px;
-                height: 300px;
-                border: 1px solid cyan;
-                display: flex;
-            }
-
-            #statsinfo div {
-                border: 1px sold yellow;
-                flex: 1;
-            }
-
-            .table_component {
-                overflow: auto;
-                width: 100%;
-            }
-
-            .table_component table {
-                height: 100%;
-                width: 100%;
-                border-collapse: collapse;
-                border-spacing: 1px;
-                text-align: center;
-                font-size: 2vh;
-            }
-
-            .table_component caption {
-                caption-side: top;
-                text-align: left;
-            }
-
-            .table_component th {
-                background-color: #1589ff;
-                color: cyan;
-                padding: 5px;
-            }
-
-            .table_component td {
-                background-color: dodgerBlue;
-                color: white;
-                padding: 5px;
-            }
-
-            .table_component table tbody tr:nth-of-type(even) > * {
-                background: #1589ff;
-            }
-
-            #toptr {
-                color: cyan;
-            }
-
-            .cyan {
-                background: dodgerBlue;
             }
         </style>
     </head>
@@ -389,6 +459,139 @@
             <div id="createleaderboarditems">checking ...</div>
         </div>
         <div style="margin-top: 8px"></div>
+
+        <!-- popup stats panel -->
+        <div id="statspanel" onclick="hideStatsPanel()">
+            <!-- DivTable.com -->
+            <table>
+                <tbody>
+                    <tr>
+                        <td colspan="11" id="theader"></td>
+                    </tr>
+                    <tr>
+                        <td>hole</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>front</td>
+                    </tr>
+                    <tr>
+                        <td>si</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>strokes</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>123</td>
+                    </tr>
+                    <tr>
+                        <td>points</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>123</td>
+                    </tr>
+                    <tr>
+                        <td colspan="11">&nbsp</td>
+                    </tr>
+                    <tr>
+                        <td>hole</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>17</td>
+                        <td>18</td>
+                        <td>back</td>
+                    </tr>
+                    <tr>
+                        <td>si</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>strokes</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>123</td>
+                    </tr>
+                    <tr>
+                        <td>points</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>123</td>
+                    </tr>
+                    <tr>
+                        <td colspan="11">101 strokes, 37 points.</td>
+                    </td>
+
+
+                    <tr>
+                        <td colspan="11">&nbsp</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- DivTable.com -->
+        </div>
+
+        <!--
+
+
+
         <!-- spacer -->
         <div class="spacer1vh"></div>
         <script>
@@ -410,32 +613,32 @@
             //var day = dd.getDay();
 
             /*
-                      var days = [
-                          "Sunday",
-                          "Monday",
-                          "Tuesday",
-                          "Wednesday",
-                          "Thursday",
-                          "Friday",
-                          "Saturday",
-                      ];
+                        var days = [
+                            "Sunday",
+                            "Monday",
+                            "Tuesday",
+                            "Wednesday",
+                            "Thursday",
+                            "Friday",
+                            "Saturday",
+                        ];
 
 
-                      var months = [
-                          "Jan",
-                          "Feb",
-                          "Mar",
-                          "Apr",
-                          "May",
-                          "Jun",
-                          "Jul",
-                          "Aug",
-                          "Sep",
-                          "Oct",
-                          "Nov",
-                          "Dec",
-                      ];
-          */
+                        var months = [
+                            "Jan",
+                            "Feb",
+                            "Mar",
+                            "Apr",
+                            "May",
+                            "Jun",
+                            "Jul",
+                            "Aug",
+                            "Sep",
+                            "Oct",
+                            "Nov",
+                            "Dec",
+                        ];
+            */
             //===========================
             // this code runs at startup
             //===========================
@@ -576,6 +779,10 @@
                     let box = document.createElement("div");
                     box.id = "box" + i;
                     box.className = "team";
+                    box.setAttribute(
+                        "onclick",
+                        "showStats(this.id);return false;",
+                    );
 
                     let name = document.createElement("span");
                     name.id = "name" + i;
@@ -697,25 +904,25 @@
 
                             if (birdnum > 0) {
                                 /*             document.getElementById(
-                                                        "bird1" + n,
-                                                    ).style.visibility = "visible";
-                                                }
-                                                if (birdnum > 1) {
-                                                    document.getElementById(
-                                                        "bird2" + n,
-                                                    ).style.visibility = "visible";
-                                                }
-                                                if (birdnum > 2) {
-                                                    document.getElementById(
-                                                        "bird3" + n,
-                                                    ).style.visibility = "visible";
-                                                }
-                                                if (birdnum > 3) {
-                                                    document.getElementById(
-                                                        "bird4" + n,
-                                                    ).style.visibility = "visible";
-                                                }
-                      */
+                                                          "bird1" + n,
+                                                      ).style.visibility = "visible";
+                                                  }
+                                                  if (birdnum > 1) {
+                                                      document.getElementById(
+                                                          "bird2" + n,
+                                                      ).style.visibility = "visible";
+                                                  }
+                                                  if (birdnum > 2) {
+                                                      document.getElementById(
+                                                          "bird3" + n,
+                                                      ).style.visibility = "visible";
+                                                  }
+                                                  if (birdnum > 3) {
+                                                      document.getElementById(
+                                                          "bird4" + n,
+                                                      ).style.visibility = "visible";
+                                                  }
+                        */
                                 document.getElementById(
                                     "bird4" + n,
                                 ).style.visibility = "visible";
@@ -733,6 +940,24 @@
                         }, n * 100);
                     }
                 });
+            }
+
+            function showStats(id) {
+                console.log("showStats(id) = " + id);
+
+                if (document.getElementById(id).hasChildNodes()) {
+                    let childtxt =
+                        document.getElementById(id).childNodes[1].innerText;
+                    console.log("called by " + childtxt);
+
+                    document.getElementById("statspanel").style.display =
+                        "flex";
+                    document.getElementById("theader").innerText = childtxt;
+                }
+            }
+
+            function hideStatsPanel() {
+                document.getElementById("statspanel").style.display = "none";
             }
         </script>
     </body>
