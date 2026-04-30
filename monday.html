@@ -503,28 +503,28 @@
                     </tr>
                     <tr class="static">
                         <td>si</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>4</td>
-                        <td>5</td>
-                        <td>6</td>
-                        <td>7</td>
-                        <td>8</td>
-                        <td>9</td>
+                        <td id="si1">1</td>
+                        <td id="si2">2</td>
+                        <td id="si3">3</td>
+                        <td id="si4">4</td>
+                        <td id="si5">5</td>
+                        <td id="si6">6</td>
+                        <td id="si7">7</td>
+                        <td id="si8">8</td>
+                        <td id="si9">9</td>
                         <td></td>
                     </tr>
                     <tr class="static">
                         <td>par</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>4</td>
-                        <td>5</td>
-                        <td>6</td>
-                        <td>7</td>
-                        <td>8</td>
-                        <td>9</td>
+                        <td id="par1">1</td>
+                        <td id="par2">2</td>
+                        <td id="par3">3</td>
+                        <td id="par4">4</td>
+                        <td id="par5">5</td>
+                        <td id="par6">6</td>
+                        <td id="par7">7</td>
+                        <td id="par8">8</td>
+                        <td id="par9">9</td>
                         <td id="parfront">123</td>
                     </tr>
                     <tr>
@@ -571,28 +571,28 @@
                     </tr>
                     <tr class="static">
                         <td>si</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>4</td>
-                        <td>5</td>
-                        <td>6</td>
-                        <td>7</td>
-                        <td>8</td>
-                        <td>9</td>
+                        <td id="si10">1</td>
+                        <td id="si11">2</td>
+                        <td id="si12">3</td>
+                        <td id="si13">4</td>
+                        <td id="si14">5</td>
+                        <td id="si15">6</td>
+                        <td id="si16">7</td>
+                        <td id="si17">8</td>
+                        <td id="si18">9</td>
                         <td></td>
                     </tr>
                     <tr class="static">
                         <td>par</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>4</td>
-                        <td>5</td>
-                        <td>6</td>
-                        <td>7</td>
-                        <td>8</td>
-                        <td>9</td>
+                        <td id="par10">1</td>
+                        <td id="par11">2</td>
+                        <td id="par12">3</td>
+                        <td id="par13">4</td>
+                        <td id="par14">5</td>
+                        <td id="par15">6</td>
+                        <td id="par16">7</td>
+                        <td id="par17">8</td>
+                        <td id="par18">9</td>
                         <td id="parback">123</td>
                     </tr>
                     <tr>
@@ -1121,8 +1121,8 @@ var parfront9 = 0;
                       for (i=1; i<=9; i++){
                         sfront += +document.getElementById("st" + i).innerText
                         pfront += +document.getElementById("p" + i).innerText
-                        sifront = arrCourse[i][2]
-                        parfront = arrCourse[i][1]
+                        document.getElementById("si" + i).innerText = arrCourse[i][2]
+                        document.getElementById("par" + i).innerText = arrCourse[i][1]
 
                         parfront9 += +arrCourse[i][1]
                       }
@@ -1136,8 +1136,8 @@ var parfront9 = 0;
                                             for (i=10; i<=18; i++){
                                               sback += +document.getElementById("st" + i).innerText
                                               pback += +document.getElementById("p" + i).innerText
-                                              siback = arrCourse[i][2]
-                                              parback = arrCourse[i][1]
+                                              document.getElementById("si" + i).innerText = arrCourse[i][2]
+                                              document.getElementById("par" + i).innerText = arrCourse[i][1]
 
                                               parback9 += +arrCourse[i][1]
                                             }
