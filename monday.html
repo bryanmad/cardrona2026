@@ -525,7 +525,7 @@
                         <td>7</td>
                         <td>8</td>
                         <td>9</td>
-                        <td>123</td>
+                        <td id="parfront">123</td>
                     </tr>
                     <tr>
                         <td>strokes</td>
@@ -593,7 +593,7 @@
                         <td>7</td>
                         <td>8</td>
                         <td>9</td>
-                        <td>123</td>
+                        <td id="parback">123</td>
                     </tr>
                     <tr>
                         <td>strokes</td>
@@ -680,6 +680,50 @@
                             "Dec",
                         ];
             */
+
+            // set up courses with details for calculations etc.
+            // array ["hole num",par,si]
+            // Arcot
+            // hole, par, si
+            arrCourse = [
+                [0, 0, 0],
+                [1, 4, 8],
+                [2, 3, 16],
+                [3, 4, 12],
+                [4, 3, 4],
+                [5, 4, 6],
+                [6, 5, 18],
+                [7, 5, 14],
+                [8, 4, 2],
+                [9, 3, 10],
+                [10, 5, 11],
+                [11, 3, 15],
+                [12, 4, 1],
+                [13, 4, 9],
+                [14, 4, 5],
+                [15, 3, 17],
+                [16, 4, 3],
+                [17, 4, 13],
+                [18, 4, 7],
+            ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             //===========================
             // this code runs at startup
             //===========================
@@ -1067,48 +1111,50 @@ statspos = id.replace("box","");
                        document.getElementById("p17").innerText = data[statspos].p17;
                        document.getElementById("p18").innerText = data[statspos].p18;
 
+
 var sfront = 0;
+var pfront = 0;
+var sifront = 0;
+var parfront = 0;
+var parfront9 = 0;
+
                       for (i=1; i<=9; i++){
                         sfront += +document.getElementById("st" + i).innerText
+                        pfront += +document.getElementById("p" + i).innerText
+                        sifront = arrCourse[i][2]
+                        parfront = arrCourse[i][1]
+
+                        parfront9 += +arrCourse[i][1]
                       }
 
-var sback = 0;
-                     for (i=10; i<=18; i++){
-                        sback += +document.getElementById("st" + i).innerText
-                     }
+                      var sback = 0;
+                      var pback = 0;
+                      var siback = 0;
+                      var parback = 0;
+                      var parback9 = 0;
 
+                                            for (i=10; i<=18; i++){
+                                              sback += +document.getElementById("st" + i).innerText
+                                              pback += +document.getElementById("p" + i).innerText
+                                              siback = arrCourse[i][2]
+                                              parback = arrCourse[i][1]
 
-                     var pfront = 0;
-                                           for (i=1; i<=9; i++){
-                                             pfront += +document.getElementById("p" + i).innerText
-                                           }
-
-                     var pback = 0;
-                                          for (i=10; i<=18; i++){
-                                             pback += +document.getElementById("p" + i).innerText
-                                          }
-
+                                              parback9 += +arrCourse[i][1]
+                                            }
 var stotal = sfront + sback;
-                                          var ptotal = pfront + pback;
+var ptotal = pfront + pback;
 
 document.getElementById("statscomment").innerHTML = "<br>" + stotal + " strokes, " + ptotal + " points." + "<br><br>"
 
 
 
 
-
-
-
-
-
-//console.log("front9 = " + front9)
-//console.log("back9 = " + back9)
-
 document.getElementById("sfront").innerText = sfront;
 document.getElementById("sback").innerText = sback;
 document.getElementById("pfront").innerText = pfront;
 document.getElementById("pback").innerText = pback;
-
+document.getElementById("parfront").innerText = parfront9;
+document.getElementById("parback").innerText = parback9;
 
 
 
