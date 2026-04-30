@@ -429,7 +429,7 @@
 
 animation-name: fade-in, slide-in;
 animation-duration: 2s, 1s;
-
+animation-timing-function: ease-out;
 //animation: 1s forwards;
 
 
@@ -438,22 +438,24 @@ animation-duration: 2s, 1s;
              @keyframes fade-in {
                from {
                  opacity: 0%;
+                 scale: 0.2;
                }
                to {
                  opacity: 100%;
+                 scale: 1.0;
                }
              }
 
 
              @keyframes slide-in {
                from {
-                 translate: 150vw 0;
-                 scale: 200% 1;
+                 translate: 0 -100vh;
+                 //scale: 200% 1;
                }
 
                to {
                  translate: 0 0;
-                 scale: 100% 1;
+                 //scale: 100% 1;
                }
              }
 
