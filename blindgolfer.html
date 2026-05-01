@@ -187,18 +187,16 @@
                             document.getElementById("headerpagetwo").innerText =
                                 "Thursday Blindgolfer";
                         }
-                        if (today == "Friday" || today == "Saturday" || today == "Sunday") {
+                        if (
+                            today == "Friday" ||
+                            today == "Saturday" ||
+                            today == "Sunday"
+                        ) {
                             document.getElementById("list" + i).innerText =
-                                "not a competition dayy;
+                                "not a competition day";
                             document.getElementById("headerpagetwo").innerText =
                                 "No Blindgolfer";
                         }
-
-
-
-
-
-
                     }
                 } catch (error) {
                     console.error(error.message);
