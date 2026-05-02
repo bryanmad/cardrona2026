@@ -705,7 +705,6 @@
             }
 
             function bodyUpdatep3(nom, scr, pos, k) {
-                console.log("bodyUpdatep3");
                 document.getElementById("headerpagetwo").innerText =
                     "Par 3 champion";
 
@@ -724,7 +723,6 @@
             }
 
             function bodyUpdatep5(nom, scr, pos, k) {
-                console.log("bodyUpdatep5");
                 document.getElementById("headerpagetwo").innerText =
                     "Par 5 champion";
 
@@ -743,6 +741,7 @@
             }
 
             function swapp3p5() {
+                navigator.vibrate(100);
                 test = document.getElementById("imgbackcontainer").innerHTML;
 
                 if (test.indexOf("show<br>par 3") > -1) {
