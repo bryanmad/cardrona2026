@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -7,10 +7,7 @@
         <link href="originalgolf.svg" rel="icon" type="image/x-icon" />
         <link rel="apple-touch-icon" sizes="180x180" href="originalgolf.svg" />
         <title>cardrona2026</title>
-        <link
-            href="https://fonts.googleapis.com/css?family=Kalam"
-            rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
         <style>
@@ -222,6 +219,13 @@
                              color: white;
                              font-weight: 400;
                              text-transform: capitalize;
+
+
+
+
+
+
+
                          }
 
                          .namehcp {
@@ -235,7 +239,7 @@
                              text-transform: capitalize;
                          }
 
-                         .p3scores, .p5scores {
+                         .pscores {
                              width: 40%;
                              font-size: 3vh;
                              color: white;
@@ -509,7 +513,7 @@
             /* back arrow */
             .imgbackcontainer {
                 position: fixed;
-                top: 3vh;
+                top: 1vh;
                 right: 2vw;
                 width:17vw;
                 height: 7vh;
@@ -521,7 +525,7 @@
                     0px 4px 3px rgba(0, 0, 0, 0.4),
                     0px 8px 13px rgba(0, 0, 0, 0.1),
                     0px 18px 23px rgba(0, 0, 0, 0.1);
-                color:cyan;
+                color:white;
                 background-color: dodgerBlue;
                 font-size: 2vh;
                 border-radius: 10px;
@@ -535,13 +539,7 @@
     </head>
     <body>
         <div id="pagetwo">
-            <div
-                id="imgbackcontainer"
-                class="imgbackcontainer"
-                onclick="swapp3p5()"
-            >
-                show<br />par 5
-            </div>
+            <div id="imgbackcontainer" class="imgbackcontainer" onclick="swapp3p5birdies()">show<br />par 5</div>
 
             <!-- leaderboard -->
             <div class="child-two">
@@ -573,7 +571,7 @@
 
             // set up courses with details for calculations etc.
             // array ["hole num",par,si]
-            // Arcot
+            // Cardrona
             // hole, par, si
             arrCourse = [
                 [0, 0, 0],
@@ -594,15 +592,14 @@
                 [15, 4, 18],
                 [16, 4, 10],
                 [17, 4, 8],
-                [18, 4, 16],
+                [18, 4, 16]
             ];
             getData();
             //===========================
             // this code runs at startup
             //===========================
             async function getData() {
-                var url =
-                    "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/par3and5";
+                var url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/par3and5";
                 try {
                     data = await fetch(url);
                     if (!data.ok) {
@@ -644,33 +641,23 @@
             //=============================================================
 
             function useDataResults() {
-                let container = document.getElementById(
-                    "createleaderboarditems",
-                );
+                let container = document.getElementById("createleaderboarditems");
                 // empty container
                 container.innerHTML = "";
-                console.log(data[0].playersp3);
                 data.forEach((el, i) => {
                     let box = document.createElement("div");
                     box.id = "box" + i;
                     box.className = "team";
-                    box.setAttribute(
-                        "onclick",
-                        "showStats(this.id);return false;",
-                    );
+                    box.setAttribute("onclick", "showStats(this.id);return false;");
 
                     let name = document.createElement("span");
                     name.id = "name" + i;
                     name.className = "name";
                     name.innerHTML = el.playersp3;
 
-                    let p3scores = document.createElement("span");
-                    p3scores.id = "p3scores" + i;
-                    p3scores.className = "p3scores";
-
-                    let p5scores = document.createElement("span");
-                    p5scores.id = "p5scores" + i;
-                    p5scores.className = "p5scores";
+                    let pscores = document.createElement("span");
+                    pscores.id = "pscores" + i;
+                    pscores.className = "pscores";
 
                     let position = document.createElement("span");
                     position.id = "position" + i;
@@ -679,38 +666,28 @@
 
                     box.appendChild(position);
                     box.appendChild(name);
-
-                    box.appendChild(p3scores);
-
-                    box.appendChild(p5scores);
+                    box.appendChild(pscores);
 
                     container.appendChild(box);
                     // fade the initial view
                     box.style.opacity = 0.3;
                 });
 
-                // do proper display
+                // do initial proper display
                 data.forEach((el, k) => {
                     setTimeout(function () {
                         if (el.playersp3 !== "") {
-                            bodyUpdatep3(
-                                el.playersp3,
-                                el.par3,
-                                el.positionp3,
-                                k,
-                            );
+                            bodyUpdatep3(el.playersp3, el.par3, el.positionp3, k);
                         }
                     }, k * 300);
                 });
             }
 
             function bodyUpdatep3(nom, scr, pos, k) {
-                document.getElementById("headerpagetwo").innerText =
-                    "Par 3 champion";
+                document.getElementById("headerpagetwo").innerText = "Par 3 champion";
 
                 let elementName = document.getElementsByClassName("name")[k];
-                let elementScore =
-                    document.getElementsByClassName("p3scores")[k];
+                let elementScore = document.getElementsByClassName("pscores")[k];
                 let elementPos = document.getElementsByClassName("position")[k];
 
                 setTimeout(function () {
@@ -723,12 +700,10 @@
             }
 
             function bodyUpdatep5(nom, scr, pos, k) {
-                document.getElementById("headerpagetwo").innerText =
-                    "Par 5 champion";
+                document.getElementById("headerpagetwo").innerText = "Par 5 champion";
 
                 let elementName = document.getElementsByClassName("name")[k];
-                let elementScore =
-                    document.getElementsByClassName("p3scores")[k];
+                let elementScore = document.getElementsByClassName("pscores")[k];
                 let elementPos = document.getElementsByClassName("position")[k];
 
                 setTimeout(function () {
@@ -740,45 +715,94 @@
                 }, k * 100);
             }
 
-            function swapp3p5() {
-                navigator.vibrate(50);
+            function bodyUpdatebirdies(nom, scr, pos, k) {
+                document.getElementById("headerpagetwo").innerText = "Birdies champion";
+
+                let elementName = document.getElementsByClassName("name")[k];
+                let elementScore = document.getElementsByClassName("pscores")[k];
+                let elementPos = document.getElementsByClassName("position")[k];
+
+                setTimeout(function () {
+                    elementName.innerText = nom;
+                    elementScore.innerText = scr;
+                    elementPos.innerText = pos;
+
+                    elementName.parentNode.style.opacity = 1;
+                }, k * 100);
+            }
+
+            function swapp3p5birdies() {
+                // par 3 -> par 5 -> birdies -> par 3 etc.
+                if (navigator.vibrate) {
+                    navigator.vibrate(50);
+                }
                 test = document.getElementById("imgbackcontainer").innerHTML;
-
-                if (test.indexOf("show<br>par 3") > -1) {
-                    document.getElementById("imgbackcontainer").innerHTML =
-                        "show<br>par 5";
-
+                //console.log("-------" + test);
+                // if swap to birdies
+                if (test.indexOf("show<br>birdies") > -1) {
+                    //console.log("birdies = " + test);
+                    document.getElementById("imgbackcontainer").innerHTML = "show<br>par 3";
+                    data.forEach((el, i) => {
+                        document.getElementById("position" + i).style.opacity = "0.5";
+                        document.getElementById("name" + i).style.opacity = "0.5";
+                        document.getElementById("pscores" + i).style.opacity = "0.5";
+                    });
                     // do proper display
                     data.forEach((el, k) => {
                         //setTimeout(function () {
-                        if (el.playersp3 !== "") {
-                            bodyUpdatep3(
-                                el.playersp3,
-                                el.par3,
-                                el.positionp3,
-                                k,
-                            );
+                        if (el.playersbirdies !== "") {
+                            bodyUpdatebirdies(el.playersbirdies, el.birdies, el.positionbirdies, k);
                         }
-                        //}, k * 300);
+                        setTimeout(function () {
+                            document.getElementById("position" + k).style.opacity = "1.0";
+                            document.getElementById("name" + k).style.opacity = "1.0";
+                            document.getElementById("pscores" + k).style.opacity = "1.0";
+                        }, 200 * k);
                     });
                 }
 
-                if (test.indexOf("show<br>par 5") > -1) {
-                    document.getElementById("imgbackcontainer").innerHTML =
-                        "show<br>par 3";
+                // if currently birdies - swap to par 3
+                if (test.indexOf("show<br>par 3") > -1) {
+                    //console.log("par3 = " + test);
+                    document.getElementById("imgbackcontainer").innerHTML = "show<br>par 5";
 
+                    data.forEach((el, i) => {
+                        document.getElementById("position" + i).style.opacity = "0.5";
+                        document.getElementById("name" + i).style.opacity = "0.5";
+                        document.getElementById("pscores" + i).style.opacity = "0.5";
+                    });
                     // do proper display
                     data.forEach((el, k) => {
-                        //setTimeout(function () {
-                        if (el.playersp5 !== "") {
-                            bodyUpdatep5(
-                                el.playersp5,
-                                el.par5,
-                                el.positionp5,
-                                k,
-                            );
+                        if (el.playersp3 !== "") {
+                            bodyUpdatep3(el.playersp3, el.par3, el.positionp3, k);
                         }
-                        //}, k * 300);
+                        setTimeout(function () {
+                            document.getElementById("position" + k).style.opacity = "1.0";
+                            document.getElementById("name" + k).style.opacity = "1.0";
+                            document.getElementById("pscores" + k).style.opacity = "1.0";
+                        }, 200 * k);
+                    });
+                }
+
+                // currently par 3 - swap to par 5
+                if (test.indexOf("show<br>par 5") > -1) {
+                    //console.log("par5 = " + test);
+                    document.getElementById("imgbackcontainer").innerHTML = "show<br>birdies";
+                    data.forEach((el, i) => {
+                        document.getElementById("position" + i).style.opacity = "0.5";
+                        document.getElementById("name" + i).style.opacity = "0.5";
+                        document.getElementById("pscores" + i).style.opacity = "0.5";
+                    });
+                    // do proper display
+                    data.forEach((el, k) => {
+                        if (el.playersp3 !== "") {
+                            bodyUpdatep5(el.playersp5, el.par5, el.positionp5, k);
+                        }
+                        setTimeout(function () {
+                            document.getElementById("position" + k).style.opacity = "1.0";
+                            document.getElementById("name" + k).style.opacity = "1.0";
+                            document.getElementById("pscores" + k).style.opacity = "1.0";
+                        }, 200 * k);
                     });
                 }
             }
