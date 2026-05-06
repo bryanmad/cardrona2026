@@ -7,7 +7,10 @@
         <link href="originalgolf.svg" rel="icon" type="image/x-icon" />
         <link rel="apple-touch-icon" sizes="180x180" href="originalgolf.svg" />
         <title>cardrona2026</title>
-        <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css?family=Kalam"
+            rel="stylesheet"
+        />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
         <style>
@@ -539,7 +542,13 @@
     </head>
     <body>
         <div id="pagetwo">
-            <div id="imgbackcontainer" class="imgbackcontainer" onclick="swapp3p5birdies()">show<br />par 5</div>
+            <div
+                id="imgbackcontainer"
+                class="imgbackcontainer"
+                onclick="swapp3p5birdies()"
+            >
+                show<br />par 5
+            </div>
 
             <!-- leaderboard -->
             <div class="child-two">
@@ -592,14 +601,15 @@
                 [15, 4, 18],
                 [16, 4, 10],
                 [17, 4, 8],
-                [18, 4, 16]
+                [18, 4, 16],
             ];
             getData();
             //===========================
             // this code runs at startup
             //===========================
             async function getData() {
-                var url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/par3and5";
+                var url =
+                    "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/par3and5";
                 try {
                     data = await fetch(url);
                     if (!data.ok) {
@@ -641,14 +651,19 @@
             //=============================================================
 
             function useDataResults() {
-                let container = document.getElementById("createleaderboarditems");
+                let container = document.getElementById(
+                    "createleaderboarditems",
+                );
                 // empty container
                 container.innerHTML = "";
                 data.forEach((el, i) => {
                     let box = document.createElement("div");
                     box.id = "box" + i;
                     box.className = "team";
-                    box.setAttribute("onclick", "showStats(this.id);return false;");
+                    box.setAttribute(
+                        "onclick",
+                        "showStats(this.id);return false;",
+                    );
 
                     let name = document.createElement("span");
                     name.id = "name" + i;
@@ -677,17 +692,28 @@
                 data.forEach((el, k) => {
                     setTimeout(function () {
                         if (el.playersp3 !== "") {
-                            bodyUpdatep3(el.playersp3, el.par3, el.positionp3, k);
+                            bodyUpdatep3(
+                                el.playersp3,
+                                el.par3,
+                                el.positionp3,
+                                k,
+                            );
                         }
                     }, k * 300);
                 });
             }
 
             function bodyUpdatep3(nom, scr, pos, k) {
-                document.getElementById("headerpagetwo").innerText = "Par 3 champion";
+                //$("#headerpagetwo").fadeOut(function () {
+                //    $(this).text("par 3 champion").fadeIn();
+                //});
+
+                document.getElementById("headerpagetwo").innerText =
+                    "Par 3 champion";
 
                 let elementName = document.getElementsByClassName("name")[k];
-                let elementScore = document.getElementsByClassName("pscores")[k];
+                let elementScore =
+                    document.getElementsByClassName("pscores")[k];
                 let elementPos = document.getElementsByClassName("position")[k];
 
                 setTimeout(function () {
@@ -700,10 +726,11 @@
             }
 
             function bodyUpdatep5(nom, scr, pos, k) {
-                document.getElementById("headerpagetwo").innerText = "Par 5 champion";
-
+                document.getElementById("headerpagetwo").innerText =
+                    "Par 5 champion";
                 let elementName = document.getElementsByClassName("name")[k];
-                let elementScore = document.getElementsByClassName("pscores")[k];
+                let elementScore =
+                    document.getElementsByClassName("pscores")[k];
                 let elementPos = document.getElementsByClassName("position")[k];
 
                 setTimeout(function () {
@@ -716,10 +743,12 @@
             }
 
             function bodyUpdatebirdies(nom, scr, pos, k) {
-                document.getElementById("headerpagetwo").innerText = "Birdies champion";
+                document.getElementById("headerpagetwo").innerText =
+                    "Birdies champion";
 
                 let elementName = document.getElementsByClassName("name")[k];
-                let elementScore = document.getElementsByClassName("pscores")[k];
+                let elementScore =
+                    document.getElementsByClassName("pscores")[k];
                 let elementPos = document.getElementsByClassName("position")[k];
 
                 setTimeout(function () {
@@ -741,22 +770,36 @@
                 // if swap to birdies
                 if (test.indexOf("show<br>birdies") > -1) {
                     //console.log("birdies = " + test);
-                    document.getElementById("imgbackcontainer").innerHTML = "show<br>par 3";
+                    document.getElementById("imgbackcontainer").innerHTML =
+                        "show<br>par 3";
                     data.forEach((el, i) => {
-                        document.getElementById("position" + i).style.opacity = "0.5";
-                        document.getElementById("name" + i).style.opacity = "0.5";
-                        document.getElementById("pscores" + i).style.opacity = "0.5";
+                        document.getElementById("position" + i).style.opacity =
+                            "0.5";
+                        document.getElementById("name" + i).style.opacity =
+                            "0.5";
+                        document.getElementById("pscores" + i).style.opacity =
+                            "0.5";
                     });
                     // do proper display
                     data.forEach((el, k) => {
                         //setTimeout(function () {
                         if (el.playersbirdies !== "") {
-                            bodyUpdatebirdies(el.playersbirdies, el.birdies, el.positionbirdies, k);
+                            bodyUpdatebirdies(
+                                el.playersbirdies,
+                                el.birdies,
+                                el.positionbirdies,
+                                k,
+                            );
                         }
                         setTimeout(function () {
-                            document.getElementById("position" + k).style.opacity = "1.0";
-                            document.getElementById("name" + k).style.opacity = "1.0";
-                            document.getElementById("pscores" + k).style.opacity = "1.0";
+                            document.getElementById(
+                                "position" + k,
+                            ).style.opacity = "1.0";
+                            document.getElementById("name" + k).style.opacity =
+                                "1.0";
+                            document.getElementById(
+                                "pscores" + k,
+                            ).style.opacity = "1.0";
                         }, 200 * k);
                     });
                 }
@@ -764,22 +807,36 @@
                 // if currently birdies - swap to par 3
                 if (test.indexOf("show<br>par 3") > -1) {
                     //console.log("par3 = " + test);
-                    document.getElementById("imgbackcontainer").innerHTML = "show<br>par 5";
+                    document.getElementById("imgbackcontainer").innerHTML =
+                        "show<br>par 5";
 
                     data.forEach((el, i) => {
-                        document.getElementById("position" + i).style.opacity = "0.5";
-                        document.getElementById("name" + i).style.opacity = "0.5";
-                        document.getElementById("pscores" + i).style.opacity = "0.5";
+                        document.getElementById("position" + i).style.opacity =
+                            "0.5";
+                        document.getElementById("name" + i).style.opacity =
+                            "0.5";
+                        document.getElementById("pscores" + i).style.opacity =
+                            "0.5";
                     });
                     // do proper display
                     data.forEach((el, k) => {
                         if (el.playersp3 !== "") {
-                            bodyUpdatep3(el.playersp3, el.par3, el.positionp3, k);
+                            bodyUpdatep3(
+                                el.playersp3,
+                                el.par3,
+                                el.positionp3,
+                                k,
+                            );
                         }
                         setTimeout(function () {
-                            document.getElementById("position" + k).style.opacity = "1.0";
-                            document.getElementById("name" + k).style.opacity = "1.0";
-                            document.getElementById("pscores" + k).style.opacity = "1.0";
+                            document.getElementById(
+                                "position" + k,
+                            ).style.opacity = "1.0";
+                            document.getElementById("name" + k).style.opacity =
+                                "1.0";
+                            document.getElementById(
+                                "pscores" + k,
+                            ).style.opacity = "1.0";
                         }, 200 * k);
                     });
                 }
@@ -787,21 +844,35 @@
                 // currently par 3 - swap to par 5
                 if (test.indexOf("show<br>par 5") > -1) {
                     //console.log("par5 = " + test);
-                    document.getElementById("imgbackcontainer").innerHTML = "show<br>birdies";
+                    document.getElementById("imgbackcontainer").innerHTML =
+                        "show<br>birdies";
                     data.forEach((el, i) => {
-                        document.getElementById("position" + i).style.opacity = "0.5";
-                        document.getElementById("name" + i).style.opacity = "0.5";
-                        document.getElementById("pscores" + i).style.opacity = "0.5";
+                        document.getElementById("position" + i).style.opacity =
+                            "0.5";
+                        document.getElementById("name" + i).style.opacity =
+                            "0.5";
+                        document.getElementById("pscores" + i).style.opacity =
+                            "0.5";
                     });
                     // do proper display
                     data.forEach((el, k) => {
                         if (el.playersp3 !== "") {
-                            bodyUpdatep5(el.playersp5, el.par5, el.positionp5, k);
+                            bodyUpdatep5(
+                                el.playersp5,
+                                el.par5,
+                                el.positionp5,
+                                k,
+                            );
                         }
                         setTimeout(function () {
-                            document.getElementById("position" + k).style.opacity = "1.0";
-                            document.getElementById("name" + k).style.opacity = "1.0";
-                            document.getElementById("pscores" + k).style.opacity = "1.0";
+                            document.getElementById(
+                                "position" + k,
+                            ).style.opacity = "1.0";
+                            document.getElementById("name" + k).style.opacity =
+                                "1.0";
+                            document.getElementById(
+                                "pscores" + k,
+                            ).style.opacity = "1.0";
                         }, 200 * k);
                     });
                 }
