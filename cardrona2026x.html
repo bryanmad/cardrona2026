@@ -632,12 +632,26 @@
 
        .photo {
            background-image:    url("c2.png");
-          background-size:     auto; //cover;
+          background-size:     cover;
           background-repeat:   no-repeat;
           //background-position: right bottom;
-      	transition: background 10s linear;
+      	//transition: background 10s linear;
+        
+         
+         animation: createBox .25s;
 
       }
+      
+      
+      @keyframes createBox {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+      
 
       #countdown {
       	position: fixed;
