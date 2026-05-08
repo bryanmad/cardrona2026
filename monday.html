@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -7,506 +7,430 @@
         <link href="originalgolf.svg" rel="icon" type="image/x-icon" />
         <link rel="apple-touch-icon" sizes="180x180" href="originalgolf.svg" />
         <title>cardrona2026</title>
-        <link
-            href="https://fonts.googleapis.com/css?family=Kalam"
-            rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
         <style>
-             /* icon color #bef081 */
+            /* icon color #bef081 */
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html {
+                width: 100vw;
+            }
+
+            body {
+                overflow: hidden;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 3vh;
+                background: dodgerBlue;
+                height: 100%;
+                width: 100%;
+            }
+
+            #info {
+                display: none;
+                overflow: auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                color: white;
+                background-color: black;
+                padding-left: 1px;
+                padding-right: 1px;
+                padding-bottom: 1px;
+            }
+
+            #popuppanel {
+                background-color: #ddd;
+                font-size: 3vh;
+                display: inline-block;
+                border-radius: 3px;
+                border: 1px solid #aaa;
+                padding: 10px;
+                margin: 5vw;
+                text-align: center;
+                width: 80vw;
+
+                cursor: pointer;
+            }
+            /* hide forms */
+
+            #my-response-iframe,
+            #my-form {
+                display: none;
+            }
+
+            .child-two {
+                height: 7vh;
+                font-size: 3vh;
+                flex-direction: row;
+                display: flex;
+            }
+
+            #headerpageone,
+            #headerpagetwo,
+            #headerpagethree {
+                color: white;
+                background: black;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #pagetwo {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 100vw;
+                background: dodgerBlue;
+                display: none;
+            }
+
+            .submit {
+                font-size: 100%;
+                color: white;
+                height: 100%;
+                line-height: 10vh;
+                text-align: center;
+            }
+
+            #sending {
+                position: relative;
+                background: black;
+            }
 
-             * {
-                 margin: 0;
-                 padding: 0;
-                 box-sizing: border-box;
-             }
-
-             html {
-                 width: 100vw;
-             }
-
-             body {
-                 overflow: hidden;
-                 font-family: Arial, Helvetica, sans-serif;
-                 font-size: 3vh;
-                 background: dodgerBlue;
-                 height: 100%;
-                 width: 100%;
-             }
-
-             #info {
-                 display: none;
-                 overflow: auto;
-                 position: absolute;
-                 top: 0;
-                 left: 0;
-                 height: 100%;
-                 width: 100%;
-                 color: white;
-                 background-color: black;
-                 padding-left: 1px;
-                 padding-right: 1px;
-                 padding-bottom: 1px;
-             }
-
-             #popuppanel {
-                 background-color: #ddd;
-                 font-size: 3vh;
-                 display: inline-block;
-                 border-radius: 3px;
-                 border: 1px solid #aaa;
-                 padding: 10px;
-                 margin: 5vw;
-                 text-align: center;
-                 width: 80vw;
-
-                 cursor: pointer;
-             }
-             /* hide forms */
-
-             #my-response-iframe,
-             #my-form {
-                 display: none;
-             }
-
-             .child-two {
-                 height: 7vh;
-                 font-size: 3vh;
-                 flex-direction: row;
-                 display: flex;
-             }
-
-             #headerpageone,
-             #headerpagetwo,
-             #headerpagethree {
-                 color: white;
-                 background: black;
-                 height: 100%;
-                 width: 100%;
-                 display: flex;
-                 justify-content: center;
-                 align-items: center;
-             }
-
-             #pagetwo {
-                 position: fixed;
-                 top: 0;
-                 left: 0;
-                 height: 100vh;
-                 width: 100vw;
-                 background: dodgerBlue;
-                 display: none;
-             }
-
-             .submit {
-                 font-size: 100%;
-                 color: white;
-                 height: 100%;
-                 line-height: 10vh;
-                 text-align: center;
-             }
-
-             #sending {
-                 position: relative;
-                 background: black;
-             }
-
-             tr {
-                 text-align: center;
-             }
-             td {
-                 width: calc(100vw / 6);
-             }
-             .head {
-                 font-size: 2vh;
-             }
-
-             #acceptpanel {
-                 display: none;
-                 position: fixed;
-                 bottom: 5vh;
-                 border: 1px silver solid;
-                 background: black;
-                 color: white;
-                 font-size: 2vh;
-                 padding: 5vw;
-                 border-radius: 5px;
-                 text-align: center;
-                 margin-left: 14vw;
-             }
-
-             .button1 {
-                 width: 25vw;
-                 height: 10vh;
-                 text-align: center;
-                 font-size: 2vh;
-                 border-radius: 5px;
-                 background: silver;
-             }
-
-             .spacer1vh {
-                 display: flex;
-                 padding: 1vh;
-             }
-
-             #podium,
-             #home,
-             #stat {
-                 height: 5vh;
-                 width: 5vh;
-             }
-
-             /* for each day */
-             #createleaderboarditems {
-                 text-align: center;
-                 color: white;
-                 font-size: 4vh;
-                 height: auto;
-                 display: block;
-             }
-
-             .team {
-                 width: 90%;
-                 height: 5vh;
-                 margin-left: 5%;
-                 margin-top: 2%;
-                 margin-bottom: 2%;
-                 background: rgba(105, 105, 105, 0.8);
-                 box-shadow: 0 3px 5px black;
-                 display: flex;
-                 align-items: center;
-                 transition-property: top;
-                 transition-duration: 1500ms;
-                 border-radius: 10px;
-                 transition-timing-function: cubic-bezier(
-                     0.68,
-                     -0.55,
-                     0.265,
-                     1.55
-                 );
-                 border: 4px solid rgba(255, 255, 255, 0.3);
-                 background-clip: padding-box;
-             }
-
-             .teamhcp {
-                 width: 90%;
-                 height: 5vh;
-                 margin-left: 5%;
-                 margin-top: 2%;
-                 margin-bottom: 2%;
-                 padding-left: 5vw;
-                 background: rgba(105, 105, 105, 0.8);
-                 box-shadow: 0 3px 5px black;
-                 display: flex;
-                 align-items: center;
-                 transition-property: top;
-                 transition-duration: 1500ms;
-                 border-radius: 10px;
-                 transition-timing-function: cubic-bezier(
-                     0.68,
-                     -0.55,
-                     0.265,
-                     1.55
-                 );
-                 border: 4px solid rgba(255, 255, 255, 0.3);
-                 background-clip: padding-box;
-             }
-
-             .name {
-                 width: 40%;
-                 display: flex;
-                 align-items: center;
-                 justify-content: left;
-                 font-size: 3vh;
-                 color: white;
-                 font-weight: 400;
-                 text-transform: capitalize;
-             }
-
-             .namehcp {
-                 width: 50%;
-                 display: flex;
-                 align-items: center;
-                 justify-content: left;
-                 font-size: 3vh;
-                 color: white;
-                 font-weight: 400;
-                 text-transform: capitalize;
-             }
-
-             .scores {
-                 width: 40%;
-                 font-size: 3vh;
-                 color: white;
-                 font-weight: 400;
-                 display: flex;
-                 text-align: center;
-                 justify-content: center;
-                 padding-left: 5vh;
-             }
-
-             .position {
-                 width: 20%;
-                 font-size: 3vh;
-                 color: white;
-                 font-weight: 400;
-                 display: flex;
-                 text-align: center;
-                 justify-content: center;
-             }
-
-             .hcps {
-                 width: 12%;
-                 font-size: 3vh;
-                 color: white;
-                 font-weight: 400;
-                 display: flex;
-                 text-align: center;
-                 justify-content: center;
-             }
-
-             .hcpsadj {
-                 padding-left: 6vh;
-                 width: auto;
-                 font-size: 2.5vh;
-                 color: silver;
-                 font-weight: 400;
-                 display: flex;
-                 text-align: center;
-                 justify-content: center;
-             }
-
-             #headerinfo {
-                 padding-top: 2vh;
-                 padding-bottom: 1vh;
-                 color: white;
-                 font-size: 5vh;
-                 display: flex;
-                 text-align: center;
-                 justify-content: center;
-                 width: 80%;
-             }
-
-             #footerinfo,
-             #footerstats {
-                 position: absolute;
-                 bottom: 200px;
-                 width: 100%;
-                 color: white;
-                 font-size: 2.5vh;
-                 display: flex;
-                 text-align: center;
-                 justify-content: center;
-             }
-
-             .bird {
-                 width: 10%;
-                 visibility: hidden;
-             }
-
-             .numbird {
-                 width: 10%;
-                 visibility: hidden;
-                 text-align: center;
-                 color: cyan;
-                 font-size: 2vh;
-                 font-style: italic;
-             }
-
-             .birdimg {
-                 height: 3.3vh;
-                 display: flex;
-                 text-align: center;
-                 justify-content: center;
-                 padding-left: 1vw;
-                 padding-right: 1vw;
-             }
-
-             #statsinfo {
-                 width: 300px;
-                 height: 300px;
-                 border: 1px solid cyan;
-                 display: flex;
-             }
-
-             #statsinfo div {
-                 border: 1px sold yellow;
-                 flex: 1;
-             }
-
-             .table_component {
-                 overflow: auto;
-                 width: 100%;
-             }
-
-             .table_component table {
-                 height: 100%;
-                 width: 100%;
-                 border-collapse: collapse;
-                 border-spacing: 1px;
-                 text-align: center;
-                 font-size: 2vh;
-             }
-
-             .table_component caption {
-                 caption-side: top;
-                 text-align: left;
-             }
-
-             .table_component th {
-                 background-color: #1589ff;
-                 color: cyan;
-                 padding: 5px;
-             }
-
-             .table_component td {
-                 background-color: dodgerBlue;
-                 color: white;
-                 padding: 5px;
-             }
-
-             .table_component table tbody tr:nth-of-type(even) > * {
-                 background: #1589ff;
-             }
-
-             #toptr {
-                 color: cyan;
-             }
-
-             .cyan {
-                 background: dodgerBlue;
-             }
-
-             #statspanel {
-                 display: none;
-                 position: fixed;
-                 //top: 20vh;
-
-                 bottom: 25vh;
-                 //left: 2vw;
-                 //right: 20vw;
-
-                 //border: 1px silver solid;
-                 background: #3A3B3C;
-                 color: white;
-                 font-size: 4vw;
-                 //padding: 5vw;
-                 //border-radius: 5px;
-                 //text-align: center;
-
-                 //margin-left: 14vw;
-                 //margin-right: 5vw;
-                 //margin: auto;
-                 //width: 80vw;
-                 //height: 40vh;
-
-                 //opacity: 1;
-
-                 width: 96%;
-                // height: 40vh;
-                 margin-left: 2%;
-                 margin-top: 2%;
-                 margin-bottom: 2%;
-                 box-shadow: 0 3px 5px black;
-                // display: flex;
-                 align-items: center;
-                 //transition-property: top;
-                 //transition-duration: 1500ms;
-                 border-radius: 5px;
-                // transition-timing-function: cubic-bezier(
-                 //    0.68,
-                 //    -0.55,
-                //     0.265,
-                //     1.55
-               //  );
-                 border: 1px solid black;
-                 //background-clip: padding-box;
-
-
-                 //transition: all 1.4s ease-in-out;
-
-animation-name: expandfrommiddle;
-animation-duration: 0.7s;
-//animation-name: fade-in, slide-in;
-//animation-duration: 2s, 1s;
-animation-timing-function: ease-out;
-
-
-
-             }
-
-
-
-             @keyframes expandfrommiddle {
-                 from {
-                     scale: 0.1;
-                     opacity: 0%;
-                 }
-                 to {
-                     scale: 1.0;
-                     opacity: 100%;
-                 }
-             }
-
-
-
-
-
-
-
-
-
-
-
-             @keyframes fade-in {
-               from {
-                 opacity: 0%;
-                 scale: 0.2;
-               }
-               to {
-                 opacity: 100%;
-                 scale: 1.0;
-               }
-             }
-
-
-             @keyframes slide-in {
-               from {
-                 translate: 0 -100vh;
-                 //scale: 200% 1;
-               }
-
-               to {
-                 translate: 0 0;
-                 //scale: 100% 1;
-               }
-             }
-
-
-
-
-
-
-
-
-
-             /* DivTable.com */
             tr {
-                color:white;
+                text-align: center;
+            }
+            td {
+                width: calc(100vw / 6);
+            }
+            .head {
+                font-size: 2vh;
+            }
+
+            #acceptpanel {
+                display: none;
+                position: fixed;
+                bottom: 5vh;
+                border: 1px silver solid;
+                background: black;
+                color: white;
+                font-size: 2vh;
+                padding: 5vw;
+                border-radius: 5px;
+                text-align: center;
+                margin-left: 14vw;
+            }
+
+            .button1 {
+                width: 25vw;
+                height: 10vh;
+                text-align: center;
+                font-size: 2vh;
+                border-radius: 5px;
+                background: silver;
+            }
+
+            .spacer1vh {
+                display: flex;
+                padding: 1vh;
+            }
+
+            #podium,
+            #home,
+            #stat {
+                height: 5vh;
+                width: 5vh;
+            }
+
+            /* for each day */
+            #createleaderboarditems {
+                text-align: center;
+                color: white;
+                font-size: 4vh;
+                height: auto;
+                display: block;
+            }
+
+            .team {
+                width: 90%;
+                height: 5vh;
+                margin-left: 5%;
+                margin-top: 2%;
+                margin-bottom: 2%;
+                background: rgba(105, 105, 105, 0.8);
+                box-shadow: 0 3px 5px black;
+                display: flex;
+                align-items: center;
+                transition-property: top;
+                transition-duration: 1500ms;
+                border-radius: 10px;
+                transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                border: 4px solid rgba(255, 255, 255, 0.3);
+                background-clip: padding-box;
+            }
+
+            .teamhcp {
+                width: 90%;
+                height: 5vh;
+                margin-left: 5%;
+                margin-top: 2%;
+                margin-bottom: 2%;
+                padding-left: 5vw;
+                background: rgba(105, 105, 105, 0.8);
+                box-shadow: 0 3px 5px black;
+                display: flex;
+                align-items: center;
+                transition-property: top;
+                transition-duration: 1500ms;
+                border-radius: 10px;
+                transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                border: 4px solid rgba(255, 255, 255, 0.3);
+                background-clip: padding-box;
+            }
+
+            .name {
+                width: 40%;
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                font-size: 3vh;
+                color: white;
+                font-weight: 400;
+                text-transform: capitalize;
+            }
+
+            .namehcp {
+                width: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                font-size: 3vh;
+                color: white;
+                font-weight: 400;
+                text-transform: capitalize;
+            }
+
+            .scores {
+                width: 40%;
+                font-size: 3vh;
+                color: white;
+                font-weight: 400;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+                padding-left: 5vh;
+            }
+
+            .position {
+                width: 20%;
+                font-size: 3vh;
+                color: white;
+                font-weight: 400;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .hcps {
+                width: 12%;
+                font-size: 3vh;
+                color: white;
+                font-weight: 400;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .hcpsadj {
+                padding-left: 6vh;
+                width: auto;
+                font-size: 2.5vh;
+                color: silver;
+                font-weight: 400;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+            }
+
+            #headerinfo {
+                padding-top: 2vh;
+                padding-bottom: 1vh;
+                color: white;
+                font-size: 5vh;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+                width: 80%;
+            }
+
+            #footerinfo,
+            #footerstats {
+                position: absolute;
+                bottom: 200px;
+                width: 100%;
+                color: white;
+                font-size: 2.5vh;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .bird {
+                width: 10%;
+                visibility: hidden;
+            }
+
+            .numbird {
+                width: 10%;
+                visibility: hidden;
+                text-align: center;
+                color: cyan;
+                font-size: 2vh;
+                font-style: italic;
+            }
+
+            .birdimg {
+                height: 3.3vh;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+                padding-left: 1vw;
+                padding-right: 1vw;
+            }
+
+            #statsinfo {
+                width: 300px;
+                height: 300px;
+                border: 1px solid cyan;
+                display: flex;
+            }
+
+            #statsinfo div {
+                border: 1px sold yellow;
+                flex: 1;
+            }
+
+            .table_component {
+                overflow: auto;
+                width: 100%;
+            }
+
+            .table_component table {
+                height: 100%;
+                width: 100%;
+                border-collapse: collapse;
+                border-spacing: 1px;
+                text-align: center;
+                font-size: 2vh;
+            }
+
+            .table_component caption {
+                caption-side: top;
+                text-align: left;
+            }
+
+            .table_component th {
+                background-color: #1589ff;
+                color: cyan;
+                padding: 5px;
+            }
+
+            .table_component td {
+                background-color: dodgerBlue;
+                color: white;
+                padding: 5px;
+            }
+
+            .table_component table tbody tr:nth-of-type(even) > * {
+                background: #1589ff;
+            }
+
+            #toptr {
+                color: cyan;
+            }
+
+            .cyan {
+                background: dodgerBlue;
+            }
+
+            #statspanel {
+                display: none;
+                position: fixed;
+                bottom: 25vh;
+                background: #3a3b3c;
+                color: white;
+                font-size: 4vw;
+                width: 96%;
+                margin-left: 2%;
+                margin-top: 2%;
+                margin-bottom: 2%;
+                box-shadow: 0 3px 5px black;
+                align-items: center;
+                border-radius: 5px;
+                border: 1px solid black;
+                animation-name: expandfrommiddle;
+                animation-duration: 0.7s;
+                animation-timing-function: ease-out;
+            }
+
+            @keyframes expandfrommiddle {
+                from {
+                    scale: 0.1;
+                    opacity: 0%;
+                }
+                to {
+                    scale: 1;
+                    opacity: 100%;
+                }
+            }
+
+            @keyframes fade-in {
+                from {
+                    opacity: 0%;
+                    scale: 0.2;
+                }
+                to {
+                    opacity: 100%;
+                    scale: 1;
+                }
+            }
+
+            @keyframes slide-in {
+                from {
+                    translate: 0 -100vh;
+                }
+
+                to {
+                    translate: 0 0;
+                }
+            }
+
+            /* DivTable.com */
+            tr {
+                color: white;
                 background: black;
                 font-size: 2vh;
             }
 
             .static {
-                color:cyan;
+                color: cyan;
             }
-.bg {
-    font-size:3vh;
-}
 
-
-
+            .bg {
+                font-size: 3vh;
+            }
         </style>
     </head>
     <body>
@@ -594,7 +518,7 @@ animation-timing-function: ease-out;
                         <td id="pfront">123</td>
                     </tr>
                     <tr>
-                        <td colspan="11">&nbsp</td>
+                        <td colspan="11">&nbsp;</td>
                     </tr>
                     <tr class="static">
                         <td>hole</td>
@@ -662,8 +586,8 @@ animation-timing-function: ease-out;
                         <td id="pback">123</td>
                     </tr>
                     <tr class="static bg">
-                        <td colspan="11" id="statscomment"><br>101 strokes, 37 points.<br><br></td>
-                    </td>
+                        <td colspan="11" id="statscomment"><br />101 strokes, 37 points.<br /><br /></td>
+                    </tr>
                 </tbody>
             </table>
             <!-- DivTable.com -->
@@ -744,7 +668,7 @@ animation-timing-function: ease-out;
                 [15, 4, 18],
                 [16, 4, 10],
                 [17, 4, 8],
-                [18, 4, 16],
+                [18, 4, 16]
             ];
 
             //===========================
@@ -754,7 +678,7 @@ animation-timing-function: ease-out;
             // need to set up a couple of arrays from the data in google sheets
             async function getHcpData() {
                 var datastream = await fetch(
-                    "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/hcps",
+                    "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/hcps"
                 );
 
                 if (!datastream.ok) {
@@ -804,14 +728,11 @@ animation-timing-function: ease-out;
             // - gets results data
             //=============================================================
             async function getData() {
-                var url =
-                    "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday1";
+                var url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday1";
                 try {
                     const dataStream = await fetch(url);
                     if (!dataStream.ok) {
-                        throw new Error(
-                            `Response status: ${dataStream.status}`,
-                        );
+                        throw new Error(`Response status: ${dataStream.status}`);
                     }
                     data = await dataStream.json();
                     // don't need blank players
@@ -819,31 +740,19 @@ animation-timing-function: ease-out;
                         return el.players !== "";
                     });
 
-                    data.sort(
-                        (a, b) =>
-                            parseInt(b.playerpoints) - parseInt(a.playerpoints),
-                    );
+                    data.sort((a, b) => parseInt(b.playerpoints) - parseInt(a.playerpoints));
 
-
-
-
-                    console.log(data[0].h1)
+                    console.log(data[0].h1);
                     //
-                   // for (i=1; i<=18; i++){
-                   //     document.getElementById("st" + i).innerText = data[0].h1;
+                    // for (i=1; i<=18; i++){
+                    //     document.getElementById("st" + i).innerText = data[0].h1;
 
                     //}
 
- //data.forEach((el, i) => {
- //
+                    //data.forEach((el, i) => {
+                    //
 
-
-
-
-    // }
-
-
-
+                    // }
                 } catch (error) {
                     console.error(error.message);
                 }
@@ -854,9 +763,7 @@ animation-timing-function: ease-out;
             }
 
             function useDataHcp() {
-                let container = document.getElementById(
-                    "createleaderboarditems",
-                );
+                let container = document.getElementById("createleaderboarditems");
                 // empty container
                 container.innerHTML = "";
 
@@ -898,9 +805,7 @@ animation-timing-function: ease-out;
             }
 
             function useDataResults(data) {
-                let container = document.getElementById(
-                    "createleaderboarditems",
-                );
+                let container = document.getElementById("createleaderboarditems");
                 // empty container
                 container.innerHTML = "";
 
@@ -908,10 +813,7 @@ animation-timing-function: ease-out;
                     let box = document.createElement("div");
                     box.id = "box" + i;
                     box.className = "team";
-                    box.setAttribute(
-                        "onclick",
-                        "showStats(this.id);return false;",
-                    );
+                    box.setAttribute("onclick", "showStats(this.id);return false;");
 
                     let name = document.createElement("span");
                     name.id = "name" + i;
@@ -971,15 +873,12 @@ animation-timing-function: ease-out;
             }
 
             function bodyUpdateHcps(nom, hcps, i) {
-                document.getElementById("headerpagetwo").innerText =
-                    "Handicaps for Monday";
+                document.getElementById("headerpagetwo").innerText = "Handicaps for Monday";
 
                 let elName = nom;
                 hcpData.find((team) => team.players === elName);
 
-                let AllTeams = Array.from(
-                    document.querySelectorAll(".teamhcp"),
-                );
+                let AllTeams = Array.from(document.querySelectorAll(".teamhcp"));
 
                 AllTeams.forEach((element, n) => {
                     let elementName = element.querySelector(".namehcp");
@@ -994,8 +893,7 @@ animation-timing-function: ease-out;
             }
 
             function bodyUpdate(nom, scr) {
-                document.getElementById("headerpagetwo").innerText =
-                    "Monday results";
+                document.getElementById("headerpagetwo").innerText = "Monday results";
 
                 let elName = nom;
                 data.find((team) => team.players === elName);
@@ -1021,15 +919,9 @@ animation-timing-function: ease-out;
                             elementScore.innerHTML = scr;
                             element.style.opacity = 1;
                             let elementPos = element.querySelector(".position");
-                            elementPos.innerText = data.find(
-                                (team) =>
-                                    team.players === elementName.innerHTML,
-                            ).position;
+                            elementPos.innerText = data.find((team) => team.players === elementName.innerHTML).position;
 
-                            var birdnum = data.find(
-                                (team) =>
-                                    team.players === elementName.innerHTML,
-                            ).bird;
+                            var birdnum = data.find((team) => team.players === elementName.innerHTML).bird;
 
                             if (birdnum > 0) {
                                 /*             document.getElementById(
@@ -1052,19 +944,13 @@ animation-timing-function: ease-out;
                                                       ).style.visibility = "visible";
                                                   }
                         */
-                                document.getElementById(
-                                    "bird4" + n,
-                                ).style.visibility = "visible";
+                                document.getElementById("bird4" + n).style.visibility = "visible";
 
                                 // cope with too many birdies for space available
                                 //if (birdnum > 5) {
-                                document.getElementById("bird5" + n).className =
-                                    "numbird";
-                                document.getElementById("bird5" + n).innerText =
-                                    birdnum;
-                                document.getElementById(
-                                    "bird5" + n,
-                                ).style.visibility = "visible";
+                                document.getElementById("bird5" + n).className = "numbird";
+                                document.getElementById("bird5" + n).innerText = birdnum;
+                                document.getElementById("bird5" + n).style.visibility = "visible";
                             }
                         }, n * 100);
                     }
@@ -1075,17 +961,14 @@ animation-timing-function: ease-out;
                 console.log("showStats(id) = " + id);
 
                 if (document.getElementById(id).hasChildNodes()) {
-                    let childtxt =
-                        document.getElementById(id).childNodes[1].innerText;
+                    let childtxt = document.getElementById(id).childNodes[1].innerText;
                     console.log("called by " + childtxt);
 
-                    document.getElementById("statspanel").style.display =
-                        "flex";
-                    document.getElementById("theader").innerText = "\n" +childtxt + "\n\n";
+                    document.getElementById("statspanel").style.display = "flex";
+                    document.getElementById("theader").innerText = "\n" + childtxt + "\n\n";
 
-// box0 is position 1 etc.
-statspos = id.replace("box","");
-
+                    // box0 is position 1 etc.
+                    statspos = id.replace("box", "");
 
                     document.getElementById("st1").innerText = data[statspos].h1;
                     document.getElementById("st2").innerText = data[statspos].h2;
@@ -1106,81 +989,66 @@ statspos = id.replace("box","");
                     document.getElementById("st17").innerText = data[statspos].h17;
                     document.getElementById("st18").innerText = data[statspos].h18;
 
+                    document.getElementById("p1").innerText = data[statspos].p1;
+                    document.getElementById("p2").innerText = data[statspos].p2;
+                    document.getElementById("p3").innerText = data[statspos].p3;
+                    document.getElementById("p4").innerText = data[statspos].p4;
+                    document.getElementById("p5").innerText = data[statspos].p5;
+                    document.getElementById("p6").innerText = data[statspos].p6;
+                    document.getElementById("p7").innerText = data[statspos].p7;
+                    document.getElementById("p8").innerText = data[statspos].p8;
+                    document.getElementById("p9").innerText = data[statspos].p9;
+                    document.getElementById("p10").innerText = data[statspos].p10;
+                    document.getElementById("p11").innerText = data[statspos].p11;
+                    document.getElementById("p12").innerText = data[statspos].p12;
+                    document.getElementById("p13").innerText = data[statspos].p13;
+                    document.getElementById("p14").innerText = data[statspos].p14;
+                    document.getElementById("p15").innerText = data[statspos].p15;
+                    document.getElementById("p16").innerText = data[statspos].p16;
+                    document.getElementById("p17").innerText = data[statspos].p17;
+                    document.getElementById("p18").innerText = data[statspos].p18;
 
+                    var sfront = 0;
+                    var pfront = 0;
+                    var sifront = 0;
+                    var parfront = 0;
+                    var parfront9 = 0;
 
+                    for (i = 1; i <= 9; i++) {
+                        sfront += +document.getElementById("st" + i).innerText;
+                        pfront += +document.getElementById("p" + i).innerText;
+                        document.getElementById("si" + i).innerText = arrCourse[i][2];
+                        document.getElementById("par" + i).innerText = arrCourse[i][1];
 
+                        parfront9 += +arrCourse[i][1];
+                    }
 
+                    var sback = 0;
+                    var pback = 0;
+                    var siback = 0;
+                    var parback = 0;
+                    var parback9 = 0;
 
+                    for (i = 10; i <= 18; i++) {
+                        sback += +document.getElementById("st" + i).innerText;
+                        pback += +document.getElementById("p" + i).innerText;
+                        document.getElementById("si" + i).innerText = arrCourse[i][2];
+                        document.getElementById("par" + i).innerText = arrCourse[i][1];
 
+                        parback9 += +arrCourse[i][1];
+                    }
+                    var stotal = sfront + sback;
+                    var ptotal = pfront + pback;
 
+                    document.getElementById("statscomment").innerHTML =
+                        "<br>" + stotal + " strokes, " + ptotal + " points." + "<br><br>";
 
-
-                       document.getElementById("p1").innerText = data[statspos].p1;
-                       document.getElementById("p2").innerText = data[statspos].p2;
-                       document.getElementById("p3").innerText = data[statspos].p3;
-                       document.getElementById("p4").innerText = data[statspos].p4;
-                       document.getElementById("p5").innerText = data[statspos].p5;
-                       document.getElementById("p6").innerText = data[statspos].p6;
-                       document.getElementById("p7").innerText = data[statspos].p7;
-                       document.getElementById("p8").innerText = data[statspos].p8;
-                       document.getElementById("p9").innerText = data[statspos].p9;
-                       document.getElementById("p10").innerText = data[statspos].p10;
-                       document.getElementById("p11").innerText = data[statspos].p11;
-                       document.getElementById("p12").innerText = data[statspos].p12;
-                       document.getElementById("p13").innerText = data[statspos].p13;
-                       document.getElementById("p14").innerText = data[statspos].p14;
-                       document.getElementById("p15").innerText = data[statspos].p15;
-                       document.getElementById("p16").innerText = data[statspos].p16;
-                       document.getElementById("p17").innerText = data[statspos].p17;
-                       document.getElementById("p18").innerText = data[statspos].p18;
-
-
-var sfront = 0;
-var pfront = 0;
-var sifront = 0;
-var parfront = 0;
-var parfront9 = 0;
-
-                      for (i=1; i<=9; i++){
-                        sfront += +document.getElementById("st" + i).innerText
-                        pfront += +document.getElementById("p" + i).innerText
-                        document.getElementById("si" + i).innerText = arrCourse[i][2]
-                        document.getElementById("par" + i).innerText = arrCourse[i][1]
-
-                        parfront9 += +arrCourse[i][1]
-                      }
-
-                      var sback = 0;
-                      var pback = 0;
-                      var siback = 0;
-                      var parback = 0;
-                      var parback9 = 0;
-
-                                            for (i=10; i<=18; i++){
-                                              sback += +document.getElementById("st" + i).innerText
-                                              pback += +document.getElementById("p" + i).innerText
-                                              document.getElementById("si" + i).innerText = arrCourse[i][2]
-                                              document.getElementById("par" + i).innerText = arrCourse[i][1]
-
-                                              parback9 += +arrCourse[i][1]
-                                            }
-var stotal = sfront + sback;
-var ptotal = pfront + pback;
-
-document.getElementById("statscomment").innerHTML = "<br>" + stotal + " strokes, " + ptotal + " points." + "<br><br>"
-
-
-
-
-document.getElementById("sfront").innerText = sfront;
-document.getElementById("sback").innerText = sback;
-document.getElementById("pfront").innerText = pfront;
-document.getElementById("pback").innerText = pback;
-document.getElementById("parfront").innerText = parfront9;
-document.getElementById("parback").innerText = parback9;
-
-
-
+                    document.getElementById("sfront").innerText = sfront;
+                    document.getElementById("sback").innerText = sback;
+                    document.getElementById("pfront").innerText = pfront;
+                    document.getElementById("pback").innerText = pback;
+                    document.getElementById("parfront").innerText = parfront9;
+                    document.getElementById("parback").innerText = parback9;
                 }
             }
 
