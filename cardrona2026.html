@@ -19,6 +19,15 @@
 
           html {
       	  background: black;
+
+            //background-image:    url(covergray.png);
+            background-size:     cover;
+            background-repeat:   no-repeat;
+
+
+
+
+
             height: 100vh;
           }
 
@@ -27,7 +36,7 @@
             height: 100vh;
             //animation-name: grow;
             //animation-duration: 2s;
-            transform-origin: left top;
+            //transform-origin: left top;
           }
 
       @keyframes grow {
@@ -622,16 +631,16 @@
           }
 
           .photo {
-            background-image:    url(cover.jpg);
+            background-image:    url(covergray.png);
             background-size:     cover;
             background-repeat:   no-repeat;
             background-position: right bottom;
-      	    transition: background 10s linear;
+      	    transition: background 5s linear;
           }
 
           #countdown {
       	    position: fixed;
-      	    top:2vh;
+      	    top: 2vh;
       	    right: 2vw;
       	    width: 65vw;
       	    height: 7vh;
@@ -645,8 +654,8 @@
       	    box-shadow: 10px 10px 25px black;
       	    text-align: center;
       	    opacity: 0.4;
-      	    z-index:99;
-      	    display:none
+      	    z-index: 99;
+      	    display: none;
           }
 
       #imgx {
@@ -691,7 +700,7 @@
   <body>
   -->
 
-  <body oncontextmenu="return false;" onload="showPhoto()">
+  <body oncontextmenu="return false;">
     <!--
         <div id="imagewrapper">
             <div id="overlay">
@@ -1410,7 +1419,7 @@
       function showPhoto() {
         document.body.classList.add("photo");
       }
-      //showPhoto();
+      showPhoto();
     </script>
   </body>
 </html>
