@@ -431,6 +431,24 @@
             .bg {
                 font-size: 3vh;
             }
+
+            #panel {
+                display: none;
+                position: fixed;
+                top: 10vh;
+                text-align: center;
+                justify-content: center;
+                height: 10vh;
+                width: 60vw;
+                line-height: 10vh;
+                left: 20vw;
+                background: black;
+                opacity: 0.8;
+                color: white;
+                font-family: arial;
+                font-size: 4vw;
+                border-radius: 5px;
+            }
         </style>
     </head>
     <body>
@@ -593,9 +611,8 @@
             <!-- DivTable.com -->
         </div>
 
-        <!--
-
-
+        <!-- popup panel -->
+        <div id="panel">awaiting adjustments</div>
 
         <!-- spacer -->
         <div class="spacer1vh"></div>
@@ -614,21 +631,12 @@
             //var arrHcpsDropdown = [];
             var data;
             var hcpData;
-            //var dd = new Date();
-            //var day = dd.getDay();
+            var dd = new Date();
+            var day = dd.getDay();
+
+            var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
             /*
-                        var days = [
-                            "Sunday",
-                            "Monday",
-                            "Tuesday",
-                            "Wednesday",
-                            "Thursday",
-                            "Friday",
-                            "Saturday",
-                        ];
-
-
                         var months = [
                             "Jan",
                             "Feb",
@@ -742,7 +750,7 @@
 
                     data.sort((a, b) => parseInt(b.playerpoints) - parseInt(a.playerpoints));
 
-                    console.log(data[0].h1);
+                    //console.log(data[0].h1);
                     //
                     // for (i=1; i<=18; i++){
                     //     document.getElementById("st" + i).innerText = data[0].h1;
@@ -802,6 +810,13 @@
                         }
                     }, k * 300);
                 });
+
+                if (days[day] == "Monday" || days[day] == "Tuesday") {
+                    console.log("display hcps");
+                } else {
+                    console.log("else in display hcps");
+                    document.getElementById("panel").style.display = "flex";
+                }
             }
 
             function useDataResults(data) {

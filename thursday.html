@@ -7,10 +7,7 @@
         <link href="originalgolf.svg" rel="icon" type="image/x-icon" />
         <link rel="apple-touch-icon" sizes="180x180" href="originalgolf.svg" />
         <title>cardrona2026</title>
-        <link
-            href="https://fonts.googleapis.com/css?family=Kalam"
-            rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
         <style>
@@ -185,12 +182,7 @@
                 transition-property: top;
                 transition-duration: 1500ms;
                 border-radius: 10px;
-                transition-timing-function: cubic-bezier(
-                    0.68,
-                    -0.55,
-                    0.265,
-                    1.55
-                );
+                transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
                 border: 4px solid rgba(255, 255, 255, 0.3);
                 background-clip: padding-box;
             }
@@ -209,12 +201,7 @@
                 transition-property: top;
                 transition-duration: 1500ms;
                 border-radius: 10px;
-                transition-timing-function: cubic-bezier(
-                    0.68,
-                    -0.55,
-                    0.265,
-                    1.55
-                );
+                transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
                 border: 4px solid rgba(255, 255, 255, 0.3);
                 background-clip: padding-box;
             }
@@ -392,6 +379,24 @@
             .cyan {
                 background: dodgerBlue;
             }
+
+            #panel {
+                display: none;
+                position: fixed;
+                top: 10vh;
+                text-align: center;
+                justify-content: center;
+                height: 10vh;
+                width: 60vw;
+                line-height: 10vh;
+                left: 20vw;
+                background: black;
+                opacity: 0.8;
+                color: white;
+                font-family: arial;
+                font-size: 4vw;
+                border-radius: 5px;
+            }
         </style>
     </head>
     <body>
@@ -404,6 +409,10 @@
             <div id="createleaderboarditems">checking ...</div>
         </div>
         <div style="margin-top: 8px"></div>
+
+        <!-- popup panel -->
+        <div id="panel">awaiting adjustments</div>
+
         <!-- spacer -->
         <div class="spacer1vh"></div>
         <script>
@@ -424,29 +433,8 @@
             var dd = new Date();
             var day = dd.getDay();
 
-            var days = [
-                "Sunday",
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday",
-            ];
-            var months = [
-                "Jan",
-                "Feb",
-                "Mar",
-                "Apr",
-                "May",
-                "Jun",
-                "Jul",
-                "Aug",
-                "Sep",
-                "Oct",
-                "Nov",
-                "Dec",
-            ];
+            var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
             //===========================
             // this code runs at startup
@@ -455,7 +443,7 @@
             // need to set up a couple of arrays from the data in google sheets
             async function getHcpData() {
                 var datastream = await fetch(
-                    "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/hcps",
+                    "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/hcps"
                 );
 
                 if (!datastream.ok) {
@@ -508,14 +496,11 @@
             //=============================================================
             async function getData() {
                 console.log("getData()");
-                var url =
-                    "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday4";
+                var url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday4";
                 try {
                     const dataStream = await fetch(url);
                     if (!dataStream.ok) {
-                        throw new Error(
-                            `Response status: ${dataStream.status}`,
-                        );
+                        throw new Error(`Response status: ${dataStream.status}`);
                     }
                     data = await dataStream.json();
                     // don't need blank players
@@ -523,10 +508,7 @@
                         return el.players !== "";
                     });
 
-                    data.sort(
-                        (a, b) =>
-                            parseInt(b.playerpoints) - parseInt(a.playerpoints),
-                    );
+                    data.sort((a, b) => parseInt(b.playerpoints) - parseInt(a.playerpoints));
                 } catch (error) {
                     console.error(error.message);
                 }
@@ -538,9 +520,7 @@
 
             function useDataHcp() {
                 console.log("useDataHcp()");
-                let container = document.getElementById(
-                    "createleaderboarditems",
-                );
+                let container = document.getElementById("createleaderboarditems");
                 // empty container
                 container.innerHTML = "";
 
@@ -581,13 +561,18 @@
                         }
                     }, k * 300);
                 });
+
+                if (days[day] == "Monday" || days[day] == "Tuesday") {
+                    console.log("display hcps");
+                } else {
+                    console.log("else in display hcps");
+                    document.getElementById("panel").style.display = "flex";
+                }
             }
 
             function useDataResults(data) {
                 console.log("useData()");
-                let container = document.getElementById(
-                    "createleaderboarditems",
-                );
+                let container = document.getElementById("createleaderboarditems");
                 // empty container
                 container.innerHTML = "";
 
@@ -600,10 +585,7 @@
                     box.id = "box" + i;
                     box.className = "team";
 
-                    box.setAttribute(
-                        "onclick",
-                        "showPageThree();return false;",
-                    );
+                    box.setAttribute("onclick", "showPageThree();return false;");
 
                     let name = document.createElement("span");
                     name.id = "name" + i;
@@ -708,16 +690,13 @@
             }
 
             function bodyUpdateHcps(nom, hcps, i) {
-                document.getElementById("headerpagetwo").innerText =
-                    "Handicaps for Thursday";
+                document.getElementById("headerpagetwo").innerText = "Handicaps for Thursday";
 
                 let elName = nom;
                 hcpData.find((team) => team.players === elName);
                 // now sort out positions for same scores
 
-                let AllTeams = Array.from(
-                    document.querySelectorAll(".teamhcp"),
-                );
+                let AllTeams = Array.from(document.querySelectorAll(".teamhcp"));
 
                 AllTeams.forEach((element, n) => {
                     let elementName = element.querySelector(".namehcp");
@@ -732,8 +711,7 @@
             }
 
             function bodyUpdate(nom, scr) {
-                document.getElementById("headerpagetwo").innerText =
-                    "Thursday results";
+                document.getElementById("headerpagetwo").innerText = "Thursday results";
 
                 let elName = nom;
                 data.find((team) => team.players === elName);
@@ -759,40 +737,24 @@
                             elementScore.innerHTML = scr;
                             element.style.opacity = 1;
                             let elementPos = element.querySelector(".position");
-                            elementPos.innerText = data.find(
-                                (team) =>
-                                    team.players === elementName.innerHTML,
-                            ).position;
+                            elementPos.innerText = data.find((team) => team.players === elementName.innerHTML).position;
 
-                            var birdnum = data.find(
-                                (team) =>
-                                    team.players === elementName.innerHTML,
-                            ).bird;
+                            var birdnum = data.find((team) => team.players === elementName.innerHTML).bird;
 
                             if (birdnum > 0) {
-                                document.getElementById(
-                                    "bird1" + n,
-                                ).style.visibility = "visible";
+                                document.getElementById("bird1" + n).style.visibility = "visible";
                             }
                             if (birdnum > 1) {
-                                document.getElementById(
-                                    "bird2" + n,
-                                ).style.visibility = "visible";
+                                document.getElementById("bird2" + n).style.visibility = "visible";
                             }
                             if (birdnum > 2) {
-                                document.getElementById(
-                                    "bird3" + n,
-                                ).style.visibility = "visible";
+                                document.getElementById("bird3" + n).style.visibility = "visible";
                             }
                             if (birdnum > 3) {
-                                document.getElementById(
-                                    "bird4" + n,
-                                ).style.visibility = "visible";
+                                document.getElementById("bird4" + n).style.visibility = "visible";
                             }
                             if (birdnum > 4) {
-                                document.getElementById(
-                                    "bird5" + n,
-                                ).style.visibility = "visible";
+                                document.getElementById("bird5" + n).style.visibility = "visible";
                             }
                         }, n * 100);
                     }
