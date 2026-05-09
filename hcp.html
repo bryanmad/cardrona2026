@@ -447,9 +447,13 @@
             var hcpData;
             var dd = new Date();
             var day = dd.getDay();
-
             var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
             var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+            var hdd = new Date();
+            // let new day start at 5pm
+            hdd.setHours(hdd.getHours() + 9);
+            var hcpday = days[hdd.getDay()];
 
             //===========================
             // this code runs at startup
@@ -550,26 +554,26 @@
                     document.getElementById("headerpagetwo").innerText = "Handicap adjustments";
                 }
 
-                if (days[day] == "Monday") {
+                if (days[hcpday] == "Monday") {
                     document.getElementsByClassName("line1")[i].style.display = "";
                     document.getElementsByClassName("line2")[i].style.display = "none";
                     document.getElementsByClassName("line3")[i].style.display = "none";
                     document.getElementsByClassName("line4")[i].style.display = "none";
                 }
-                if (days[day] == "Tuesday") {
+                if (days[hcpday] == "Tuesday") {
                     document.getElementsByClassName("line1")[i].style.display = "";
                     document.getElementsByClassName("line2")[i].style.display = "";
                     document.getElementsByClassName("line3")[i].style.display = "none";
                     document.getElementsByClassName("line4")[i].style.display = "none";
                 }
-                if (days[day] == "Wednesday") {
+                if (days[hcpday] == "Wednesday") {
                     console.log("runs Wednesday");
                     document.getElementsByClassName("line1")[i].style.display = "";
                     document.getElementsByClassName("line2")[i].style.display = "";
                     document.getElementsByClassName("line3")[i].style.display = "";
                     document.getElementsByClassName("line4")[i].style.display = "none";
                 }
-                if (days[day] !== "Thursday") {
+                if (days[hcpday] !== "Thursday") {
                     document.getElementsByClassName("line1")[i].style.display = "";
                     document.getElementsByClassName("line2")[i].style.display = "";
                     document.getElementsByClassName("line3")[i].style.display = "";

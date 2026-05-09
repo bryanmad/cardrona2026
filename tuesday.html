@@ -438,9 +438,8 @@
                 top: 10vh;
                 text-align: center;
                 justify-content: center;
-                height: 10vh;
+                height: 20vh;
                 width: 60vw;
-                line-height: 10vh;
                 left: 20vw;
                 background: black;
                 opacity: 0.8;
@@ -448,6 +447,7 @@
                 font-family: arial;
                 font-size: 4vw;
                 border-radius: 5px;
+                padding: 5vh;
             }
         </style>
     </head>
@@ -612,7 +612,7 @@
         </div>
 
         <!-- popup panel -->
-        <div id="panel">awaiting adjustments</div>
+        <div id="panel">Handicap adjustments for the day are available from 5pm the previous day.</div>
 
         <!-- spacer -->
         <div class="spacer1vh"></div>
@@ -636,22 +636,10 @@
 
             var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-            /*
-                        var months = [
-                            "Jan",
-                            "Feb",
-                            "Mar",
-                            "Apr",
-                            "May",
-                            "Jun",
-                            "Jul",
-                            "Aug",
-                            "Sep",
-                            "Oct",
-                            "Nov",
-                            "Dec",
-                        ];
-            */
+            var hdd = new Date();
+            // let new day start at 5pm
+            hdd.setHours(hdd.getHours() + 9);
+            var hcpday = days[hdd.getDay()];
 
             // set up courses with details for calculations etc.
             // array ["hole num",par,si]
@@ -811,7 +799,7 @@
                     }, k * 300);
                 });
 
-                if (days[day] == "Monday" || days[day] == "Tuesday") {
+                if (days[hcpday] == "Monday" || days[hcpday] == "Tuesday") {
                     console.log("display hcps");
                 } else {
                     console.log("else in display hcps");
@@ -939,30 +927,10 @@
                             var birdnum = data.find((team) => team.players === elementName.innerHTML).bird;
 
                             if (birdnum > 0) {
-                                /*             document.getElementById(
-                                                          "bird1" + n,
-                                                      ).style.visibility = "visible";
-                                                  }
-                                                  if (birdnum > 1) {
-                                                      document.getElementById(
-                                                          "bird2" + n,
-                                                      ).style.visibility = "visible";
-                                                  }
-                                                  if (birdnum > 2) {
-                                                      document.getElementById(
-                                                          "bird3" + n,
-                                                      ).style.visibility = "visible";
-                                                  }
-                                                  if (birdnum > 3) {
-                                                      document.getElementById(
-                                                          "bird4" + n,
-                                                      ).style.visibility = "visible";
-                                                  }
-                        */
                                 document.getElementById("bird4" + n).style.visibility = "visible";
 
                                 // cope with too many birdies for space available
-                                //if (birdnum > 5) {
+
                                 document.getElementById("bird5" + n).className = "numbird";
                                 document.getElementById("bird5" + n).innerText = birdnum;
                                 document.getElementById("bird5" + n).style.visibility = "visible";
