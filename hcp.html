@@ -7,10 +7,7 @@
         <link href="originalgolf.svg" rel="icon" type="image/x-icon" />
         <link rel="apple-touch-icon" sizes="180x180" href="originalgolf.svg" />
         <title>cardrona2026</title>
-        <link
-            href="https://fonts.googleapis.com/css?family=Kalam"
-            rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
         <style>
@@ -442,29 +439,15 @@
             var dd = new Date();
             var day = dd.getDay();
 
-            var days = [
-                "Sunday",
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday",
-            ];
-            var months = [
-                "Jan",
-                "Feb",
-                "Mar",
-                "Apr",
-                "May",
-                "Jun",
-                "Jul",
-                "Aug",
-                "Sep",
-                "Oct",
-                "Nov",
-                "Dec",
-            ];
+            var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+            var hdd = new Date();
+            // let new day start at 5pm
+            hdd.setHours(hdd.getHours() + 7);
+            var hcpday = days[hdd.getDay()];
+            console.log(hcpday);
+
+            var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
             //===========================
             // this code runs at startup
@@ -473,7 +456,7 @@
             // need to set up a couple of arrays from the data in google sheets
             async function getHcpData() {
                 var datastream = await fetch(
-                    "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/hcpexplain",
+                    "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/hcpexplain"
                 );
 
                 if (!datastream.ok) {
@@ -500,9 +483,7 @@
 
             function useDataHcp() {
                 console.log("useDataHcp()");
-                let container = document.getElementById(
-                    "createleaderboarditems",
-                );
+                let container = document.getElementById("createleaderboarditems");
                 // empty container
                 container.innerHTML = "";
 
@@ -555,85 +536,45 @@
                     hcpData.forEach((el, i) => {
                         k++;
                         if (el.players !== "") {
-                            bodyUpdateHcps(
-                                el.players,
-                                el.line1,
-                                el.line2,
-                                el.line3,
-                                el.line4,
-                                i,
-                            );
+                            bodyUpdateHcps(el.players, el.line1, el.line2, el.line3, el.line4, i);
                         }
                     }, k * 300);
                 });
             }
 
             function bodyUpdateHcps(nom, line1, line2, line3, line4, i) {
-                document.getElementById("headerpagetwo").innerText =
-                    "Handicap adjustments";
+                document.getElementById("headerpagetwo").innerText = "Handicap adjustments";
 
-                if (days[day] == "Monday") {
+                if (hcpday == "Monday") {
                     for (i = 0; i < 12; i++) {
-                        document.getElementsByClassName("line1")[
-                            i
-                        ].style.display = "";
-                        document.getElementsByClassName("line2")[
-                            i
-                        ].style.display = "none";
-                        document.getElementsByClassName("line3")[
-                            i
-                        ].style.display = "none";
-                        document.getElementsByClassName("line4")[
-                            i
-                        ].style.display = "none";
+                        document.getElementsByClassName("line1")[i].style.display = "";
+                        document.getElementsByClassName("line2")[i].style.display = "none";
+                        document.getElementsByClassName("line3")[i].style.display = "none";
+                        document.getElementsByClassName("line4")[i].style.display = "none";
                     }
                 }
-                if (days[day] == "Tuesday") {
+                if (hcpday == "Tuesday") {
                     for (i = 0; i < 12; i++) {
-                        document.getElementsByClassName("line1")[
-                            i
-                        ].style.display = "";
-                        document.getElementsByClassName("line2")[
-                            i
-                        ].style.display = "";
-                        document.getElementsByClassName("line3")[
-                            i
-                        ].style.display = "none";
-                        document.getElementsByClassName("line4")[
-                            i
-                        ].style.display = "none";
+                        document.getElementsByClassName("line1")[i].style.display = "";
+                        document.getElementsByClassName("line2")[i].style.display = "";
+                        document.getElementsByClassName("line3")[i].style.display = "none";
+                        document.getElementsByClassName("line4")[i].style.display = "none";
                     }
                 }
-                if (days[day] == "Wednesday") {
+                if (hcpday == "Wednesday") {
                     for (i = 0; i < 12; i++) {
-                        document.getElementsByClassName("line1")[
-                            i
-                        ].style.display = "";
-                        document.getElementsByClassName("line2")[
-                            i
-                        ].style.display = "";
-                        document.getElementsByClassName("line3")[
-                            i
-                        ].style.display = "";
-                        document.getElementsByClassName("line4")[
-                            i
-                        ].style.display = "none";
+                        document.getElementsByClassName("line1")[i].style.display = "";
+                        document.getElementsByClassName("line2")[i].style.display = "";
+                        document.getElementsByClassName("line3")[i].style.display = "";
+                        document.getElementsByClassName("line4")[i].style.display = "none";
                     }
                 }
-                if (days[day] == "Thursday") {
+                if (hcpday == "Thursday") {
                     for (i = 0; i < 12; i++) {
-                        document.getElementsByClassName("line1")[
-                            i
-                        ].style.display = "";
-                        document.getElementsByClassName("line2")[
-                            i
-                        ].style.display = "";
-                        document.getElementsByClassName("line3")[
-                            i
-                        ].style.display = "";
-                        document.getElementsByClassName("line4")[
-                            i
-                        ].style.display = "";
+                        document.getElementsByClassName("line1")[i].style.display = "";
+                        document.getElementsByClassName("line2")[i].style.display = "";
+                        document.getElementsByClassName("line3")[i].style.display = "";
+                        document.getElementsByClassName("line4")[i].style.display = "";
                     }
                 }
 
@@ -641,9 +582,7 @@
                 hcpData.find((team) => team.players === elName);
                 // now sort out positions for same scores
 
-                let AllTeams = Array.from(
-                    document.querySelectorAll(".teamhcp"),
-                );
+                let AllTeams = Array.from(document.querySelectorAll(".teamhcp"));
 
                 AllTeams.forEach((element, n) => {
                     let elementName = element.querySelector(".namehcp");
