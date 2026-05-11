@@ -1854,7 +1854,11 @@
                 if (canVibrate) {
                     window.navigator.vibrate(50);
                 }
-                location.reload();
+                
+                setTimeout(function(){
+                     location.reload();
+                },500)
+               
             }
 
             function resetInput() {
