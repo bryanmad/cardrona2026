@@ -638,9 +638,9 @@
 
             var hdd = new Date();
             // let new day start at 5pm
-            hdd.setHours(hdd.getHours() + 9);
+            hdd.setHours(hdd.getHours() + 7);
             var hcpday = days[hdd.getDay()];
-
+            console.log(hcpday);
             // set up courses with details for calculations etc.
             // array ["hole num",par,si]
             // Arcot
@@ -799,10 +799,8 @@
                     }, k * 300);
                 });
 
-                if (days[hcpday] == "Monday" || days[hcpday] == "Tuesday") {
-                    console.log("display hcps");
+                if (hcpday == "Monday" || hcpday == "Tuesday") {
                 } else {
-                    console.log("else in display hcps");
                     document.getElementById("panel").style.display = "flex";
                 }
             }
