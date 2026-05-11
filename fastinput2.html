@@ -1292,7 +1292,7 @@
             function setupCourse() {
                 // set up courses with details for calculations etc.
                 // array ["hole num",par,si]
-                // Arcot
+                // Cardrona
                 // hole, par, si
                 arrCourse = [
                     [0, 0, 0],
@@ -1301,8 +1301,8 @@
                     [3, 4, 9],
                     [4, 4, 3],
                     [5, 3, 11],
-                    [6, 5, 1],
-                    [7, 4, 5],
+                    [6, 5, 5],
+                    [7, 4, 1],
                     [8, 4, 17],
                     [9, 3, 15],
                     [10, 4, 4],
@@ -1326,9 +1326,7 @@
 
             // need to set up a couple of arrays from the data in google sheets
             async function getData4Dropdown() {
-                datastream = await fetch(
-                    "https://opensheet.elk.sh/1HMDZQd3M4r8xOpQLV0J1IQxSy5U94HTeso3ibtb4a4s/hcpscsv"
-                );
+                datastream = await fetch("https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/hcps");
 
                 if (!datastream.ok) {
                     const message = `An error has occured: ${datastream.status}`;
@@ -1429,33 +1427,8 @@
                         // change "select player to course
                         document.getElementById("dropbtn").innerText =
                             player1name + " " + player1hcp + ":  " + days[day];
-                        // update stats screen
-                        document.getElementById("headerpagethree").innerText =
-                            player1name + " wins " + winspercent + "% of his comps";
-                        //  getStats();
                     }
                 }
-                // find player in options list
-                for (var k = 0; k < arrOptions.length; k++) {
-                    if (arrOptions[k][0] == playerName) {
-                        temppos = k;
-                    }
-                }
-                // change color on selection
-                document.getElementById("myLink" + temppos.toString()).style.color = "blue";
-                document.getElementById("myLink" + temppos.toString()).style.background = "lightBlue";
-                if (temppos >= 0) {
-                    // increment number of times chosen
-                    var tc = parseInt(arrOptions[temppos][1]) + 1;
-                    arrOptions[temppos][1] = tc;
-                    // store new order
-                    //localStorage.wwdropdown = JSON.stringify(arrOptions);
-                }
-                // update player choice
-                player = document.getElementById("myLink" + temppos.toString()).innerText;
-                //document.getElementById("p1name").innerText = player + " " + player1hcp;
-                // global player
-                player = playerName;
 
                 // close dropdown
                 var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -1471,7 +1444,7 @@
                 calcAllHoles();
                 document.getElementById("hole1").style.color = "black";
                 document.getElementById("hole1").style.background = "lime";
-                //console.log("currenthole = " + currenthole);
+
                 // highlight doublebogey
                 doubleBogeyCalc(hcp, arrCourse[1][1], arrCourse[1][2]);
             }
@@ -1489,19 +1462,13 @@
             //=================================================================================
             function numberScore(id) {
                 // id is number button pressed eg. score5
-                // color the button
-                //document.getElementById(id).style.color = "black";
-                //document.getElementById(id).style.background = "lime";
-
                 // move onto first hole
                 currenthole++;
-                //console.log("currenthole = " + currenthole);
                 // set nexthole for highlight
                 nexthole = currenthole;
                 nexthole++;
                 if (nexthole >= 18) {
                     nexthole = 18;
-                    //      document.getElementById("acceptpanel").style.display = "block";
                 }
 
                 // color the hole
@@ -1541,12 +1508,6 @@
 
                     document.getElementById("acceptpanel").style.display = "block";
                 }
-
-                // put button color back
-                //setTimeout(function () {
-                //    document.getElementById(id).style.background = "black";
-                //    document.getElementById(id).style.color = "lime";
-                // }, 100);
             }
             //=============================================================
             // function resethole(id)
@@ -1613,26 +1574,6 @@
             }
 
             //=============================================================
-            // function arrDeepCopy(aObject)
-            // - helper function to deep copy array
-            //=============================================================
-            // helper function to deep copy array
-            function arrDeepCopy(aObject) {
-                // deep copy array
-                // Prevent undefined objects
-                // if (!aObject) return aObject;
-                var bObject = Array.isArray(aObject) ? [] : {};
-                var value;
-                for (const key in aObject) {
-                    // Prevent self-references to parent object
-                    // if (Object.is(aObject[key], aObject)) continue;
-                    value = aObject[key];
-                    bObject[key] = typeof value === "object" ? arrDeepCopy(value) : value;
-                }
-                return bObject;
-            }
-
-            //=============================================================
             // function pointsCalc(xhcp, xpar, xsi, xscore)
             // - convert scores to stableford points
             //=============================================================
@@ -1671,7 +1612,6 @@
                     if (points < 0) {
                         points = 0;
                     }
-                    //console.log(hcp +","+ par+","+ si+","+ score+" = " +points)
                     return points;
                 }
             }
@@ -1688,20 +1628,16 @@
                         el.classList.remove("cyan");
                     }
                 }
-                //console.log("inside doubleBogeyCalc", xhcp, xpar, xsi);
-                //console.log("currenthole = " + currenthole);
+
                 var db = 0;
                 var temp = 0;
                 for (xscore = 1; xscore <= 9; xscore++) {
                     temp = pointsCalc(xhcp, xpar, xsi, xscore);
-                    //console.log("xscore = " + xscore + "  temp = " + temp);
                     if (temp == 0) {
                         db = xscore;
                         break;
                     }
                 }
-
-                //console.log("db = " + db);
 
                 // set color of doublebogey number
                 document.getElementById("score" + db).classList.add("cyan");
@@ -1712,23 +1648,10 @@
             // - send info from HTML form to google form
             //=============================================================
             function submitForm() {
-                player1hcp = 10;
-
                 // player name
                 document.getElementById("mx693174004").value = player1name;
-                //    document.getElementById("player1").innerText;
-                // score
-                // move to later ...
-                //document.getElementById("mx620915683").value = "36";
-                //    document.getElementById("player1").innerText;
                 // day
                 document.getElementById("mx1693107131").value = days[day];
-                //document.getElementById("player1").innerText;
-                // birdies
-                // move to later ...
-                //document.getElementById("mx2003386189").value = "2";
-                //document.getElementById("player1").innerText;
-
                 // strokes 1 to 18
                 document.getElementById("mx674343360").value = document.getElementById("strokes1").innerText;
                 document.getElementById("mx198561045").value = document.getElementById("strokes2").innerText;
@@ -1748,7 +1671,6 @@
                 document.getElementById("mx2014527734").value = document.getElementById("strokes16").innerText;
                 document.getElementById("mx839612202").value = document.getElementById("strokes17").innerText;
                 document.getElementById("mx2069238611").value = document.getElementById("strokes18").innerText;
-
                 // points 1 to 18
                 // total the points as well
                 totalpoints = 0;
@@ -1770,6 +1692,10 @@
                     arrCourse[3][2],
                     document.getElementById("strokes3").innerText
                 );
+                console.log("player1hcp = " + player1hcp);
+                console.log("par = " + arrCourse[3][1]);
+                console.log("si = " + arrCourse[3][2]);
+                console.log("strokes = " + document.getElementById("strokes3").innerText);
                 p4 = document.getElementById("mx553966355").value = pointsCalc(
                     player1hcp,
                     arrCourse[4][1],
@@ -1848,6 +1774,10 @@
                     arrCourse[16][2],
                     document.getElementById("strokes16").innerText
                 );
+                //console.log("player1hcp = " + player1hcp);
+                //console.log("par = " + arrCourse[16][1]);
+                //console.log("si = " + arrCourse[16][2]);
+                //console.log("strokes = " + document.getElementById("strokes16").innerText);
                 p17 = document.getElementById("mx1214112516").value = pointsCalc(
                     player1hcp,
                     arrCourse[17][1],
@@ -1860,6 +1790,25 @@
                     arrCourse[18][2],
                     document.getElementById("strokes18").innerText
                 );
+
+                //console.log("p1 = " + p1);
+                //console.log("p2 = " + p2);
+                //console.log("p3 = " + p3);
+                //console.log("p4 = " + p4);
+                //console.log("p5 = " + p5);
+                //console.log("p6 = " + p6);
+                //console.log("p7 = " + p7);
+                //console.log("p8 = " + p8);
+                //console.log("p9 = " + p9);
+                //console.log("p10 = " + p10);
+                //console.log("p11 = " + p11);
+                //console.log("p12 = " + p12);
+                //console.log("p13 = " + p13);
+                //console.log("p14 = " + p14);
+                //console.log("p15 = " + p15);
+                //console.log("p16 = " + p16);
+                //console.log("p17 = " + p17);
+                //console.log("p18 = " + p18);
 
                 // now add all points together
                 totalpoints =
@@ -1883,6 +1832,7 @@
                     Number(p18);
 
                 document.getElementById("mx620915683").value = totalpoints;
+                console.log("totalpoints = " + totalpoints);
 
                 // now calc birdies
                 var b = 0;
@@ -1895,19 +1845,6 @@
                 // and enter them
                 document.getElementById("mx2003386189").value = b;
 
-                /*
-                // player
-                document.getElementById("mx1259211928").value =
-                    document.getElementById("player1").innerText;
-                // score
-                document.getElementById("mx396952416").value =
-                    document.getElementById("points1").innerText;
-                // day
-                document.getElementById("mx1546980405").value = compday;
-                // birdies
-                document.getElementById("mx2092654460").value =
-                    document.getElementById("birdies1").innerText;
-*/
                 //===== submit data ==========
                 //============================
                 document.forms[0].submit();
@@ -1917,8 +1854,6 @@
                 if (canVibrate) {
                     window.navigator.vibrate(50);
                 }
-
-                //clearForm();
             }
 
             function resetInput() {
