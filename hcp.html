@@ -7,7 +7,10 @@
         <link href="originalgolf.svg" rel="icon" type="image/x-icon" />
         <link rel="apple-touch-icon" sizes="180x180" href="originalgolf.svg" />
         <title>cardrona2026</title>
-        <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css?family=Kalam"
+            rel="stylesheet"
+        />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
         <style>
@@ -241,11 +244,10 @@
                         .line1,
                         .line2,
                         .line3,
-                        .line4
-                        {
+                        .line4 {
                             width: 96%;
                             //height: 10%;
-                            //display: flex;
+                            display: flex;
                             //align-items: left; //center;
                             //justify-content: left;
                             font-size: 2.5vh;
@@ -256,14 +258,6 @@
                             //text-transform: capitalize;
                            // position: absolute;
                         }
-
-                        .line4bold
-                        {
-                            //font-weight: bold;
-                            color: cyan;
-                            font-size: 3vh;
-                        }
-
 
                         .scores {
                             width: 12%;
@@ -447,13 +441,30 @@
             var hcpData;
             var dd = new Date();
             var day = dd.getDay();
-            var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-            var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-            var hdd = new Date();
-            // let new day start at 5pm
-            hdd.setHours(hdd.getHours() + 9);
-            var hcpday = days[hdd.getDay()];
+            var days = [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+            ];
+            var months = [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
+            ];
 
             //===========================
             // this code runs at startup
@@ -462,7 +473,7 @@
             // need to set up a couple of arrays from the data in google sheets
             async function getHcpData() {
                 var datastream = await fetch(
-                    "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/hcpexplain"
+                    "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/hcpexplain",
                 );
 
                 if (!datastream.ok) {
@@ -474,10 +485,9 @@
                 document.getElementById("pagetwo").style.display = "block";
                 //dd = new Date();
                 //day = dd.getDay();
-                $("#pagetwo").fadeIn(500);
+                //
                 //having got hcp data, now get results data
                 useDataHcp();
-
                 //
                 //
             }
@@ -490,7 +500,9 @@
 
             function useDataHcp() {
                 console.log("useDataHcp()");
-                let container = document.getElementById("createleaderboarditems");
+                let container = document.getElementById(
+                    "createleaderboarditems",
+                );
                 // empty container
                 container.innerHTML = "";
 
@@ -543,47 +555,95 @@
                     hcpData.forEach((el, i) => {
                         k++;
                         if (el.players !== "") {
-                            bodyUpdateHcps(el.players, el.line1, el.line2, el.line3, el.line4, i);
+                            bodyUpdateHcps(
+                                el.players,
+                                el.line1,
+                                el.line2,
+                                el.line3,
+                                el.line4,
+                                i,
+                            );
                         }
                     }, k * 300);
                 });
             }
 
             function bodyUpdateHcps(nom, line1, line2, line3, line4, i) {
-                if (i == 0) {
-                    document.getElementById("headerpagetwo").innerText = "Handicap adjustments";
-                }
+                document.getElementById("headerpagetwo").innerText =
+                    "Handicap adjustments";
 
-                if (days[hcpday] == "Monday") {
-                    document.getElementsByClassName("line1")[i].style.display = "";
-                    document.getElementsByClassName("line2")[i].style.display = "none";
-                    document.getElementsByClassName("line3")[i].style.display = "none";
-                    document.getElementsByClassName("line4")[i].style.display = "none";
+                if (days[day] == "Monday") {
+                    for (i = 0; i < 12; i++) {
+                        document.getElementsByClassName("line1")[
+                            i
+                        ].style.display = "";
+                        document.getElementsByClassName("line2")[
+                            i
+                        ].style.display = "none";
+                        document.getElementsByClassName("line3")[
+                            i
+                        ].style.display = "none";
+                        document.getElementsByClassName("line4")[
+                            i
+                        ].style.display = "none";
+                    }
                 }
-                if (days[hcpday] == "Tuesday") {
-                    document.getElementsByClassName("line1")[i].style.display = "";
-                    document.getElementsByClassName("line2")[i].style.display = "";
-                    document.getElementsByClassName("line3")[i].style.display = "none";
-                    document.getElementsByClassName("line4")[i].style.display = "none";
+                if (days[day] == "Tuesday") {
+                    for (i = 0; i < 12; i++) {
+                        document.getElementsByClassName("line1")[
+                            i
+                        ].style.display = "";
+                        document.getElementsByClassName("line2")[
+                            i
+                        ].style.display = "";
+                        document.getElementsByClassName("line3")[
+                            i
+                        ].style.display = "none";
+                        document.getElementsByClassName("line4")[
+                            i
+                        ].style.display = "none";
+                    }
                 }
-                if (days[hcpday] == "Wednesday") {
-                    console.log("runs Wednesday");
-                    document.getElementsByClassName("line1")[i].style.display = "";
-                    document.getElementsByClassName("line2")[i].style.display = "";
-                    document.getElementsByClassName("line3")[i].style.display = "";
-                    document.getElementsByClassName("line4")[i].style.display = "none";
+                if (days[day] == "Wednesday") {
+                    for (i = 0; i < 12; i++) {
+                        document.getElementsByClassName("line1")[
+                            i
+                        ].style.display = "";
+                        document.getElementsByClassName("line2")[
+                            i
+                        ].style.display = "";
+                        document.getElementsByClassName("line3")[
+                            i
+                        ].style.display = "";
+                        document.getElementsByClassName("line4")[
+                            i
+                        ].style.display = "none";
+                    }
                 }
-                if (days[hcpday] !== "Thursday") {
-                    document.getElementsByClassName("line1")[i].style.display = "";
-                    document.getElementsByClassName("line2")[i].style.display = "";
-                    document.getElementsByClassName("line3")[i].style.display = "";
-                    document.getElementsByClassName("line4")[i].style.display = "";
+                if (days[day] == "Thursday") {
+                    for (i = 0; i < 12; i++) {
+                        document.getElementsByClassName("line1")[
+                            i
+                        ].style.display = "";
+                        document.getElementsByClassName("line2")[
+                            i
+                        ].style.display = "";
+                        document.getElementsByClassName("line3")[
+                            i
+                        ].style.display = "";
+                        document.getElementsByClassName("line4")[
+                            i
+                        ].style.display = "";
+                    }
                 }
 
                 let elName = nom;
                 hcpData.find((team) => team.players === elName);
+                // now sort out positions for same scores
 
-                let AllTeams = Array.from(document.querySelectorAll(".teamhcp"));
+                let AllTeams = Array.from(
+                    document.querySelectorAll(".teamhcp"),
+                );
 
                 AllTeams.forEach((element, n) => {
                     let elementName = element.querySelector(".namehcp");
@@ -592,166 +652,16 @@
                     let elementLine3 = element.querySelector(".line3");
                     let elementLine4 = element.querySelector(".line4");
                     if (elementName.innerHTML == elName) {
+                        //elementScore.innerHTML = hcps;
+
+                        //element.style.opacity = 1;
+
                         setTimeout(function () {
-                            if (days[day] !== "Monday") {
-                                arrLine1 = line1.split(" ");
-                                Line1new =
-                                    '<a class="line4bold">' +
-                                    arrLine1[0] +
-                                    " </a>" +
-                                    arrLine1[1] +
-                                    " " + // starts
-                                    arrLine1[2] +
-                                    " " + // with
-                                    '<a class="line4bold">' +
-                                    arrLine1[3] +
-                                    " " + // 23
-                                    arrLine1[4] +
-                                    " " + // hcp
-                                    arrLine1[5] +
-                                    " " + // on
-                                    arrLine1[6] +
-                                    "</a> "; // Monday
-                                elementLine1.innerHTML = Line1new;
-                            }
-                            if (days[day] == "Tuesday") {
-                                arrLine1 = line1.split(" ");
-                                Line1new =
-                                    '<a class="line4bold">' +
-                                    arrLine1[0] +
-                                    " </a>" +
-                                    arrLine1[1] +
-                                    " " +
-                                    arrLine1[2] +
-                                    " " +
-                                    arrLine1[3] +
-                                    " " +
-                                    arrLine1[4] +
-                                    " " +
-                                    arrLine1[5] +
-                                    " " +
-                                    arrLine1[6] +
-                                    " ";
-                                arrLine2 = line2.split(" ");
-                                Line2new =
-                                    arrLine2[0] +
-                                    " " +
-                                    arrLine2[1] +
-                                    " " +
-                                    arrLine2[2] +
-                                    " " +
-                                    arrLine2[3] +
-                                    " " +
-                                    arrLine2[4] +
-                                    " " +
-                                    arrLine2[5] +
-                                    " " +
-                                    arrLine2[6] +
-                                    ' <a class="line4bold">' +
-                                    arrLine2[7] +
-                                    " " +
-                                    arrLine2[8] +
-                                    " " +
-                                    arrLine2[9] +
-                                    " " +
-                                    arrLine2[10] +
-                                    "</a> ";
-                                elementLine1.innerHTML = Line1new;
-                                elementLine2.innerHTML = Line2new;
-                            }
-                            if (days[day] == "Wednesday") {
-                                arrLine1 = line1.split(" ");
-                                Line1new =
-                                    '<a class="line4bold">' +
-                                    arrLine1[0] +
-                                    " </a>" +
-                                    arrLine1[1] +
-                                    " " +
-                                    arrLine1[2] +
-                                    " " +
-                                    arrLine1[3] +
-                                    " " +
-                                    arrLine1[4] +
-                                    " " +
-                                    arrLine1[5] +
-                                    " " +
-                                    arrLine1[6] +
-                                    " ";
-                                arrLine3 = line3.split(" ");
-                                Line3new =
-                                    arrLine3[0] +
-                                    " " +
-                                    arrLine3[1] +
-                                    " " +
-                                    arrLine3[2] +
-                                    " " +
-                                    arrLine3[3] +
-                                    " " +
-                                    arrLine3[4] +
-                                    " " +
-                                    arrLine3[5] +
-                                    " " +
-                                    arrLine3[6] +
-                                    ' <a class="line4bold">' +
-                                    arrLine3[7] +
-                                    " " +
-                                    arrLine3[8] +
-                                    " " +
-                                    arrLine3[9] +
-                                    " " +
-                                    arrLine3[10] +
-                                    "</a> ";
-                                elementLine1.innerHTML = Line1new;
-                                elementLine2.innerHTML = line2;
-                                elementLine3.innerHTML = Line3new;
-                            }
-                            if (days[day] == "Thursday") {
-                                arrLine1 = line1.split(" ");
-                                Line1new =
-                                    '<a class="line4bold">' +
-                                    arrLine1[0] +
-                                    " </a>" +
-                                    arrLine1[1] +
-                                    " " +
-                                    arrLine1[2] +
-                                    " " +
-                                    arrLine1[3] +
-                                    " " +
-                                    arrLine1[4] +
-                                    " " +
-                                    arrLine1[5] +
-                                    " " +
-                                    arrLine1[6] +
-                                    " ";
-                                arrLine4 = line4.split(" ");
-                                Line4new =
-                                    arrLine4[0] +
-                                    " " +
-                                    arrLine4[1] +
-                                    " " +
-                                    arrLine4[2] +
-                                    " " +
-                                    arrLine4[3] +
-                                    " " +
-                                    arrLine4[4] +
-                                    " " +
-                                    arrLine4[5] +
-                                    " " +
-                                    arrLine4[6] +
-                                    ' <a class="line4bold">' +
-                                    arrLine4[7] +
-                                    " " +
-                                    arrLine4[8] +
-                                    " " +
-                                    arrLine4[9] +
-                                    " " +
-                                    arrLine4[10] +
-                                    "</a> ";
-                                elementLine1.innerHTML = Line1new;
-                                elementLine2.innerHTML = line2;
-                                elementLine3.innerHTML = line3;
-                                elementLine4.innerHTML = Line4new;
-                            }
+                            elementLine1.innerHTML = line1;
+                            elementLine2.innerHTML = line2;
+                            elementLine3.innerHTML = line3;
+                            elementLine4.innerHTML = line4;
+
                             element.style.opacity = 1;
                         }, n * 300);
                     }
