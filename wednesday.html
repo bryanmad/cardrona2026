@@ -823,6 +823,13 @@
                         }
                     }, k * 300);
                 });
+
+                document.getElementById("box4").style.borderColor = "DarkSeaGreen";
+                document.getElementById("box5").style.borderColor = "DarkSeaGreen";
+                document.getElementById("box6").style.borderColor = "DarkSeaGreen";
+                document.getElementById("box7").style.borderColor = "DarkSeaGreen";
+                
+                
             }
 
             function useDataResults(data) {
@@ -893,7 +900,7 @@
                 });
             }
 
-            function bodyUpdateHcps(nom, hcps, tees, i) {
+            function bodyUpdateHcps(nom, hcps, i) {
                 document.getElementById("headerpagetwo").innerText = "Handicaps for Wednesday";
 
                 let elName = nom;
@@ -904,11 +911,10 @@
                 AllTeams.forEach((element, n) => {
                     let elementName = element.querySelector(".namehcp");
                     let elementScore = element.querySelector(".hcps");
-                    //let elementTees = element.querySelector(".tees");
+
                     if (elementName.innerHTML == elName) {
                         setTimeout(function () {
                             elementScore.innerHTML = hcps;
-                            //elementTees.innerHTML = tees;
                             element.style.opacity = 1;
                         }, n * 300);
                     }
