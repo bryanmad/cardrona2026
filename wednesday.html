@@ -438,7 +438,7 @@
                 top: 10vh;
                 text-align: center;
                 justify-content: center;
-                height: 20vh;
+                height: 24vh;
                 width: 60vw;
                 left: 20vw;
                 background: black;
@@ -636,11 +636,6 @@
 
             var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-            var hdd = new Date();
-            // let new day start at 5pm
-            hdd.setHours(hdd.getHours() + 9);
-            var hcpday = days[hdd.getDay()];
-
             // set up courses with details for calculations etc.
             // array ["hole num",par,si]
             // Arcot
@@ -688,9 +683,14 @@
                     return el.players !== "";
                 });
 
-                //dd = new Date();
-                //day = dd.getDay();
-                //
+                // say if hcps are updated
+                // show message
+                if (hcpData[0].updated == "Tuesday" || hcpData[0].updated == "Wednesday") {
+                    console.log(hcpData[0].updated + " therefore OK");
+                } else {
+                    document.getElementById("panel").innerText =
+                        "Handicaps have not been updated, they will be updated as soon as all of Tuesday results are in.";
+                    document.getElementById("panel").style.display = "flex";
                 //having got hcp data, now get results data
                 getData();
                 //
@@ -798,11 +798,6 @@
                         }
                     }, k * 300);
                 });
-
-                if (hcpday == "Wednesday" || hcpday == "Thursday" || hcpday == "Friday") {
-                } else {
-                    document.getElementById("panel").style.display = "flex";
-                }
             }
 
             function useDataResults(data) {

@@ -438,7 +438,7 @@
                 top: 10vh;
                 text-align: center;
                 justify-content: center;
-                height: 20vh;
+                height: 24vh;
                 width: 60vw;
                 left: 20vw;
                 background: black;
@@ -612,7 +612,7 @@
         </div>
 
         <!-- popup panel -->
-        <div id="panel">Handicap adjustments for Tuesday are available from 5pm Monday.</div>
+        <div id="panel"></div>
 
         <!-- spacer -->
         <div class="spacer1vh"></div>
@@ -636,11 +636,6 @@
 
             var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-            var hdd = new Date();
-            // let new day start at 5pm
-            hdd.setHours(hdd.getHours() + 7);
-            var hcpday = days[hdd.getDay()];
-            console.log(hcpday);
             // set up courses with details for calculations etc.
             // array ["hole num",par,si]
             // Arcot
@@ -687,6 +682,20 @@
                 hcpData = hcpData.filter(function (el) {
                     return el.players !== "";
                 });
+                // say if hcps are updated
+                // show message
+                if (
+                    hcpData[0].updated == "Tuesday" ||
+                    hcpData[0].updated == "Wednesday" ||
+                    hcpData[0].updated == "Thursday"
+                ) {
+                    console.log(hcpData[0].updated + " therefore OK");
+                } else {
+                    document.getElementById("panel").innerText =
+                        "Handicaps have not been updated, they will be updated as soon as all of Monday results are in.";
+                    document.getElementById("panel").style.display = "flex";
+                }
+                }
 
                 //dd = new Date();
                 //day = dd.getDay();
@@ -798,11 +807,6 @@
                         }
                     }, k * 300);
                 });
-
-                if (hcpday == "Tuesday" || hcpday == "Wednesday" || hcpday == "Thursday" || hcpday == "Friday") {
-                } else {
-                    document.getElementById("panel").style.display = "flex";
-                }
             }
 
             function useDataResults(data) {
