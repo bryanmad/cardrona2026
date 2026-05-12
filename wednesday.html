@@ -233,6 +233,24 @@
                 padding-left: 5vh;
             }
 
+            .tees {
+                width: 30%;
+                font-size: 2vh;
+                color: cyan;
+                font-weight: 400;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+                padding-left: 5vh;
+            }
+
+            #tees4,
+            #tees5,
+            #tees6,
+            #tees7 {
+                color: yellow;
+            }
+
             .position {
                 width: 20%;
                 font-size: 3vh;
@@ -669,7 +687,7 @@
             // need to set up a couple of arrays from the data in google sheets
             async function getHcpData() {
                 var datastream = await fetch(
-                    "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/hcps"
+                    "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/hcpslookup"
                 );
 
                 if (!datastream.ok) {
@@ -689,7 +707,7 @@
                     console.log(hcpData[0].updated + " therefore OK");
                 } else {
                     document.getElementById("panel").innerText =
-                        "Handicaps for Wednesday have not been updated, they will be updated as soon as all of the Tuesday results are in.";
+                        "Handicaps and tee groups for Wednesday have not been updated, they will be updated as soon as all of the Tuesday results are in.";
                     document.getElementById("panel").style.display = "flex";
                 }
                 //having got hcp data, now get results data
@@ -781,8 +799,14 @@
                     hcps.id = "hcps" + i;
                     hcps.className = "hcps";
 
+                    let tees = document.createElement("span");
+                    tees.id = "tees" + i;
+                    tees.className = "tees";
+                    tees.innerHTML = el.tees;
+
                     box.appendChild(name);
                     box.appendChild(hcps);
+                    box.appendChild(tees);
 
                     container.appendChild(box);
                     // fade the initial view
@@ -795,7 +819,7 @@
                     hcpData.forEach((el, i) => {
                         k++;
                         if (el.players !== "") {
-                            bodyUpdateHcps(el.players, el.hcps, i);
+                            bodyUpdateHcps(el.players, el.hcps, el.tees, i);
                         }
                     }, k * 300);
                 });
@@ -869,7 +893,7 @@
                 });
             }
 
-            function bodyUpdateHcps(nom, hcps, i) {
+            function bodyUpdateHcps(nom, hcps, tees, i) {
                 document.getElementById("headerpagetwo").innerText = "Handicaps for Wednesday";
 
                 let elName = nom;
@@ -880,9 +904,11 @@
                 AllTeams.forEach((element, n) => {
                     let elementName = element.querySelector(".namehcp");
                     let elementScore = element.querySelector(".hcps");
+                    //let elementTees = element.querySelector(".tees");
                     if (elementName.innerHTML == elName) {
                         setTimeout(function () {
                             elementScore.innerHTML = hcps;
+                            //elementTees.innerHTML = tees;
                             element.style.opacity = 1;
                         }, n * 300);
                     }
@@ -1034,7 +1060,7 @@
             }
 
             function closePanel() {
-                document.getElementById("panel").style.display = "none";
+                // document.getElementById("panel").style.display = "none";
             }
         </script>
     </body>
