@@ -234,7 +234,7 @@
             }
 
             .tees {
-                width: 30%;
+                width: 35%;
                 font-size: 2vh;
                 color: cyan;
                 font-weight: 400;
@@ -449,6 +449,24 @@
             .bg {
                 font-size: 3vh;
             }
+            #panel {
+                display: none;
+                position: fixed;
+                top: 10vh;
+                text-align: center;
+                justify-content: center;
+                height: 80vh;
+                width: 80vw;
+                left: 10vw;
+                background: black;
+                opacity: 0.8;
+                color: white;
+                font-family: arial;
+                font-size: 3vh;
+                border-radius: 5px;
+                padding: 5vh;
+                padding-top: 20vh;
+            }
         </style>
     </head>
     <body>
@@ -614,6 +632,8 @@
         <!--
 
 
+        <!-- popup panel -->
+        <div id="panel" onclick="closePanel()"></div>
 
         <!-- spacer -->
         <div class="spacer1vh"></div>
@@ -628,40 +648,9 @@
             });
 
             // declare global variables
-            //var arrPlayersDropdown = [];
-            //var arrHcpsDropdown = [];
+
             var data;
             var hcpData;
-            //var dd = new Date();
-            //var day = dd.getDay();
-
-            /*
-                        var days = [
-                            "Sunday",
-                            "Monday",
-                            "Tuesday",
-                            "Wednesday",
-                            "Thursday",
-                            "Friday",
-                            "Saturday",
-                        ];
-
-
-                        var months = [
-                            "Jan",
-                            "Feb",
-                            "Mar",
-                            "Apr",
-                            "May",
-                            "Jun",
-                            "Jul",
-                            "Aug",
-                            "Sep",
-                            "Oct",
-                            "Nov",
-                            "Dec",
-                        ];
-            */
 
             // set up courses with details for calculations etc.
             // array ["hole num",par,si]
@@ -710,9 +699,18 @@
                     return el.players !== "";
                 });
 
-                //dd = new Date();
-                //day = dd.getDay();
-                //
+                // say if hcps are updated
+                // show message
+                console.log(hcpData[0].updated + " ---------");
+
+                if (hcpData[0].updated == "Monday") {
+                    console.log(hcpData[0].updated + " therefore OK");
+                } else {
+                    document.getElementById("panel").innerText =
+                        "Handicaps and tee groups for Monday have not been updated, they will be updated Monday morning.";
+                    document.getElementById("panel").style.display = "flex";
+                }
+
                 //having got hcp data, now get results data
                 getData();
                 //
@@ -728,7 +726,7 @@
                 $("#pagetwo").fadeIn(500);
 
                 // data is sorted with highest score first so test that to see if it >0
-                //console.log("data[0].playerpoints = " + data.length);
+                console.log("data.length = " + data.length);
                 if (data.length > 0) {
                     // change < to >
                     useDataResults(data);
@@ -759,22 +757,10 @@
                     });
 
                     data.sort((a, b) => parseInt(b.playerpoints) - parseInt(a.playerpoints));
-
-                    //console.log(data[0].h1);
-                    //
-                    // for (i=1; i<=18; i++){
-                    //     document.getElementById("st" + i).innerText = data[0].h1;
-
-                    //}
-
-                    //data.forEach((el, i) => {
-                    //
-
-                    // }
                 } catch (error) {
                     console.error(error.message);
                 }
-
+                console.log(data);
                 // Decide which data to show depending on if there are results yet
                 //
                 start();
@@ -826,6 +812,11 @@
                         }
                     }, k * 300);
                 });
+
+                document.getElementById("box4").style.borderColor = "DarkSeaGreen";
+                document.getElementById("box5").style.borderColor = "DarkSeaGreen";
+                document.getElementById("box6").style.borderColor = "DarkSeaGreen";
+                document.getElementById("box7").style.borderColor = "DarkSeaGreen";
             }
 
             function useDataResults(data) {
@@ -949,26 +940,6 @@
                             var birdnum = data.find((team) => team.players === elementName.innerHTML).bird;
 
                             if (birdnum > 0) {
-                                /*             document.getElementById(
-                                                          "bird1" + n,
-                                                      ).style.visibility = "visible";
-                                                  }
-                                                  if (birdnum > 1) {
-                                                      document.getElementById(
-                                                          "bird2" + n,
-                                                      ).style.visibility = "visible";
-                                                  }
-                                                  if (birdnum > 2) {
-                                                      document.getElementById(
-                                                          "bird3" + n,
-                                                      ).style.visibility = "visible";
-                                                  }
-                                                  if (birdnum > 3) {
-                                                      document.getElementById(
-                                                          "bird4" + n,
-                                                      ).style.visibility = "visible";
-                                                  }
-                        */
                                 document.getElementById("bird4" + n).style.visibility = "visible";
 
                                 // cope with too many birdies for space available

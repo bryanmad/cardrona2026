@@ -234,7 +234,7 @@
             }
 
             .tees {
-                width: 30%;
+                width: 35%;
                 font-size: 2vh;
                 color: cyan;
                 font-weight: 400;
@@ -456,16 +456,17 @@
                 top: 10vh;
                 text-align: center;
                 justify-content: center;
-                height: 24vh;
-                width: 60vw;
-                left: 20vw;
+                height: 80vh;
+                width: 80vw;
+                left: 10vw;
                 background: black;
                 opacity: 0.8;
                 color: white;
                 font-family: arial;
-                font-size: 1.9vh;
+                font-size: 3vh;
                 border-radius: 5px;
                 padding: 5vh;
+                padding-top: 20vh;
             }
         </style>
     </head>
@@ -703,11 +704,11 @@
 
                 // say if hcps are updated
                 // show message
-                if (hcpData[0].updated == "Tuesday" || hcpData[0].updated == "Wednesday") {
+                if (hcpData[0].updated == "Wednesday") {
                     console.log(hcpData[0].updated + " therefore OK");
                 } else {
                     document.getElementById("panel").innerText =
-                        "Handicaps and tee groups for Wednesday have not been updated, they will be updated as soon as all of the Tuesday results are in.";
+                        "Handicaps and tee groups for Wednesday have not been updated, they will be updated Tuesday evening.";
                     document.getElementById("panel").style.display = "flex";
                 }
                 //having got hcp data, now get results data
@@ -828,8 +829,6 @@
                 document.getElementById("box5").style.borderColor = "DarkSeaGreen";
                 document.getElementById("box6").style.borderColor = "DarkSeaGreen";
                 document.getElementById("box7").style.borderColor = "DarkSeaGreen";
-                
-                
             }
 
             function useDataResults(data) {
