@@ -353,10 +353,9 @@
 
                 //===== submit data ==========
                 //============================
-                //            document.forms[0].submit();
-                //   document.getElementById("submit").innerText = "submit done";
+                document.forms[0].submit();
 
-                // vibrate if android phone or "pop" for anything else
+                // vibrate if android phone
                 const canVibrate = window.navigator.vibrate;
                 if (canVibrate) {
                     window.navigator.vibrate(50);
