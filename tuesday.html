@@ -456,7 +456,7 @@
                 top: 10vh;
                 text-align: center;
                 justify-content: center;
-                height: 80vh;
+                height: 67vh;
                 width: 80vw;
                 left: 10vw;
                 background: black;
@@ -703,7 +703,11 @@
                 });
                 // say if hcps are updated
                 // show message
-                if (hcpData[0].updated == "Tuesday" || hcpData[0].updated == "Wednesday" || hcpData[0].updated == "Thursday" ) {
+                if (
+                    hcpData[0].updated == "Tuesday" ||
+                    hcpData[0].updated == "Wednesday" ||
+                    hcpData[0].updated == "Thursday"
+                ) {
                     console.log(hcpData[0].updated + " therefore OK");
                 } else {
                     document.getElementById("panel").innerText =
