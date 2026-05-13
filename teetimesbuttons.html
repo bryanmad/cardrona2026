@@ -18,7 +18,7 @@
             }
 
             body {
-                height: 100vh;
+                height: 100dvh;
             }
 
             #tee1,
@@ -89,7 +89,7 @@
 
             #my-response-iframe,
             #my-form {
-                display: none;
+                //display: none;
             }
         </style>
     </head>
@@ -137,14 +137,36 @@
         <!-- google iframe inserted here - invisible -->
         <iframe
             title="teetimes"
-            height="0"
+            height="700"
             id="my-response-iframe"
             name="my-response-iframe"
             src="https://docs.google.com/forms/d/e/1FAIpQLScFK8JK2SlfivsoWswPE4xjtIh2grOAzyRqb3KdKmY-sNjDKA/viewform?embedded=true"
-            width="0">
+            width="200">
         </iframe>
 
         <script>
+            var arrPlayers;
+            var arrEntries;
+
+            arrEntries = [];
+
+            arrPlayers = [
+                "Andy",
+                "Bob",
+                "Bryan",
+                "Dale",
+                "Graham",
+                "Joe",
+                "JohnD",
+                "JohnM",
+                "Oz",
+                "Peter",
+                "Richard",
+                "Steve"
+            ];
+
+            //resetArr();
+
             if (whichDay() == "Monday") {
                 document.getElementById("buttonformonday").style.display = "flex";
                 buttonMonday();
@@ -165,35 +187,21 @@
                 buttonThursday();
             }
 
-            arrEntries = [];
-
-            arrPlayers = [
-                "Andy",
-                "Bob",
-                "Bryan",
-                "Dale",
-                "Graham",
-                "Joe",
-                "JohnD",
-                "JohnM",
-                "Oz",
-                "Peter",
-                "Richard",
-                "Steve"
-            ];
-
-            resetArr();
+            //========================================
+            // functions
+            //========================================
 
             function buttonThursday() {
                 manipulateArrayOtherDays(arrPlayers);
                 shuffle(arrPlayers);
                 arrEntries.push(whichDay());
                 for (i = 0; i < arrPlayers.length; i++) {
-                    arrEntries.push[i];
+                    arrEntries.push(arrPlayers[i]);
                 }
+                arrEntries.push("Andy");
+                arrEntries.push("JohnD");
 
-                arrEntries.push("Andy - walking");
-                arrEntries.push("JohnD - walking");
+                submitForm();
             }
 
             function buttonWednesday() {
@@ -201,11 +209,12 @@
                 shuffle(arrPlayers);
                 arrEntries.push(whichDay());
                 for (i = 0; i < arrPlayers.length; i++) {
-                    arrEntries.push[i];
+                    arrEntries.push(arrPlayers[i]);
                 }
+                arrEntries.push("Andy");
+                arrEntries.push("JohnD");
 
-                arrEntries.push("Andy - walking");
-                arrEntries.push("JohnD - walking");
+                submitForm();
             }
 
             function buttonTuesday() {
@@ -213,30 +222,25 @@
                 shuffle(arrPlayers);
                 arrEntries.push(whichDay());
                 for (i = 0; i < arrPlayers.length; i++) {
-                    arrEntries.push[i];
+                    arrEntries.push(arrPlayers[i]);
                 }
-
                 arrEntries.push("Andy - walking");
                 arrEntries.push("JohnD - walking");
+
+                submitForm();
             }
 
             function buttonMonday() {
-                console.log(arrPlayers);
-                console.log(arrEntries);
                 manipulateArrayMonday(arrPlayers);
                 shuffle(arrPlayers);
                 arrEntries.push(whichDay());
-                console.log(arrPlayers.length);
-                for (i = 1; i <= arrPlayers.length; i++) {
+                for (i = 0; i < arrPlayers.length; i++) {
                     arrEntries.push(arrPlayers[i - 1]);
                 }
-
-                arrEntries.push("JohnM - walking");
-                arrEntries.push("Joe - walking");
-                arrEntries.push("Andy - walking");
-                arrEntries.push("JohnD - walking");
-
-                console.log(arrEntries);
+                arrEntries.push("JohnM");
+                arrEntries.push("Joe");
+                arrEntries.push("Andy");
+                arrEntries.push("JohnD");
 
                 submitForm();
             }
