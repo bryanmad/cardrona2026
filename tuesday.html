@@ -703,7 +703,7 @@
                 });
                 // say if hcps are updated
                 // show message
-                if (hcpData[0].updated == "Tuesday") {
+                if (hcpData[0].updated == "Tuesday" || hcpData[0].updated == "Wednesday" || hcpData[0].updated == "Thursday" ) {
                     console.log(hcpData[0].updated + " therefore OK");
                 } else {
                     document.getElementById("panel").innerText =
