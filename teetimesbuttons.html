@@ -67,7 +67,8 @@
             #buttonformonday,
             #buttonfortuesday,
             #buttonforwednesday,
-            #buttonforthursday {
+            #buttonforthursday,
+            #buttonfornone {
                 position: fixed;
                 top: 35vh;
                 left: 20vw;
@@ -104,7 +105,7 @@
         <button id="buttonfortuesday" onclick="buttonTuesday()">Tuesday</button>
         <button id="buttonforwednesday" onclick="buttonWednesday()">Wednesday</button>
         <button id="buttonforthursday" onclick="buttonThursday()">Thursday</button>
-
+        <button id="buttonfornone">Finished</button>
         <form
             action="https://docs.google.com/forms/d/e/1FAIpQLScFK8JK2SlfivsoWswPE4xjtIh2grOAzyRqb3KdKmY-sNjDKA/formResponse"
             id="my-form"
@@ -180,21 +181,17 @@
             if (whichDay() == "Monday") {
                 document.getElementById("buttonformonday").style.display = "flex";
                 buttonMonday();
-            }
-
-            if (whichDay() == "Tuesday") {
+            } else if (whichDay() == "Tuesday") {
                 document.getElementById("buttonfortuesday").style.display = "flex";
                 buttonTuesday();
-            }
-
-            if (whichDay() == "Wednesday") {
+            } else if (whichDay() == "Wednesday") {
                 document.getElementById("buttonforwednesday").style.display = "flex";
                 buttonWednesday();
-            }
-
-            if (whichDay() == "Thursday") {
+            } else if (whichDay() == "Thursday") {
                 document.getElementById("buttonforthursday").style.display = "flex";
                 buttonThursday();
+            } else {
+                document.getElementById("buttonfornone").style.display = "flex";
             }
 
             //========================================
