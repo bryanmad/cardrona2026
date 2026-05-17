@@ -176,20 +176,18 @@
                 "Steve"
             ];
 
-            //resetArr();
-
             if (whichDay() == "Monday") {
                 document.getElementById("buttonformonday").style.display = "flex";
-                buttonMonday();
+                //buttonMonday();
             } else if (whichDay() == "Tuesday") {
                 document.getElementById("buttonfortuesday").style.display = "flex";
-                buttonTuesday();
+                //buttonTuesday();
             } else if (whichDay() == "Wednesday") {
                 document.getElementById("buttonforwednesday").style.display = "flex";
-                buttonWednesday();
+                //buttonWednesday();
             } else if (whichDay() == "Thursday") {
                 document.getElementById("buttonforthursday").style.display = "flex";
-                buttonThursday();
+                //buttonThursday();
             } else {
                 document.getElementById("buttonfornone").style.display = "flex";
             }
@@ -231,8 +229,8 @@
                 for (i = 0; i < arrPlayers.length; i++) {
                     arrEntries.push(arrPlayers[i]);
                 }
-                arrEntries.push("Andy - walking");
-                arrEntries.push("JohnD - walking");
+                arrEntries.push("Andy");
+                arrEntries.push("JohnD");
 
                 submitForm();
             }
@@ -242,8 +240,9 @@
                 shuffle(arrPlayers);
                 arrEntries.push(whichDay());
                 for (i = 0; i < arrPlayers.length; i++) {
-                    arrEntries.push(arrPlayers[i - 1]);
+                    arrEntries.push(arrPlayers[i]);
                 }
+
                 arrEntries.push("JohnM");
                 arrEntries.push("Joe");
                 arrEntries.push("Andy");
