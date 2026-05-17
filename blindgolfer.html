@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -7,15 +7,10 @@
         <link href="originalgolf.svg" rel="icon" type="image/x-icon" />
         <link rel="apple-touch-icon" sizes="180x180" href="originalgolf.svg" />
         <title>cardrona2026</title>
-        <link
-            href="https://fonts.googleapis.com/css?family=Kalam"
-            rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
         <style>
-            /* icon color #bef081 */
-
             * {
                 margin: 0;
                 padding: 0;
@@ -129,31 +124,19 @@
             });
             $("#pagetwo").fadeIn(500);
 
-            arrDays = [
-                "Sunday",
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday",
-            ];
+            arrDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
             dd = new Date();
             day = dd.getDay();
             today = arrDays[day];
-            document.getElementById("headerpagetwo").innerText =
-                today + " Blindgolfer";
+            document.getElementById("headerpagetwo").innerText = today + " Blindgolfer";
             getData();
 
             async function getData() {
-                var url =
-                    "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/blindgolfer";
+                var url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/blindgolfer";
                 try {
                     const dataStream = await fetch(url);
                     if (!dataStream.ok) {
-                        throw new Error(
-                            `Response status: ${dataStream.status}`,
-                        );
+                        throw new Error(`Response status: ${dataStream.status}`);
                     }
                     data = await dataStream.json();
                     // don't need blank players
@@ -161,44 +144,41 @@
                         return el.list !== "";
                     });
 
-                    for (i = 0; i <= 11; i++) {
-                        if (today == "Monday") {
-                            document.getElementById("list" + i).innerText =
-                                data[i].Monday;
-                            document.getElementById("headerpagetwo").innerText =
-                                "Monday Blindgolfer";
-                        }
-                        if (today == "Tuesday") {
-                            document.getElementById("list" + i).innerText =
-                                data[i].Tuesday;
-                            document.getElementById("headerpagetwo").innerText =
-                                "Tuesday Blindgolfer";
-                        }
-                        if (today == "Wednesday") {
-                            document.getElementById("list" + i).innerText =
-                                data[i].Wednesday;
-                            document.getElementById("headerpagetwo").innerText =
-                                "Wednesday Blindgolfer";
-                        }
-                        if (today == "Thursday") {
-                            document.getElementById("list" + i).innerText =
-                                data[i].Thursday;
-                            document.getElementById("headerpagetwo").innerText =
-                                "Thursday Blindgolfer";
-                        }
-                        if (
-                            today == "Friday" ||
-                            today == "Saturday" ||
-                            today == "Sunday"
-                        ) {
-                            if (i == 0) {
-                                document.getElementById("list" + i).innerText =
-                                    "not a competition day";
-                                document.getElementById(
-                                    "headerpagetwo",
-                                ).innerText = "No Blindgolfer";
+                    if (data[0].blindgolfer == today) {
+                        for (i = 0; i <= 11; i++) {
+                            if (today == "Monday") {
+                                document.getElementById("list" + i).innerText = data[i].Monday;
+                                if (i == 0) {
+                                    document.getElementById("headerpagetwo").innerText = "Monday Blindgolfer";
+                                }
+                            }
+                            if (today == "Tuesday") {
+                                document.getElementById("list" + i).innerText = data[i].Tuesday;
+                                if (i == 0) {
+                                    document.getElementById("headerpagetwo").innerText = "Tuesday Blindgolfer";
+                                }
+                            }
+                            if (today == "Wednesday") {
+                                document.getElementById("list" + i).innerText = data[i].Wednesday;
+                                if (i == 0) {
+                                    document.getElementById("headerpagetwo").innerText = "Wednesday Blindgolfer";
+                                }
+                            }
+                            if (today == "Thursday") {
+                                document.getElementById("list" + i).innerText = data[i].Thursday;
+                                if (i == 0) {
+                                    document.getElementById("headerpagetwo").innerText = "Thursday Blindgolfer";
+                                }
+                            }
+                            if (today == "Friday" || today == "Saturday" || today == "Sunday") {
+                                if (i == 0) {
+                                    document.getElementById("list" + i).innerText = "not a competition day";
+                                    document.getElementById("headerpagetwo").innerText = "No Blindgolfer";
+                                }
                             }
                         }
+                    } else {
+                        document.getElementById("list0").innerText = "not yet available";
                     }
                 } catch (error) {
                     console.error(error.message);
