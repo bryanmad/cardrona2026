@@ -68,7 +68,8 @@
             #buttonfortuesday,
             #buttonforwednesday,
             #buttonforthursday,
-            #buttonfornone {
+            #buttonfornone,
+            #buttonforalreadydone {
                 position: fixed;
                 top: 35vh;
                 left: 20vw;
@@ -106,6 +107,8 @@
         <button id="buttonforwednesday" onclick="buttonWednesday()">Wednesday</button>
         <button id="buttonforthursday" onclick="buttonThursday()">Thursday</button>
         <button id="buttonfornone">Finished</button>
+        <button id="buttonforalreadydone">Already done</button>
+
         <form
             action="https://docs.google.com/forms/d/e/1FAIpQLScFK8JK2SlfivsoWswPE4xjtIh2grOAzyRqb3KdKmY-sNjDKA/formResponse"
             id="my-form"
@@ -159,6 +162,7 @@
             var arrPlayers;
             var arrEntries;
 
+            var alreadyDone = "no";
             arrEntries = [];
 
             arrPlayers = [
@@ -176,20 +180,51 @@
                 "Steve"
             ];
 
-            if (whichDay() == "Monday") {
-                document.getElementById("buttonformonday").style.display = "flex";
-                //buttonMonday();
-            } else if (whichDay() == "Tuesday") {
-                document.getElementById("buttonfortuesday").style.display = "flex";
-                //buttonTuesday();
-            } else if (whichDay() == "Wednesday") {
-                document.getElementById("buttonforwednesday").style.display = "flex";
-                //buttonWednesday();
-            } else if (whichDay() == "Thursday") {
-                document.getElementById("buttonforthursday").style.display = "flex";
-                //buttonThursday();
-            } else {
-                document.getElementById("buttonfornone").style.display = "flex";
+            // see if already done ....
+            checkFirstRun();
+
+            //
+            async function checkFirstRun() {
+                var datastream = await fetch(
+                    "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/hcpslookup"
+                );
+                try {
+                    if (!datastream.ok) {
+                        const message = `An error has occured: ${datastream.status}`;
+                        //throw new Error(message);
+                        alert("error: " + message);
+                    }
+                    hcpData = await datastream.json();
+
+                    // see if hcps are updated
+
+                    if (hcpData[0].updated == whichDay()) {
+                        alreadyDone = "yes";
+                    }
+                } catch (error) {
+                    console.error(error.message);
+                    console.log(error.message);
+                    alert(error.message);
+                }
+                if ((alreadyDone = "yes")) {
+                    document.getElementById("buttonforalreadydone").style.display = "flex";
+                } else {
+                    if (whichDay() == "Monday") {
+                        document.getElementById("buttonformonday").style.display = "flex";
+                        //buttonMonday();
+                    } else if (whichDay() == "Tuesday") {
+                        document.getElementById("buttonfortuesday").style.display = "flex";
+                        //buttonTuesday();
+                    } else if (whichDay() == "Wednesday") {
+                        document.getElementById("buttonforwednesday").style.display = "flex";
+                        //buttonWednesday();
+                    } else if (whichDay() == "Thursday") {
+                        document.getElementById("buttonforthursday").style.display = "flex";
+                        //buttonThursday();
+                    } else {
+                        document.getElementById("buttonfornone").style.display = "flex";
+                    }
+                }
             }
 
             //========================================
