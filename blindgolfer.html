@@ -124,10 +124,8 @@
             });
             $("#pagetwo").fadeIn(500);
 
-            arrDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-            dd = new Date();
-            day = dd.getDay();
-            today = arrDays[day];
+            var today;
+
             document.getElementById("headerpagetwo").innerText = today + " Blindgolfer";
             getData();
 
@@ -144,44 +142,48 @@
                         return el.list !== "";
                     });
 
+                    today = data[0].blindgolfer;
+
+                    document.getElementById("headerpagetwo").innerText = today + " Blindgolfer";
+
                     // if data is current ...
-                    if (data[0].blindgolfer == today) {
-                        for (i = 0; i <= 11; i++) {
-                            if (today == "Monday") {
-                                document.getElementById("list" + i).innerText = data[i].Monday;
-                                if (i == 0) {
-                                    document.getElementById("headerpagetwo").innerText = "Monday Blindgolfer";
-                                }
-                            }
-                            if (today == "Tuesday") {
-                                document.getElementById("list" + i).innerText = data[i].Tuesday;
-                                if (i == 0) {
-                                    document.getElementById("headerpagetwo").innerText = "Tuesday Blindgolfer";
-                                }
-                            }
-                            if (today == "Wednesday") {
-                                document.getElementById("list" + i).innerText = data[i].Wednesday;
-                                if (i == 0) {
-                                    document.getElementById("headerpagetwo").innerText = "Wednesday Blindgolfer";
-                                }
-                            }
-                            if (today == "Thursday") {
-                                document.getElementById("list" + i).innerText = data[i].Thursday;
-                                if (i == 0) {
-                                    document.getElementById("headerpagetwo").innerText = "Thursday Blindgolfer";
-                                }
-                            }
-                            if (today == "Friday" || today == "Saturday" || today == "Sunday") {
-                                if (i == 0) {
-                                    document.getElementById("list" + i).innerText = "not a competition day";
-                                    document.getElementById("headerpagetwo").innerText = "No Blindgolfer";
-                                }
+                    //if (data[0].blindgolfer == today) {
+                    for (i = 0; i <= 11; i++) {
+                        if (today == "Monday") {
+                            document.getElementById("list" + i).innerText = data[i].Monday;
+                            if (i == 0) {
+                                document.getElementById("headerpagetwo").innerText = "Monday Blindgolfer";
                             }
                         }
-                    } else {
-                        document.getElementById("list0").innerText = "Blindgolfer is not drawn until tomorrow morning.";
-                        document.getElementById("headerpagetwo").innerText = "Blindgolfer";
+                        if (today == "Tuesday") {
+                            document.getElementById("list" + i).innerText = data[i].Tuesday;
+                            if (i == 0) {
+                                document.getElementById("headerpagetwo").innerText = "Tuesday Blindgolfer";
+                            }
+                        }
+                        if (today == "Wednesday") {
+                            document.getElementById("list" + i).innerText = data[i].Wednesday;
+                            if (i == 0) {
+                                document.getElementById("headerpagetwo").innerText = "Wednesday Blindgolfer";
+                            }
+                        }
+                        if (today == "Thursday") {
+                            document.getElementById("list" + i).innerText = data[i].Thursday;
+                            if (i == 0) {
+                                document.getElementById("headerpagetwo").innerText = "Thursday Blindgolfer";
+                            }
+                        }
+                        if (today == "Friday" || today == "Saturday" || today == "Sunday") {
+                            if (i == 0) {
+                                document.getElementById("list" + i).innerText = "not a competition day";
+                                document.getElementById("headerpagetwo").innerText = "No Blindgolfer";
+                            }
+                        }
                     }
+                    //} else {
+                    //    document.getElementById("list0").innerText = "Blindgolfer is not drawn until tomorrow morning.";
+                    //    document.getElementById("headerpagetwo").innerText = "Blindgolfer";
+                    //}
                 } catch (error) {
                     console.error(error.message);
                 }
