@@ -545,7 +545,7 @@
             function bodyUpdateHcps(nom, line1, line2, line3, line4, i) {
                 document.getElementById("headerpagetwo").innerText = "Handicap adjustments";
 
-                if (hcpday == "Monday") {
+                if (hcpData[0].status == "line1") {
                     for (i = 0; i < 12; i++) {
                         document.getElementsByClassName("line1")[i].style.display = "";
                         document.getElementsByClassName("line2")[i].style.display = "none";
@@ -553,7 +553,7 @@
                         document.getElementsByClassName("line4")[i].style.display = "none";
                     }
                 }
-                if (hcpday == "Tuesday") {
+                if (hcpData[0].status == "line2") {
                     for (i = 0; i < 12; i++) {
                         document.getElementsByClassName("line1")[i].style.display = "";
                         document.getElementsByClassName("line2")[i].style.display = "";
@@ -561,7 +561,7 @@
                         document.getElementsByClassName("line4")[i].style.display = "none";
                     }
                 }
-                if (hcpday == "Wednesday") {
+                if (hcpData[0].status == "line3") {
                     for (i = 0; i < 12; i++) {
                         document.getElementsByClassName("line1")[i].style.display = "";
                         document.getElementsByClassName("line2")[i].style.display = "";
@@ -569,7 +569,7 @@
                         document.getElementsByClassName("line4")[i].style.display = "none";
                     }
                 }
-                if (hcpday == "Thursday") {
+                if (hcpData[0].status == "line4") {
                     for (i = 0; i < 12; i++) {
                         document.getElementsByClassName("line1")[i].style.display = "";
                         document.getElementsByClassName("line2")[i].style.display = "";
