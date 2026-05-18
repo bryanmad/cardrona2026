@@ -453,7 +453,7 @@
             // this code runs at startup
             //===========================
             getHcpData();
-            // need to set up a couple of arrays from the data in google sheets
+            //
             async function getHcpData() {
                 var datastream = await fetch(
                     "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/hcpexplain"
@@ -466,10 +466,7 @@
                 }
                 hcpData = await datastream.json();
                 document.getElementById("pagetwo").style.display = "block";
-                //dd = new Date();
-                //day = dd.getDay();
-                //
-                //having got hcp data, now get results data
+
                 useDataHcp();
                 //
                 //
@@ -487,11 +484,9 @@
                 // empty container
                 container.innerHTML = "";
 
-                //var ii = 0;
                 // build screen
 
                 hcpData.forEach((el, i) => {
-                    //ii++;
                     let box = document.createElement("div");
                     box.id = "box" + i;
                     box.className = "teamhcp";
@@ -522,8 +517,6 @@
                     box.appendChild(lines2);
                     box.appendChild(lines3);
                     box.appendChild(lines4);
-
-                    //box.appendChild(hcpsadj);
 
                     container.appendChild(box);
                     // fade the initial view
