@@ -19,6 +19,7 @@
 
           html {
       	  background: black;
+            background-image: url(coverslategray.png);
             background-size:     cover;
             background-repeat:   no-repeat;
             height: 100dvh;
@@ -376,7 +377,7 @@
             font-family: 'Kalam';
             transform: rotate(-5deg);
             height: 2vh;
-            color: DeepSkyBlue; //white;
+            color: DeepSkyBlue;
             font-size: 3vh;
             float: left;
           }
@@ -627,11 +628,11 @@
 
           .photo {
             height: 100vh;
-            background-image: url(coverslategray.png);
+            //background-image: url(coverslategray.png);
             background-size: cover;
             background-repeat: no-repeat;
             background-position: bottom;
-      	    transition: background 5s linear;
+      	    transition: background 2s linear;
           }
 
           #countdown {
@@ -1406,11 +1407,6 @@
       function enlarge() {
         document.getElementById("img").classList.toggle("half");
       }
-
-      // prevent default img menu of options
-      document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-      });
 
       function showPhoto() {
         document.body.classList.add("photo");
