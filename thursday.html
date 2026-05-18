@@ -690,28 +690,33 @@
                 var datastream = await fetch(
                     "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/hcpslookup"
                 );
+                try {
+                    if (!datastream.ok) {
+                        const message = `An error has occured: ${datastream.status}`;
+                        //throw new Error(message);
+                        alert("error: " + message);
+                    }
+                    hcpData = await datastream.json();
+                    // don't need blank players
+                    hcpData = hcpData.filter(function (el) {
+                        return el.players !== "";
+                    });
 
-                if (!datastream.ok) {
-                    const message = `An error has occured: ${datastream.status}`;
-                    //throw new Error(message);
-                    alert("error: " + message);
+                    // say if hcps are updated
+                    // show message
+                    if (hcpData[0].updated == "Thursday") {
+                        console.log(hcpData[0].updated + " therefore OK");
+                    } else {
+                        document.getElementById("panel").innerText =
+                            "Handicaps and tee groups for Thursday have not been updated, they will be updated Wednesday evening.";
+                        document.getElementById("panel").style.display = "flex";
+                    }
+                    //
+                } catch (error) {
+                    console.error(error.message);
+                    console.log(error.message);
+                    alert(error.message);
                 }
-                hcpData = await datastream.json();
-                // don't need blank players
-                hcpData = hcpData.filter(function (el) {
-                    return el.players !== "";
-                });
-
-                // say if hcps are updated
-                // show message
-                if (hcpData[0].updated == "Thursday") {
-                    console.log(hcpData[0].updated + " therefore OK");
-                } else {
-                    document.getElementById("panel").innerText =
-                        "Handicaps and tee groups for Thursday have not been updated, they will be updated Wednesday evening.";
-                    document.getElementById("panel").style.display = "flex";
-                }
-                //
                 //having got hcp data, now get results data
                 getData();
                 //
@@ -760,6 +765,8 @@
                     data.sort((a, b) => parseInt(b.playerpoints) - parseInt(a.playerpoints));
                 } catch (error) {
                     console.error(error.message);
+                    console.log(error.message);
+                    alert(error.message);
                 }
 
                 // Decide which data to show depending on if there are results yet
