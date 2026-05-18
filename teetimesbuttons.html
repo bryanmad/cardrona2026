@@ -197,9 +197,11 @@
                     hcpData = await datastream.json();
 
                     // see if hcps are updated
-
+                    // console.log(hcpData[0].updated, whichDay());
                     if (hcpData[0].updated == whichDay()) {
                         alreadyDone = "yes";
+                        document.getElementById("buttonforalreadydone").innerText =
+                            "already done for " + hcpData[0].updated;
                     }
                 } catch (error) {
                     console.error(error.message);
