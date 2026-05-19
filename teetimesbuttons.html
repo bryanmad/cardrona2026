@@ -197,7 +197,8 @@
                     hcpData = await datastream.json();
 
                     // see if hcps are updated
-                    // console.log(hcpData[0].updated, whichDay());
+                    console.log(hcpData);
+                    console.log(hcpData[0].updated, whichDay());
                     if (hcpData[0].updated == whichDay()) {
                         alreadyDone = "yes";
                         document.getElementById("buttonforalreadydone").innerText =
@@ -208,7 +209,7 @@
                     console.log(error.message);
                     alert(error.message);
                 }
-                if ((alreadyDone = "yes")) {
+                if (alreadyDone == "yes") {
                     document.getElementById("buttonforalreadydone").style.display = "flex";
                 } else {
                     if (whichDay() == "Monday") {
