@@ -1268,6 +1268,8 @@
 
             var data;
 
+            var currentday;
+
             //==============================================================
             // data may change so retrieve it on each occasion
             //==============================================================
@@ -1332,35 +1334,38 @@
                     const message = `An error has occured: ${datastream.status}`;
                     //throw new Error(message);
                     alert("error: " + message);
+                } else {
+                    var resultsarray = await datastream.json();
+                    // split into separate arrays
+                    arrPlayersDropdown = resultsarray.map((d) => d.players);
+                    arrHcpsDropdown = resultsarray.map((d) => d.hcps);
+
+                    // remove null items
+                    arrPlayersDropdown = arrPlayersDropdown.filter(function (el) {
+                        return el != null;
+                    });
+                    arrHcpsDropdown = arrHcpsDropdown.filter(function (el) {
+                        return el != null;
+                    });
+
+                    // remove empty items
+                    arrPlayersDropdown = arrPlayersDropdown.filter(function (el) {
+                        return el != "";
+                    });
+                    arrHcpsDropdown = arrHcpsDropdown.filter(function (el) {
+                        return el != "";
+                    });
+
+                    dd = new Date();
+                    day = dd.getDay();
+
+                    currentday = resultsarray[0].updated;
+
+                    // put correct wording back - signifies download completed
+                    document.getElementById("dropbtn").innerText = "select player";
+
+                    start();
                 }
-                var resultsarray = await datastream.json();
-                // split into separate arrays
-                arrPlayersDropdown = resultsarray.map((d) => d.players);
-                arrHcpsDropdown = resultsarray.map((d) => d.hcps);
-
-                // remove null items
-                arrPlayersDropdown = arrPlayersDropdown.filter(function (el) {
-                    return el != null;
-                });
-                arrHcpsDropdown = arrHcpsDropdown.filter(function (el) {
-                    return el != null;
-                });
-
-                // remove empty items
-                arrPlayersDropdown = arrPlayersDropdown.filter(function (el) {
-                    return el != "";
-                });
-                arrHcpsDropdown = arrHcpsDropdown.filter(function (el) {
-                    return el != "";
-                });
-
-                dd = new Date();
-                day = dd.getDay();
-
-                // put correct wording back - signifies download completed
-                document.getElementById("dropbtn").innerText = "select player";
-
-                start();
             }
 
             //=============================================================
@@ -1426,7 +1431,7 @@
                         player1name = playerName;
                         // change "select player to course
                         document.getElementById("dropbtn").innerText =
-                            player1name + " " + player1hcp + ":  " + days[day];
+                            player1name + " " + player1hcp + ":  " + currentday; //  days[day];
                     }
                 }
 
