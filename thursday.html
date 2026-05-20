@@ -910,8 +910,12 @@
 
                     if (elementName.innerHTML == elName) {
                         setTimeout(function () {
+                            if (elName == "Andy" || elName == "JohnD") {
+                                elementName.innerHTML = elName + '&nbsp;&nbsp;<img src="walk.png" alt="x" height="25">';
+                            } else {
+                                elementName.innerHTML = elName;
+                            }
                             elementScore.innerHTML = hcps;
-                            //elementTees.innerHTML = tees;
                             element.style.opacity = 1;
                         }, n * 300);
                     }
