@@ -240,7 +240,7 @@
                          }
 
                          .pscores {
-                             width: 40%;
+                             width: 15%;
                              font-size: 3vh;
                              color: white;
                              font-weight: 400;
@@ -249,6 +249,19 @@
                              justify-content: center;
                              //padding-left: 5vh;
                          }
+
+            .pscorestxt {
+                             width: 25%;
+                             font-size: 2vh;
+                             color: white;
+                             font-weight: 400;
+                font-style: italic;
+                             display: flex;
+                             text-align: center;
+                             justify-content: left;
+                         }
+
+
 
                          .position {
                              width: 20%;
@@ -673,6 +686,10 @@
                     pscores.id = "pscores" + i;
                     pscores.className = "pscores";
 
+                    let pscorestxt = document.createElement("span");
+                    pscorestxt.id = "pscorestxt" + i;
+                    pscorestxt.className = "pscorestxt";
+
                     let position = document.createElement("span");
                     position.id = "position" + i;
                     position.className = "position";
@@ -681,7 +698,7 @@
                     box.appendChild(position);
                     box.appendChild(name);
                     box.appendChild(pscores);
-
+                    box.appendChild(pscorestxt);
                     container.appendChild(box);
                     // fade the initial view
                     box.style.opacity = 0.3;
@@ -706,11 +723,12 @@
 
                 let elementName = document.getElementsByClassName("name")[k];
                 let elementScore = document.getElementsByClassName("pscores")[k];
+                let elementText = document.getElementsByClassName("pscorestxt")[k];
                 let elementPos = document.getElementsByClassName("position")[k];
-
                 setTimeout(function () {
                     elementName.innerText = nom;
-                    elementScore.innerText = scr + " points";
+                    elementScore.innerText = scr;
+                    elementText.innerText = " points";
                     elementPos.innerText = pos;
 
                     elementName.parentNode.style.opacity = 1;
@@ -721,11 +739,13 @@
                 document.getElementById("headerpagetwo").innerText = "Par 5 champion";
                 let elementName = document.getElementsByClassName("name")[k];
                 let elementScore = document.getElementsByClassName("pscores")[k];
+                let elementText = document.getElementsByClassName("pscorestxt")[k];
                 let elementPos = document.getElementsByClassName("position")[k];
 
                 setTimeout(function () {
                     elementName.innerText = nom;
-                    elementScore.innerText = scr + " points";
+                    elementScore.innerText = scr;
+                    elementText.innerText = " points";
                     elementPos.innerText = pos;
 
                     elementName.parentNode.style.opacity = 1;
@@ -737,11 +757,13 @@
 
                 let elementName = document.getElementsByClassName("name")[k];
                 let elementScore = document.getElementsByClassName("pscores")[k];
+                let elementText = document.getElementsByClassName("pscorestxt")[k];
                 let elementPos = document.getElementsByClassName("position")[k];
 
                 setTimeout(function () {
                     elementName.innerText = nom;
-                    elementScore.innerText = scr + " birdies";
+                    elementScore.innerText = scr;
+                    elementText.innerText = " birdies";
                     elementPos.innerText = pos;
 
                     elementName.parentNode.style.opacity = 1;
