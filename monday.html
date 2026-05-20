@@ -910,14 +910,15 @@
                 AllTeams.forEach((element, n) => {
                     let elementName = element.querySelector(".namehcp");
                     let elementScore = element.querySelector(".hcps");
-                    if (elName == "Andy" || elName == "JohnD" || elName == "JohnM" || elName == "Joe") {
-                        elementName.innerHTML = elName + '&nbsp;&nbsp;<img src="walk.png" alt="x" height="25">';
-                    } else {
-                        elementName.innerHTML = elName;
-                    }
+                    //let elementTees = element.querySelector(".tees");
 
                     if (elementName.innerHTML == elName) {
                         setTimeout(function () {
+                            if (elName == "Andy" || elName == "JohnD" || elName == "Joe" || elName == "JohnM") {
+                                elementName.innerHTML = elName + '&nbsp;&nbsp;<img src="walk.png" alt="x" height="25">';
+                            } else {
+                                elementName.innerHTML = elName;
+                            }
                             elementScore.innerHTML = hcps;
                             element.style.opacity = 1;
                         }, n * 300);
