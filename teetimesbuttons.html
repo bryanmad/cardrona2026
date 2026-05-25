@@ -397,7 +397,12 @@
                 if (canVibrate) {
                     window.navigator.vibrate(50);
                 }
-                resetArr();
+
+                document.getElementById("buttonformonday").innerText = "Monday Done";
+                document.getElementById("buttonfortuesday").innerText = "Tuesday Done";
+                document.getElementById("buttonforwednesday").innerText = "Wednesday Done";
+                document.getElementById("buttonforthursday").innerText = "Thursday Done";
+                //resetArr();
             }
 
             function whichDay() {
