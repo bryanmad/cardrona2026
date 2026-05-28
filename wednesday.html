@@ -684,63 +684,7 @@
             //===========================
             // this code runs at startup
             //===========================
-            getHcpData();
-            // need to set up a couple of arrays from the data in google sheets
-            async function getHcpData() {
-                var datastream = await fetch(
-                    "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/hcpslookup"
-                );
-                try {
-                    if (!datastream.ok) {
-                        const message = `An error has occured: ${datastream.status}`;
-                        //throw new Error(message);
-                        alert("error: " + message);
-                    }
-                    hcpData = await datastream.json();
-                    // don't need blank players
-                    hcpData = hcpData.filter(function (el) {
-                        return el.players !== "";
-                    });
-
-                    // say if hcps are updated
-                    // show message
-                    if (hcpData[0].updated == "Wednesday" || hcpData[0].updated == "Thursday") {
-                        console.log(hcpData[0].updated + " therefore OK");
-                    } else {
-                        document.getElementById("panel").innerText =
-                            "Handicaps and tee groups for Wednesday have not been updated, they will be updated Tuesday evening.";
-                        document.getElementById("panel").style.display = "flex";
-                    }
-                } catch (error) {
-                    console.error(error.message);
-                    console.log(error.message);
-                    alert(error.message);
-                }
-
-                //having got hcp data, now get results data
-                getData();
-                //
-                //
-            }
-
-            //=============================================================
-            //=============================================================
-            // function start()
-            // - initialise everything and do checks etc.
-            //=============================================================
-            function start() {
-                $("#pagetwo").fadeIn(500);
-
-                // data is sorted with highest score first so test that to see if it >0
-                //console.log("data[0].playerpoints = " + data.length);
-                if (data.length > 0) {
-                    // change < to >
-                    useDataResults(data);
-                } else {
-                    useDataHcp(data);
-                }
-            } // end function start()
-
+            getData();
             //=============================================================
             // functions - run when called
             //=============================================================
@@ -752,38 +696,49 @@
             async function getData() {
                 var url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/resultsday3";
                 try {
-                    const dataStream = await fetch(url);
+                    const dataStream = await fetch(url, {
+                        signal: AbortSignal.timeout(10000)
+                    });
                     if (!dataStream.ok) {
                         throw new Error(`Response status: ${dataStream.status}`);
                     }
                     data = await dataStream.json();
                     // don't need blank players
-                    data = data.filter(function (el) {
-                        return el.players !== "";
-                    });
+                    //data = data.filter(function (el) {
+                    //    return el.players !== "";
+                    //});
 
                     data.sort((a, b) => parseInt(b.playerpoints) - parseInt(a.playerpoints));
 
-                    //console.log(data[0].h1);
+                    //console.log(data);
+
+                    // Decide which data to show depending on if there are results yet
                     //
-                    // for (i=1; i<=18; i++){
-                    //     document.getElementById("st" + i).innerText = data[0].h1;
+                    $("#pagetwo").fadeIn(500);
 
-                    //}
-
-                    //data.forEach((el, i) => {
-                    //
-
-                    // }
-                } catch (error) {
-                    console.error(error.message);
-                    console.log(error.message);
-                    alert(error.message);
+                    // data is sorted with highest score first so test that to see if it >0
+                    //console.log("data[0].playerpoints = " + data.length);
+                    if (data[0].players.length > 0) {
+                        // change < to >
+                        useDataResults();
+                    } else {
+                        useDataHcp();
+                    }
+                } catch (err) {
+                    console.error(err.message);
+                    if (err.name === "TimeoutError") {
+                        // This exception is from the abort signal
+                        console.error("Timeout: no results within 10 seconds");
+                    } else if (err.name === "AbortError") {
+                        // This exception is from the fetch itself
+                        console.error("Fetch aborted by user action (browser stop button, closing tab, etc.");
+                    } else if (err.name === "TypeError") {
+                        console.error("AbortSignal.timeout() method is not supported");
+                    } else {
+                        // A network error, or some other problem.
+                        console.error(`Error: type: ${err.name}, message: ${err.message}`);
+                    }
                 }
-
-                // Decide which data to show depending on if there are results yet
-                //
-                start();
             }
 
             function useDataHcp() {
@@ -793,8 +748,7 @@
 
                 // build screen
 
-                hcpData.forEach((el, i) => {
-                    //ii++;
+                data.forEach((el, i) => {
                     let box = document.createElement("div");
                     box.id = "box" + i;
                     box.className = "teamhcp";
@@ -802,7 +756,7 @@
                     let name = document.createElement("span");
                     name.id = "namehcp" + i;
                     name.className = "namehcp";
-                    name.innerHTML = el.players;
+                    name.innerHTML = el.hcpplayers;
 
                     let hcps = document.createElement("span");
                     hcps.id = "hcps" + i;
@@ -823,12 +777,17 @@
                 });
 
                 var k = 0;
+
+                //console.log("----------------");
+                //console.log(data);
+                //console.log("----------------");
+
                 // do proper display
                 setTimeout(function () {
-                    hcpData.forEach((el, i) => {
+                    data.forEach((el, i) => {
                         k++;
-                        if (el.players !== "") {
-                            bodyUpdateHcps(el.players, el.hcps, el.tees, i);
+                        if (el.hcpplayers !== "") {
+                            bodyUpdateHcps(el.hcpplayers, el.hcps, i);
                         }
                     }, k * 300);
                 });
@@ -839,7 +798,7 @@
                 document.getElementById("box7").style.borderColor = "DarkSeaGreen";
             }
 
-            function useDataResults(data) {
+            function useDataResults() {
                 let container = document.getElementById("createleaderboarditems");
                 // empty container
                 container.innerHTML = "";
@@ -909,9 +868,8 @@
 
             function bodyUpdateHcps(nom, hcps, i) {
                 document.getElementById("headerpagetwo").innerText = "Handicaps for Wednesday";
-
                 let elName = nom;
-                hcpData.find((team) => team.players === elName);
+                data.find((team) => team.players === elName);
 
                 let AllTeams = Array.from(document.querySelectorAll(".teamhcp"));
 
@@ -979,11 +937,11 @@
             }
 
             function showStats(id) {
-                console.log("showStats(id) = " + id);
+                //console.log("showStats(id) = " + id);
 
                 if (document.getElementById(id).hasChildNodes()) {
                     let childtxt = document.getElementById(id).childNodes[1].innerText;
-                    console.log("called by " + childtxt);
+                    //console.log("called by " + childtxt);
 
                     document.getElementById("statspanel").style.display = "flex";
                     document.getElementById("theader").innerText = "\n" + childtxt + "\n\n";
