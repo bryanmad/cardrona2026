@@ -134,60 +134,68 @@
             async function getData() {
                 var url = "https://opensheet.elk.sh/177jxMJFqFd6ZDtLf4sLvBkaeIS8MU9drvNXmC_zKP-E/blindgolfer";
                 try {
-                    const dataStream = await fetch(url);
+                    // 10 second timeout
+                    const dataStream = await fetch(url, {
+                        signal: AbortSignal.timeout(10000)
+                    });
                     if (!dataStream.ok) {
                         throw new Error(`Response status: ${dataStream.status}`);
-                    }
-                    data = await dataStream.json();
-                    // don't need blank players
-                    data = data.filter(function (el) {
-                        return el.list !== "";
-                    });
+                    } else {
+                        data = await dataStream.json();
+                        // don't need blank players
+                        data = data.filter(function (el) {
+                            return el.list !== "";
+                        });
 
-                    today = data[0].blindgolfer;
+                        today = data[0].blindgolfer;
 
-                    // document.getElementById("headerpagetwo").innerText = today + " Blindgolfer";
-
-                    // if data is current ...
-                    //if (data[0].blindgolfer == today) {
-                    for (i = 0; i <= 11; i++) {
-                        if (today == "Monday") {
-                            document.getElementById("list" + i).innerText = data[i].Monday;
-                            if (i == 0) {
-                                document.getElementById("headerpagetwo").innerText = "Monday Blindgolfer";
+                        for (i = 0; i <= 11; i++) {
+                            if (today == "Monday") {
+                                document.getElementById("list" + i).innerText = data[i].Monday;
+                                if (i == 0) {
+                                    document.getElementById("headerpagetwo").innerText = "Monday Blindgolfer";
+                                }
                             }
-                        }
-                        if (today == "Tuesday") {
-                            document.getElementById("list" + i).innerText = data[i].Tuesday;
-                            if (i == 0) {
-                                document.getElementById("headerpagetwo").innerText = "Tuesday Blindgolfer";
+                            if (today == "Tuesday") {
+                                document.getElementById("list" + i).innerText = data[i].Tuesday;
+                                if (i == 0) {
+                                    document.getElementById("headerpagetwo").innerText = "Tuesday Blindgolfer";
+                                }
                             }
-                        }
-                        if (today == "Wednesday") {
-                            document.getElementById("list" + i).innerText = data[i].Wednesday;
-                            if (i == 0) {
-                                document.getElementById("headerpagetwo").innerText = "Wednesday Blindgolfer";
+                            if (today == "Wednesday") {
+                                document.getElementById("list" + i).innerText = data[i].Wednesday;
+                                if (i == 0) {
+                                    document.getElementById("headerpagetwo").innerText = "Wednesday Blindgolfer";
+                                }
                             }
-                        }
-                        if (today == "Thursday") {
-                            document.getElementById("list" + i).innerText = data[i].Thursday;
-                            if (i == 0) {
-                                document.getElementById("headerpagetwo").innerText = "Thursday Blindgolfer";
+                            if (today == "Thursday") {
+                                document.getElementById("list" + i).innerText = data[i].Thursday;
+                                if (i == 0) {
+                                    document.getElementById("headerpagetwo").innerText = "Thursday Blindgolfer";
+                                }
                             }
-                        }
-                        if (today == "Friday" || today == "Saturday" || today == "Sunday") {
-                            if (i == 0) {
-                                document.getElementById("list" + i).innerText = "not a competition day";
-                                document.getElementById("headerpagetwo").innerText = "No Blindgolfer";
+                            if (today == "Friday" || today == "Saturday" || today == "Sunday") {
+                                if (i == 0) {
+                                    document.getElementById("list" + i).innerText = "not a competition day";
+                                    document.getElementById("headerpagetwo").innerText = "No Blindgolfer";
+                                }
                             }
                         }
                     }
-                    //} else {
-                    //    document.getElementById("list0").innerText = "Blindgolfer is not drawn until tomorrow morning.";
-                    //    document.getElementById("headerpagetwo").innerText = "Blindgolfer";
-                    //}
-                } catch (error) {
-                    console.error(error.message);
+                } catch (err) {
+                    console.error(err.message);
+                    if (err.name === "TimeoutError") {
+                        // This exception is from the abort signal
+                        console.error("Timeout: no results within 10 seconds");
+                    } else if (err.name === "AbortError") {
+                        // This exception is from the fetch itself
+                        console.error("Fetch aborted by user action (browser stop button, closing tab, etc.");
+                    } else if (err.name === "TypeError") {
+                        console.error("AbortSignal.timeout() method is not supported");
+                    } else {
+                        // A network error, or some other problem.
+                        console.error(`Error: type: ${err.name}, message: ${err.message}`);
+                    }
                 }
             }
         </script>
