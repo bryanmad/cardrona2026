@@ -97,7 +97,7 @@
             <!-- leaderboard -->
             <div class="child-two">
                 <div id="headerpagetwo">Checking Blindgolfer</div>
-                <div id="list0"></div>
+                <div id="list0">No Blindgolfer has been drawn yet.</div>
                 <div id="list1"></div>
                 <div id="list2"></div>
                 <div id="list3"></div>
@@ -177,6 +177,12 @@
                             if (today == "Friday" || today == "Saturday" || today == "Sunday") {
                                 if (i == 0) {
                                     document.getElementById("list" + i).innerText = "not a competition day";
+                                    document.getElementById("headerpagetwo").innerText = "No Blindgolfer";
+                                }
+                            }
+                            if (today == "empty") {
+                                if (i == 0) {
+                                    document.getElementById("list" + i).innerText = "Blindgolfer not yet drawn.";
                                     document.getElementById("headerpagetwo").innerText = "No Blindgolfer";
                                 }
                             }
