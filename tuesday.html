@@ -31,7 +31,7 @@
                 height: 100%;
                 width: 100%;
             }
-
+            /*
             #info {
                 display: none;
                 overflow: auto;
@@ -46,7 +46,7 @@
                 padding-right: 1px;
                 padding-bottom: 1px;
             }
-
+*/
             #popuppanel {
                 background-color: #ddd;
                 font-size: 3vh;
@@ -234,14 +234,15 @@
             }
 
             .tees {
-                width: 35%;
+                width: 40%;
                 font-size: 2vh;
                 color: cyan;
                 font-weight: 400;
                 display: flex;
                 text-align: center;
-                justify-content: center;
-                padding-left: 5vh;
+                justify-content: end;
+                padding-right: 2vh;
+                align-items: center;
             }
 
             #tees4,
@@ -281,7 +282,7 @@
                 text-align: center;
                 justify-content: center;
             }
-
+            /*
             #headerinfo {
                 padding-top: 2vh;
                 padding-bottom: 1vh;
@@ -292,8 +293,8 @@
                 justify-content: center;
                 width: 80%;
             }
-
-            #footerinfo,
+*/
+            /*            #footerinfo, */
             #footerstats {
                 position: absolute;
                 bottom: 200px;
@@ -327,7 +328,7 @@
                 padding-left: 1vw;
                 padding-right: 1vw;
             }
-
+            /*
             #statsinfo {
                 width: 300px;
                 height: 300px;
@@ -339,7 +340,7 @@
                 border: 1px sold yellow;
                 flex: 1;
             }
-
+*/
             .table_component {
                 overflow: auto;
                 width: 100%;
@@ -715,11 +716,13 @@
                     // Decide which data to show depending on if there are results yet
                     //
                     $("#pagetwo").fadeIn(500);
-
+                    console.log(data);
+                    console.log("length = " + data[0].players.length);
                     // data is sorted with highest score first so test that to see if it >0
                     //console.log("data[0].playerpoints = " + data.length);
                     if (data[0].players.length > 0) {
                         // change < to >
+                        console.log("useDataResults()");
                         useDataResults();
                     } else {
                         useDataHcp();
@@ -788,14 +791,11 @@
 
                 var k = 0;
 
-                //console.log("----------------");
-                //console.log(data);
-                //console.log("----------------");
-
                 // do proper display
-                setTimeout(function () {
-                    data.forEach((el, i) => {
-                        k++;
+                data.forEach((el, i) => {
+                    k++;
+                    setTimeout(function () {
+                        console.log("run ... 1", el.hcpplayers, el.hcps);
                         if (el.hcpplayers !== "") {
                             bodyUpdateHcps(el.hcpplayers, el.hcps, i);
                         }
@@ -866,46 +866,45 @@
                     box.style.opacity = 0.3;
                 });
 
+                var k = 0;
+
                 // do proper display
-                data.forEach((el, k) => {
+                data.forEach((el, i) => {
+                    //k++;
                     setTimeout(function () {
+                        console.log("run ... 1", el.players, el.playerpoints);
                         if (el.players !== "") {
-                            bodyUpdate(el.players, el.playerpoints);
+                            bodyUpdate(el.players, el.playerpoints, i);
                         }
-                    }, k * 300);
+                    }, i * 300);
                 });
             }
 
             function bodyUpdateHcps(nom, hcps, i) {
                 document.getElementById("headerpagetwo").innerText = "Handicaps for Tuesday";
-                let elName = nom;
-                data.find((team) => team.players === elName);
-
+                data.find((team) => team.players === nom);
                 let AllTeams = Array.from(document.querySelectorAll(".teamhcp"));
+                let element = AllTeams[i];
+                let elementName = element.querySelector(".namehcp");
+                let elementHcp = element.querySelector(".hcps");
+                let elementTee = element.querySelector(".tees");
 
-                AllTeams.forEach((element, n) => {
-                    let elementName = element.querySelector(".namehcp");
-                    let elementScore = element.querySelector(".hcps");
-
-                    if (elementName.innerHTML == elName) {
-                        setTimeout(function () {
-                            if (elName == "Andy" || elName == "JohnD") {
-                                elementName.innerHTML = elName + '&nbsp;&nbsp;<img src="walk.png" alt="x" height="25">';
-                            } else {
-                                elementName.innerHTML = elName;
-                            }
-                            elementScore.innerHTML = hcps;
-                            element.style.opacity = 1;
-                        }, n * 300);
+                console.log("run ... 2", nom + "--");
+                if (elementName.innerHTML == nom) {
+                    if (nom == "Andy" || nom == "JohnD") {
+                        tempt = elementTee.innerHTML;
+                        elementTee.innerHTML = '<img id="walk" src="walk.png" alt="x" height="25">&nbsp;' + tempt;
+                    } else {
+                        elementName.innerHTML = nom;
                     }
-                });
+                    elementHcp.innerHTML = hcps;
+                    element.style.opacity = 1;
+                }
             }
 
-            function bodyUpdate(nom, scr) {
+            function bodyUpdate(nom, scr, i) {
                 document.getElementById("headerpagetwo").innerText = "Tuesday results";
-
-                let elName = nom;
-                data.find((team) => team.players === elName);
+                data.find((team) => team.players === nom);
                 // now sort out positions for same scores
                 var held = 1;
                 var heldscore = 0;
@@ -919,31 +918,26 @@
                     heldscore = elem.playerpoints;
                 });
                 let AllTeams = Array.from(document.querySelectorAll(".team"));
+                let element = AllTeams[i];
+                let elementName = element.querySelector(".name");
+                let elementScore = element.querySelector(".scores");
+                if (elementName.innerHTML == nom) {
+                    //setTimeout(function () {
+                    elementScore.innerHTML = scr;
+                    element.style.opacity = 1;
+                    let elementPos = element.querySelector(".position");
+                    elementPos.innerText = data.find((team) => team.players === elementName.innerHTML).position;
 
-                AllTeams.forEach((element, n) => {
-                    let elementName = element.querySelector(".name");
-                    let elementScore = element.querySelector(".scores");
-                    if (elementName.innerHTML == elName) {
-                        setTimeout(function () {
-                            elementScore.innerHTML = scr;
-                            element.style.opacity = 1;
-                            let elementPos = element.querySelector(".position");
-                            elementPos.innerText = data.find((team) => team.players === elementName.innerHTML).position;
+                    var birdnum = data.find((team) => team.players === elementName.innerHTML).bird;
 
-                            var birdnum = data.find((team) => team.players === elementName.innerHTML).bird;
-
-                            if (birdnum > 0) {
-                                document.getElementById("bird4" + n).style.visibility = "visible";
-
-                                // cope with too many birdies for space available
-
-                                document.getElementById("bird5" + n).className = "numbird";
-                                document.getElementById("bird5" + n).innerText = birdnum;
-                                document.getElementById("bird5" + n).style.visibility = "visible";
-                            }
-                        }, n * 100);
+                    if (birdnum > 0) {
+                        document.getElementById("bird4" + i).style.visibility = "visible";
+                        // cope with too many birdies for space available
+                        document.getElementById("bird5" + i).className = "numbird";
+                        document.getElementById("bird5" + i).innerText = birdnum;
+                        document.getElementById("bird5" + i).style.visibility = "visible";
                     }
-                });
+                }
             }
 
             function showStats(id) {

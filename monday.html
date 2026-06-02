@@ -214,7 +214,7 @@
             .namehcp {
                 width: 50%;
                 display: flex;
-                align-items: center;
+                //align-items: center;
                 justify-content: left;
                 font-size: 3vh;
                 color: white;
@@ -234,14 +234,15 @@
             }
 
             .tees {
-                width: 35%;
+                width: 40%;
                 font-size: 2vh;
                 color: cyan;
                 font-weight: 400;
                 display: flex;
                 text-align: center;
-                justify-content: center;
-                padding-left: 5vh;
+                justify-content: end;
+                padding-right: 2vh;
+                align-items: center;
             }
 
             #tees4,
@@ -467,6 +468,10 @@
                 border-radius: 5px;
                 padding: 5vh;
                 padding-top: 20vh;
+            }
+
+            #walk {
+                justify-content: space-between;
             }
         </style>
     </head>
@@ -886,11 +891,14 @@
                 AllTeams.forEach((element, n) => {
                     let elementName = element.querySelector(".namehcp");
                     let elementScore = element.querySelector(".hcps");
+                    let elementTee = element.querySelector(".tees");
 
                     if (elementName.innerHTML == elName) {
                         setTimeout(function () {
                             if (elName == "Andy" || elName == "JohnD" || elName == "JohnM" || elName == "Joe") {
-                                elementName.innerHTML = elName + '&nbsp;&nbsp;<img src="walk.png" alt="x" height="25">';
+                                tempt = elementTee.innerHTML;
+                                elementTee.innerHTML =
+                                    '<img id="walk" src="walk.png" alt="x" height="25">&nbsp;' + tempt;
                             } else {
                                 elementName.innerHTML = elName;
                             }
@@ -920,28 +928,26 @@
                 });
                 let AllTeams = Array.from(document.querySelectorAll(".team"));
 
-                AllTeams.forEach((element, n) => {
+                AllTeams.forEach((element, i) => {
                     let elementName = element.querySelector(".name");
                     let elementScore = element.querySelector(".scores");
                     if (elementName.innerHTML == elName) {
-                        setTimeout(function () {
-                            elementScore.innerHTML = scr;
-                            element.style.opacity = 1;
-                            let elementPos = element.querySelector(".position");
-                            elementPos.innerText = data.find((team) => team.players === elementName.innerHTML).position;
+                        elementScore.innerHTML = scr;
+                        element.style.opacity = 1;
+                        let elementPos = element.querySelector(".position");
+                        elementPos.innerText = data.find((team) => team.players === elementName.innerHTML).position;
 
-                            var birdnum = data.find((team) => team.players === elementName.innerHTML).bird;
+                        var birdnum = data.find((team) => team.players === elementName.innerHTML).bird;
 
-                            if (birdnum > 0) {
-                                document.getElementById("bird4" + n).style.visibility = "visible";
+                        if (birdnum > 0) {
+                            document.getElementById("bird4" + i).style.visibility = "visible";
 
-                                // cope with too many birdies for space available
+                            // cope with too many birdies for space available
 
-                                document.getElementById("bird5" + n).className = "numbird";
-                                document.getElementById("bird5" + n).innerText = birdnum;
-                                document.getElementById("bird5" + n).style.visibility = "visible";
-                            }
-                        }, n * 100);
+                            document.getElementById("bird5" + i).className = "numbird";
+                            document.getElementById("bird5" + i).innerText = birdnum;
+                            document.getElementById("bird5" + i).style.visibility = "visible";
+                        }
                     }
                 });
             }

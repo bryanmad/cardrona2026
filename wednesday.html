@@ -234,14 +234,15 @@
             }
 
             .tees {
-                width: 35%;
+                width: 40%;
                 font-size: 2vh;
                 color: cyan;
                 font-weight: 400;
                 display: flex;
                 text-align: center;
-                justify-content: center;
-                padding-left: 5vh;
+                justify-content: end;
+                padding-right: 2vh;
+                align-items: center;
             }
 
             #tees4,
@@ -886,13 +887,16 @@
                 AllTeams.forEach((element, n) => {
                     let elementName = element.querySelector(".namehcp");
                     let elementScore = element.querySelector(".hcps");
+                    let elementTee = element.querySelector(".tees");
 
                     if (elementName.innerHTML == elName) {
                         setTimeout(function () {
-                            if (elName == "Andy" || elName == "JohnD") {
-                                elementName.innerHTML = elName + '&nbsp;&nbsp;<img src="walk.png" alt="x" height="25">';
+                            if (nom == "Andy" || nom == "JohnD") {
+                                tempt = elementTee.innerHTML;
+                                elementTee.innerHTML =
+                                    '<img id="walk" src="walk.png" alt="x" height="25">&nbsp;' + tempt;
                             } else {
-                                elementName.innerHTML = elName;
+                                elementName.innerHTML = nom;
                             }
                             elementScore.innerHTML = hcps;
                             element.style.opacity = 1;
